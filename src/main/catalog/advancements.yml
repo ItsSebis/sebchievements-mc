@@ -31,6 +31,8 @@ advancements:
             type: minecraft:entity_properties
             entity: this
             predicate: { minecraft:entity_type: minecraft:wandering_trader }
+    difficulty: 2
+    reward: [{item: "minecraft:emerald", name: "Tax Refund"}]
 
   - id: nice_to_mace_you
     tab: challenges
@@ -56,6 +58,8 @@ advancements:
                 minecraft:equipment: { mainhand: { items: minecraft:mace } }
               tags:
                 - { id: "#minecraft:mace_smash", expected: true }
+    difficulty: 6
+    reward: [{item: "minecraft:wind_charge", count: 4}]
 
   - id: commuter
     tab: exploration
@@ -69,6 +73,8 @@ advancements:
         trigger: minecraft:nether_travel
         conditions:
           distance: { horizontal: { min: 10000 } }
+    difficulty: 3
+    reward: [{item: "minecraft:warped_fungus_on_a_stick", name: "Commuter Pass"}]
 
   - id: off_the_map
     tab: exploration
@@ -119,6 +125,8 @@ advancements:
               minecraft:location:
                 dimension: minecraft:overworld
                 position: { z: { max: -20000 } }
+    difficulty: 5
+    reward: [{item: "minecraft:recovery_compass"}]
 
   - id: far_end
     tab: exploration
@@ -169,6 +177,8 @@ advancements:
               minecraft:location:
                 dimension: minecraft:the_end
                 position: { z: { max: -10000 } }
+    difficulty: 6
+    reward: [{item: "minecraft:ender_pearl", count: 8}]
 
 
   - id: professional_napper
@@ -180,6 +190,8 @@ advancements:
     mode: plugin
     kind: counter
     anti_cheese: "Only players actually sleeping when the night is skipped are credited; creative and spectator players are not"
+    difficulty: 7
+    reward: [{item: "minecraft:clock", name: "Alarm Clock"}]
 
   - id: its_fine
     tab: silly
@@ -190,6 +202,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets when health rises above half a heart or on death"
+    difficulty: 5
+    reward: [{item: "minecraft:potion", potion: "minecraft:fire_resistance", name: "This Is Fine"}]
 
   - id: hoarder
     tab: silly
@@ -198,6 +212,8 @@ advancements:
     icon: minecraft:dirt
     frame: task
     mode: plugin
+    difficulty: 2
+    reward: [{item: "minecraft:dirt", name: "Mint Condition Dirt"}]
 
   - id: fashion_disaster
     tab: silly
@@ -206,6 +222,8 @@ advancements:
     icon: minecraft:leather_chestplate
     frame: task
     mode: plugin
+    difficulty: 2
+    reward: [{item: "minecraft:armor_stand", name: "Fashion Victim"}]
 
   - id: creeper_whisperer
     tab: silly
@@ -214,6 +232,8 @@ advancements:
     icon: minecraft:creeper_head
     frame: goal
     mode: plugin
+    difficulty: 3
+    reward: [{item: "minecraft:creeper_banner_pattern"}]
 
   - id: self_own
     tab: silly
@@ -222,6 +242,8 @@ advancements:
     icon: minecraft:arrow
     frame: task
     mode: plugin
+    difficulty: 3
+    reward: [{item: "minecraft:arrow", name: "Returned to Sender"}]
 
   - id: gravity_check
     tab: silly
@@ -230,6 +252,8 @@ advancements:
     icon: minecraft:water_bucket
     frame: task
     mode: plugin
+    difficulty: 3
+    reward: [{item: "minecraft:feather", name: "Should Have Packed This"}]
 
   - id: staring_contest
     tab: silly
@@ -240,6 +264,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets when you look away, remove the pumpkin or on death"
+    difficulty: 3
+    reward: [{item: "minecraft:ender_eye", name: "Eye Contact"}]
 
   - id: one_mans_trash
     tab: silly
@@ -250,6 +276,8 @@ advancements:
     mode: plugin
     kind: streak
     anti_cheese: "Any catch that is not junk resets the streak; catches while AFK are ignored; creative and spectator catches do not count"
+    difficulty: 10
+    reward: [{item: "minecraft:cauldron", name: "Trash Can"}]
 
   - id: neighborly
     tab: social
@@ -258,6 +286,8 @@ advancements:
     icon: minecraft:sweet_berries
     frame: task
     mode: plugin
+    difficulty: 1
+    reward: [{item: "minecraft:cookie", name: "Much Obliged"}]
 
   - id: roommates
     tab: social
@@ -266,6 +296,8 @@ advancements:
     icon: minecraft:red_bed
     frame: task
     mode: plugin
+    difficulty: 2
+    reward: [{item: "minecraft:white_bed", name: "Spare Bed"}]
 
   - id: betrayal
     tab: social
@@ -274,6 +306,8 @@ advancements:
     icon: minecraft:iron_nugget
     frame: goal
     mode: plugin
+    difficulty: 3
+    reward: [{item: "minecraft:iron_nugget", count: 30, name: "Thirty Pieces of Silver"}]
 
   - id: group_project
     tab: social
@@ -282,6 +316,8 @@ advancements:
     icon: minecraft:bell
     frame: goal
     mode: plugin
+    difficulty: 3
+    reward: [{item: "minecraft:bell", name: "Meeting Bell"}]
 
   - id: bodyguard
     tab: social
@@ -290,6 +326,8 @@ advancements:
     icon: minecraft:shield
     frame: task
     mode: plugin
+    difficulty: 4
+    reward: [{item: "minecraft:shield"}]
 
   - id: medic
     tab: social
@@ -298,6 +336,8 @@ advancements:
     icon: minecraft:splash_potion
     frame: task
     mode: plugin
+    difficulty: 4
+    reward: [{item: "minecraft:splash_potion", potion: "minecraft:healing", name: "House Call"}]
 
   - id: revenge
     tab: social
@@ -306,6 +346,8 @@ advancements:
     icon: minecraft:wither_rose
     frame: goal
     mode: plugin
+    difficulty: 5
+    reward: [{item: "minecraft:wither_rose", name: "Served Cold"}]
 
   - id: witness
     tab: social
@@ -314,6 +356,8 @@ advancements:
     icon: minecraft:spyglass
     frame: task
     mode: plugin
+    difficulty: 1
+    reward: [{item: "minecraft:spyglass", name: "Eyewitness"}]
 
   - id: twinning
     tab: social
@@ -322,6 +366,8 @@ advancements:
     icon: minecraft:leather_helmet
     frame: task
     mode: plugin
+    difficulty: 2
+    reward: [{item: "minecraft:leather_helmet", count: 2, dye: "#B02E26", name: "Matching Hats"}]
 
   - id: dinner_party
     tab: social
@@ -330,6 +376,8 @@ advancements:
     icon: minecraft:cake
     frame: goal
     mode: plugin
+    difficulty: 2
+    reward: [{item: "minecraft:cake", name: "Leftovers"}]
 
   - id: roads_were_a_mistake
     tab: exploration
@@ -340,6 +388,8 @@ advancements:
     mode: plugin
     kind: streak
     anti_cheese: "Only distance travelled on ice while in a boat counts; leaving the boat resets the ride; portals and teleports restart it; creative and spectator do not count"
+    difficulty: 5
+    reward: [{item: "minecraft:blue_ice"}]
 
   - id: long_way_home
     tab: exploration
@@ -348,6 +398,8 @@ advancements:
     icon: minecraft:recovery_compass
     frame: task
     mode: plugin
+    difficulty: 4
+    reward: [{item: "minecraft:ender_pearl", name: "Return Ticket"}]
 
   - id: top_to_bottom
     tab: exploration
@@ -356,6 +408,8 @@ advancements:
     icon: minecraft:bedrock
     frame: goal
     mode: plugin
+    difficulty: 4
+    reward: [{item: "minecraft:enchanted_book", enchantments: {"minecraft:feather_falling": 4}}]
 
   - id: dimension_hopper
     tab: exploration
@@ -364,6 +418,8 @@ advancements:
     icon: minecraft:ender_pearl
     frame: task
     mode: plugin
+    difficulty: 3
+    reward: [{item: "minecraft:flint_and_steel", name: "Frequent Flyer"}]
 
   - id: sky_camper
     tab: exploration
@@ -374,6 +430,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Overworld only; paused while AFK, in a vehicle, in creative or spectator; resets when you drop below Y 200, log out, die, or the night is skipped"
+    difficulty: 4
+    reward: [{item: "minecraft:white_wool", name: "Cloud Nine"}]
 
   - id: caveman
     tab: exploration
@@ -384,6 +442,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Overworld only (the Nether has no sky); paused while AFK, in a vehicle, in creative or spectator; resets when sky light reaches your head or on death; time jumps from sleeping do not count"
+    difficulty: 2
+    reward: [{item: "minecraft:potion", count: 2, potion: "minecraft:night_vision"}]
 
   - id: naked_and_afraid
     tab: challenges
@@ -392,6 +452,8 @@ advancements:
     icon: minecraft:nether_star
     frame: challenge
     mode: plugin
+    difficulty: 8
+    reward: [{item: "minecraft:leather_chestplate", name: "Birthday Suit", enchantments: {"minecraft:protection": 4, "minecraft:thorns": 3}}]
 
   - id: whittled_down
     tab: challenges
@@ -400,6 +462,8 @@ advancements:
     icon: minecraft:wooden_sword
     frame: challenge
     mode: plugin
+    difficulty: 7
+    reward: [{item: "minecraft:wooden_sword", enchantments: {"minecraft:sharpness": 7, "minecraft:unbreaking": 5}}]
 
   - id: untouchable
     tab: challenges
@@ -410,6 +474,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets on any damage that gets through (a fully blocked hit does not count) and on death"
+    difficulty: 5
+    reward: [{item: "minecraft:shield", enchantments: {"minecraft:unbreaking": 5, "minecraft:mending": 1}}]
 
   - id: pacifist
     tab: challenges
@@ -420,6 +486,8 @@ advancements:
     mode: plugin
     kind: streak
     anti_cheese: "A night counts only if you were online, not AFK and in the Overworld for all of it; any mob kill, a skipped night, a partial night or an offline night resets the streak"
+    difficulty: 5
+    reward: [{item: "minecraft:golden_carrot", count: 8}, {item: "minecraft:flowering_azalea", name: "Olive Branch"}]
 
   - id: food_critic
     tab: challenges
@@ -430,6 +498,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Creative and spectator do not count; dying during the 30 seconds or logging out cancels it"
+    difficulty: 4
+    reward: [{item: "minecraft:golden_apple", count: 2, name: "Michelin Star"}]
 
   - id: totem_chain
     tab: challenges
@@ -438,6 +508,8 @@ advancements:
     icon: minecraft:totem_of_undying
     frame: challenge
     mode: plugin
+    difficulty: 6
+    reward: [{item: "minecraft:totem_of_undying"}, {item: "minecraft:totem_of_undying"}]
 
   - id: actual_sniper
     tab: challenges
@@ -446,6 +518,8 @@ advancements:
     icon: minecraft:bow
     frame: challenge
     mode: plugin
+    difficulty: 7
+    reward: [{item: "minecraft:bow", name: "Long Shot", enchantments: {"minecraft:power": 7, "minecraft:infinity": 1, "minecraft:mending": 1}}]
 
   - id: one_man_army
     tab: challenges
@@ -454,6 +528,8 @@ advancements:
     icon: minecraft:ominous_bottle
     frame: challenge
     mode: plugin
+    difficulty: 9
+    reward: [{item: "minecraft:crossbow", enchantments: {"minecraft:multishot": 1, "minecraft:piercing": 4, "minecraft:quick_charge": 4}}]
 
   - id: warden_bully
     tab: challenges
@@ -462,6 +538,8 @@ advancements:
     icon: minecraft:sculk_shrieker
     frame: challenge
     mode: plugin
+    difficulty: 9
+    reward: [{item: "minecraft:netherite_sword", name: "Warden's Bane", enchantments: {"minecraft:sharpness": 7, "minecraft:unbreaking": 5, "minecraft:mending": 1}}, {item: "minecraft:echo_shard", count: 4}]
 
   - id: fresh_start
     tab: challenges
@@ -472,6 +550,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "The pickaxe must be crafted by you (not traded or handed over); creative and spectator do not count; the clock starts at your last respawn"
+    difficulty: 4
+    reward: [{item: "minecraft:compass", name: "Speedrunner's Compass"}]
 
   - id: wither_storm
     tab: challenges
@@ -480,6 +560,8 @@ advancements:
     icon: minecraft:wither_skeleton_skull
     frame: challenge
     mode: plugin
+    difficulty: 8
+    reward: [{item: "minecraft:netherite_axe", enchantments: {"minecraft:sharpness": 7, "minecraft:efficiency": 7, "minecraft:unbreaking": 5}}]
 
   - id: iron_will
     tab: challenges
@@ -490,6 +572,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Paused while AFK, in creative or spectator and while offline; resets on death"
+    difficulty: 6
+    reward: [{item: "minecraft:iron_chestplate", enchantments: {"minecraft:protection": 4, "minecraft:unbreaking": 5, "minecraft:mending": 1}}]
 
   - id: frozen_human
     tab: challenges
@@ -500,6 +584,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets when you thaw or die"
+    difficulty: 4
+    reward: [{item: "minecraft:leather_boots", name: "Cold Feet"}]
 
   - id: free_diver
     tab: challenges
@@ -510,6 +596,8 @@ advancements:
     mode: plugin
     kind: timed
     anti_cheese: "Counts only time with your eyes underwater and no breathing aid (cumulative: surfacing pauses it); paused while AFK, in a vehicle, in creative or spectator; resets on death"
+    difficulty: 5
+    reward: [{item: "minecraft:turtle_helmet", enchantments: {"minecraft:respiration": 5, "minecraft:aqua_affinity": 1}}]
 
   - id: jockey_jamboree
     tab: challenges
@@ -520,6 +608,8 @@ advancements:
     hidden: true
     mode: plugin
     criteria: [chicken_jockey, spider_jockey, skeleton_horseman]
+    difficulty: 9
+    reward: [{item: "minecraft:saddle"}, {item: "minecraft:carrot_on_a_stick"}]
 
   # Framework smoke test, awarded by /adv test. Remove before the first real release.
   - id: test
@@ -529,3 +619,4 @@ advancements:
     icon: minecraft:redstone_torch
     frame: goal
     mode: plugin
+    difficulty: 1

@@ -224,3 +224,15 @@ Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/g
 - [ ] `/summon chicken ~ ~ ~ {Passengers:[{id:zombie,IsBaby:1}]}` and kill the zombie: criterion chicken_jockey.
 - [ ] `/summon spider ~ ~ ~ {Passengers:[{id:skeleton}]}`: spider_jockey. `/summon skeleton_horse ~ ~ ~ {Passengers:[{id:skeleton}]}`: skeleton_horseman.
 - [ ] Only after all three is the advancement shown as done; killing a rider that has already dismounted does not count.
+
+## Rewards (needs a player)
+
+Automated first: `scripts/verify-rewards.py` (server running, nobody online) spawns every reward table and checks the
+real item data (count, name, lore, enchantments, potion, dye) against the catalog. It must report `failures: 0`.
+
+- [ ] `/adv revoke <you> tax_evasion` then `/adv grant <you> tax_evasion`: a "Tax Refund" emerald lands in your inventory with the grey "Sebchievement: Tax Evasion" lore line.
+- [ ] Fill your inventory, then grant `tax_evasion` again: the item drops at your feet instead of vanishing.
+- [ ] Grant `actual_sniper`: a bow named "Long Shot" with Power VII, Infinity and Mending together.
+- [ ] Grant `twinning`: two red leather caps named "Matching Hats". Grant `pacifist`: 8 golden carrots and the "Olive Branch" azalea.
+- [ ] Grant `jockey_jamboree` as an admin: it grants all remaining criteria and you receive the saddle and the carrot on a stick once.
+- [ ] A tab root or the `test` advancement gives nothing.

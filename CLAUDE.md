@@ -264,6 +264,14 @@ Frame: T = task, G = goal, C = challenge. "Vanilla" = solvable with datapack JSO
 
 ## 8. Adding a new advancement later (keep this section up to date)
 
+**Every advancement also needs** a `difficulty: 1-10` (scale and reasoning in `docs/difficulty.md`) and, except for
+smoke tests, a `reward:` (design in `docs/superpowers/specs/2026-10-28-rewards-design.md`):
+`reward: [{item: "minecraft:emerald", count: 1, name: "Tax Refund", lore: [...], enchantments: {"minecraft:sharpness": 7}, potion: "minecraft:healing", dye: "#B02E26"}]`.
+The generator turns it into a loot table `smp:rewards/<id>` (one pool per item) and adds `rewards.loot` to the advancement.
+Two traps found while building it: loot entries use the key `modifier` (an unknown key like `functions` is **silently
+ignored**), and `set_count` must come last (components on an oversized stack of unstackable items fail). After changing
+any reward, build, deploy, restart the test server and run `scripts/verify-rewards.py` (must say `failures: 0`).
+
 **Vanilla-trigger advancement:**
 1. Add an entry to `advancements.yml` with `mode: vanilla` and criteria.
 2. Build. The generator validates and emits JSON.

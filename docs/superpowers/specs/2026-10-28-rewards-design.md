@@ -154,3 +154,13 @@ Names in quotes are custom item names. "Lore" lines are optional and left to the
 All design questions from the conversation are settled. If the loot-table route turns out not to support
 something above (for example a named potion or a banner pattern), the fallback is a small `RewardGiver` in the
 plugin driven by the same catalog field.
+
+## Status: built (2026-10-28)
+
+Implemented as proposed: a `reward:` list per catalog entry (item, count, name, lore, enchantments, potion, dye),
+validated at build time and generated into one loot table per advancement. Every item also gets a grey lore line
+"Sebchievement: <title>" so a stray reward can be traced. All 49 reward items (45 advancements) verified on the 26.3
+test server with `scripts/verify-rewards.py`; the loot-table route handled every awkward item (over-vanilla levels,
+Infinity with Mending, Multishot with Piercing, named potions, banner pattern, dyed caps, enchanted book), so no plugin
+`RewardGiver` was needed. Red for Matching Hats is `#B02E26`. Not yet verified: the actual grant from an advancement
+in-game (needs a player; see "Rewards" in `docs/testing.md`).
