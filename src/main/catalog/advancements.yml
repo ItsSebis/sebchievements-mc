@@ -1,0 +1,42 @@
+# Single source of truth for every advancement. See CLAUDE.md section 2.1.
+#
+# Per entry:
+#   id, tab, parent (default: root of the tab), title, description, icon, frame (task|goal|challenge),
+#   hidden (default false), mode (vanilla|plugin)
+#   mode vanilla: criteria (inline datapack criteria), optional requirements (list of OR-groups)
+#   mode plugin:  optional criteria (list of criterion names, default [done])
+#   kind (timed|streak): needs anti_cheese, and its handler must implement ProgressReporting
+#
+# Thresholds in descriptions must match the defaults in config.yml.
+
+tabs:
+  social:      { title: "Social", icon: minecraft:cake, background: minecraft:block/oak_planks }
+  silly:       { title: "Silly", icon: minecraft:carved_pumpkin, background: minecraft:block/hay_block_side }
+  challenges:  { title: "Challenges", icon: minecraft:wither_skeleton_skull, background: minecraft:block/blackstone }
+  exploration: { title: "Exploration", icon: minecraft:compass, background: minecraft:block/stone }
+
+advancements:
+  - id: tax_evasion
+    tab: silly
+    title: "Tax Evasion"
+    description: "Kill a Wandering Trader"
+    icon: minecraft:emerald
+    frame: task
+    mode: vanilla
+    criteria:
+      kill:
+        trigger: minecraft:player_killed_entity
+        conditions:
+          entity:
+            type: minecraft:entity_properties
+            entity: this
+            predicate: { minecraft:entity_type: minecraft:wandering_trader }
+
+  # Framework smoke test, awarded by /adv test. Remove before the first real release.
+  - id: test
+    tab: silly
+    title: "Test Advancement"
+    description: "Awarded by /adv test"
+    icon: minecraft:redstone_torch
+    frame: goal
+    mode: plugin

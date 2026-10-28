@@ -1,0 +1,11 @@
+# Sebchievements configuration.
+# Thresholds for each advancement live under advancements.<id>; the descriptions in the
+# in-game catalog (src/main/catalog/advancements.yml) must match these defaults.
+
+# A player counts as AFK after this long without moving or turning meaningfully.
+afk_seconds: 120
+
+# How long RecentDamageService remembers who hit whom.
+recent_damage_retention_seconds: 60
+
+advancements: {}

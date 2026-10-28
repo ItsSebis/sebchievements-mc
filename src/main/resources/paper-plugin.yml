@@ -1,0 +1,9 @@
+name: Sebchievements
+version: 0.1.0
+main: dev.sebi.sebchievements.SebchievementsPlugin
+bootstrapper: dev.sebi.sebchievements.SebchievementsBootstrap
+api-version: "26.3"
+permissions:
+  smpadv.admin:
+    description: Use the /adv admin subcommands
+    default: op
