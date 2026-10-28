@@ -52,7 +52,6 @@ public final class AdvCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("adv")
                 .then(Commands.literal("progress").executes(ctx -> progress(ctx.getSource().getSender())))
-                .then(admin("test").executes(ctx -> test(ctx.getSource().getSender())))
                 .then(admin("grant").then(playerAndId(ctx -> change(ctx, Op.GRANT))))
                 .then(admin("revoke").then(playerAndId(ctx -> change(ctx, Op.REVOKE))))
                 .then(admin("reset").then(playerAndId(ctx -> change(ctx, Op.RESET))))
@@ -104,15 +103,6 @@ public final class AdvCommand {
             shown++;
         }
         if (shown == 0) p.sendMessage(Component.text("No timed or streak advancements yet.", NamedTextColor.GRAY));
-        return Command.SINGLE_SUCCESS;
-    }
-
-    private int test(CommandSender sender) {
-        if (!(sender instanceof Player p)) {
-            sender.sendMessage("Players only.");
-            return 0;
-        }
-        if (!granter.forceGrant(p, AdvancementIds.TEST)) p.sendMessage("Already earned (use /adv revoke to retest).");
         return Command.SINGLE_SUCCESS;
     }
 

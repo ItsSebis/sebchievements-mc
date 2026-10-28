@@ -6,17 +6,47 @@ import org.bukkit.GameMode;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 /** The single place advancements are awarded or revoked. */
-public final class Granter {
+public final class Granter implements Listener {
     public static final String DONE = "done";
 
+    private final Plugin plugin;
     private final Logger log;
+    /** Grants requested while the player was dead, run on respawn so the reward is not lost with the death drops. */
+    private final Map<UUID, List<Runnable>> afterRespawn = new HashMap<>();
 
-    public Granter(Logger log) {
-        this.log = log;
+    public Granter(Plugin plugin) {
+        this.plugin = plugin;
+        this.log = plugin.getLogger();
+    }
+
+    public void register() {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
+    @EventHandler
+    public void onRespawn(PlayerRespawnEvent e) {
+        Player p = e.getPlayer();
+        List<Runnable> pending = afterRespawn.remove(p.getUniqueId());
+        if (pending != null) plugin.getServer().getScheduler().runTask(plugin, () -> pending.forEach(Runnable::run));
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent e) {
+        afterRespawn.remove(e.getPlayer().getUniqueId());
     }
 
     /** Awards {@code done}. Applies the creative/spectator rule for timed and streak advancements. */
@@ -27,6 +57,11 @@ public final class Granter {
     public boolean grantCriterion(Player player, String id, String criterion) {
         if (AdvancementIds.TRACKED.contains(id) && isCreativeOrSpectator(player)) {
             return false;
+        }
+        if (player.isDead()) {
+            afterRespawn.computeIfAbsent(player.getUniqueId(), k -> new ArrayList<>())
+                    .add(() -> grantCriterion(player, id, criterion));
+            return true;
         }
         return award(player, id, criterion);
     }

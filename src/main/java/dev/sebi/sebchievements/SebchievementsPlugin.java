@@ -38,7 +38,8 @@ public final class SebchievementsPlugin extends JavaPlugin implements Listener {
     public void onEnable() {
         saveDefaultConfig();
         store = new PlayerDataStore(AdvancementIds.NAMESPACE);
-        granter = new Granter(getLogger());
+        granter = new Granter(this);
+        granter.register();
 
         PdcLongStore longs = new PdcLongStore(store);
         AfkService afk = new AfkService(() -> getConfig().getLong("afk_seconds", 120) * 1000);

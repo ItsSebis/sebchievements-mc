@@ -3,8 +3,8 @@
 A Paper plugin for a private Minecraft SMP that adds 45 custom advancements across four new tabs, each with a themed
 reward. One jar contains its own datapack plus the Java logic for the advancements vanilla triggers can't detect.
 
-> **Status: pre-release.** Built and unit-tested, the datapack loads and every reward item is verified on a test
-> server, but no advancement has been triggered by a player in-game yet. See [docs/playtest.md](docs/playtest.md).
+> **Status:** built, unit-tested and given a broad first playtest on a real server. Fixes from that session are in
+> v0.2.0; not every advancement has been triggered in-game yet. See [docs/playtest.md](docs/playtest.md).
 
 | Tab | Advancements | Flavour |
 |---|---|---|
@@ -38,7 +38,6 @@ The datapack zip on the releases page is the same pack on its own, for inspectio
 | `/adv revoke <player> <id>` | `smpadv.admin` | Takes an advancement back |
 | `/adv reset <player> <id>` | `smpadv.admin` | Clears the player's tracked state (timers, streaks, counters) for that id |
 | `/adv debug <id> [player]` | `smpadv.admin` | Dumps stored state for an advancement |
-| `/adv test` | `smpadv.admin` | Awards the framework smoke-test advancement |
 
 `smpadv.admin` defaults to operators.
 

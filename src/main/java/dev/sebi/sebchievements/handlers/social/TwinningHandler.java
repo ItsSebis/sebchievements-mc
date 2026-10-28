@@ -40,7 +40,7 @@ public final class TwinningHandler implements AdvancementHandler {
         ItemStack[] pieces = {inv.getHelmet(), inv.getChestplate(), inv.getLeggings(), inv.getBoots()};
         Material[] types = new Material[4];
         for (int i = 0; i < 4; i++) {
-            if (pieces[i] == null) return Optional.empty();
+            if (pieces[i] == null || pieces[i].getType().isAir()) return Optional.empty();
             types[i] = pieces[i].getType();
         }
         return Optional.of(types);

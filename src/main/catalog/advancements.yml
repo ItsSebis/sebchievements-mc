@@ -566,13 +566,13 @@ advancements:
   - id: iron_will
     tab: challenges
     title: "Iron Will"
-    description: "Play for 5 hours without dying"
+    description: "Play for 24 hours without dying"
     icon: minecraft:iron_chestplate
     frame: challenge
     mode: plugin
     kind: timed
     anti_cheese: "Paused while AFK, in creative or spectator and while offline; resets on death"
-    difficulty: 6
+    difficulty: 8
     reward: [{item: "minecraft:iron_chestplate", enchantments: {"minecraft:protection": 4, "minecraft:unbreaking": 5, "minecraft:mending": 1}}]
 
   - id: frozen_human
@@ -610,13 +610,3 @@ advancements:
     criteria: [chicken_jockey, spider_jockey, skeleton_horseman]
     difficulty: 9
     reward: [{item: "minecraft:saddle"}, {item: "minecraft:carrot_on_a_stick"}]
-
-  # Framework smoke test, awarded by /adv test. Remove before the first real release.
-  - id: test
-    tab: silly
-    title: "Test Advancement"
-    description: "Awarded by /adv test"
-    icon: minecraft:redstone_torch
-    frame: goal
-    mode: plugin
-    difficulty: 1

@@ -43,11 +43,11 @@ Difficulty is 1-10 (see [difficulty.md](difficulty.md)). Hidden advancements are
 | Free Diver | Spend 2 minutes underwater without Water Breathing, Conduit Power or Respiration | Challenge | 5 | turtle helmet (enchanted) |
 | Pacifist | Play through 3 consecutive nights without killing any mob | Challenge | 5 | 8x golden carrot, Olive Branch |
 | Untouchable | Take no damage for 20 minutes | Challenge | 5 | shield (enchanted) |
-| Iron Will | Play for 5 hours without dying | Challenge | 6 | iron chestplate (enchanted) |
 | Nice to Mace You | Craft a mace and hit something with a smash attack | Goal | 6 | 4x wind charge |
 | Totem Chain | Pop 3 totems of undying within 60 seconds | Challenge | 6 | totem of undying, totem of undying |
 | Actual Sniper | Kill a mob with an arrow from 100 or more blocks away | Challenge | 7 | Long Shot (enchanted) |
 | Whittled Down | Land the final hit on the Ender Dragon with a wooden sword | Challenge | 7 | wooden sword (enchanted) |
+| Iron Will | Play for 24 hours without dying | Challenge | 8 | iron chestplate (enchanted) |
 | Naked and Afraid | Kill the Wither without wearing any armor | Challenge | 8 | Birthday Suit (enchanted) |
 | Wither Storm | Kill 3 Withers within 10 minutes | Challenge | 8 | netherite axe (enchanted) |
 | Jockey Jamboree | (hidden) | Challenge | 9 | saddle, carrot on a stick |

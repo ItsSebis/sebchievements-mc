@@ -51,7 +51,7 @@ This is the only path no automated check covers. If it is broken, every later gr
 | 1.4 | `/adv grant <you> actual_sniper` | Bow "Long Shot" with Power VII, Infinity and Mending on the same bow; try shooting it | |
 | 1.5 | `/adv grant <you> twinning` | **Two** red leather caps named "Matching Hats" | |
 | 1.6 | `/adv grant <you> jockey_jamboree` | Saddle and carrot on a stick, once | |
-| 1.7 | `/adv test` | No item (the smoke test has no reward); tab roots give nothing either | |
+| 1.7 | Relog | Tab roots give nothing (no items, no toast) | |
 
 Also check the SebStats page shows these as earned for you (`localhost:8123`), under "SMP" once that jar is deployed.
 
@@ -184,5 +184,4 @@ Quick sanity for the cheap ones without the fight: `/adv grant <you> <id>` still
 ## After the session
 
 - Restore the real thresholds in `plugins/Sebchievements/config.yml` (or copy the repo's `config.yml` over it).
-- Before the first real release, remove the `test` advancement from the catalog.
 - If anything felt too easy or too hard, adjust the grades in `docs/difficulty.md` and the catalog.

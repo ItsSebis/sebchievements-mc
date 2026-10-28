@@ -31,7 +31,7 @@ lines = [
     "",
 ]
 for key, tab in catalog["tabs"].items():
-    entries = [e for e in catalog["advancements"] if e["tab"] == key and e["id"] != "test"]
+    entries = [e for e in catalog["advancements"] if e["tab"] == key]
     lines += [f"## {tab['title']} ({len(entries)})", "", "| Advancement | What | Type | Difficulty | Reward |", "|---|---|---|---|---|"]
     for e in sorted(entries, key=lambda e: (e.get("difficulty", 0), e["title"])):
         hidden = e.get("hidden")

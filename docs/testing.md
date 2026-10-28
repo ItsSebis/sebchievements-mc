@@ -8,16 +8,14 @@ Unit tests (no server): `gradle :buildSrc:test test`.
 ## Framework (Phase 1)
 
 - [ ] Join: the four tabs (Social, Silly, Challenges, Exploration) appear in the advancement screen without a toast or chat message.
-- [ ] `/adv test` as op: toast + chat announcement for "Test Advancement"; second run says already earned.
-- [ ] `/adv revoke <you> test`, then `/adv test` again: earned again.
 - [ ] `/adv grant <you> tax_evasion`: granted; `/adv revoke <you> tax_evasion`: revoked.
 - [ ] `/adv grant <you> nope`: "Unknown advancement id".
 - [ ] Tab completion of `<id>` lists catalog ids.
-- [ ] As a non-op: `/adv progress` works; `/adv grant`, `/adv debug`, `/adv test` are not offered and are rejected.
+- [ ] As a non-op: `/adv progress` works; `/adv grant`, `/adv debug` are not offered and are rejected.
 - [ ] `/adv progress` with no timed/streak advancements: "No timed or streak advancements yet."
-- [ ] `/adv debug test`: prints `(no stored state)`.
+- [ ] `/adv debug tax_evasion`: prints `(no stored state)`.
 - [ ] Startup log shows `Registered N of N plugin handlers` and no SEVERE lines.
-- [ ] Website (`:8123`): `smp:silly/test` and `smp:silly/tax_evasion` listed under "SMP" (needs the SebStats label fix deployed).
+- [ ] Website (`:8123`): `smp:silly/tax_evasion` listed under "SMP" (needs the SebStats label fix deployed).
 
 ## Per advancement
 
@@ -209,7 +207,7 @@ Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/g
 ### wither_storm
 - [ ] Kill 3 Withers inside 10 min (the same killer): granted. The third after 10 min: nothing.
 
-### iron_will (timed, 5 h)
+### iron_will (timed, 24 h)
 - [ ] With `seconds: 60`: counts up, pauses while AFK/creative, resets on death, keeps its value across a relog. Riding does not pause it.
 
 ### frozen_human (timed, 30 s)

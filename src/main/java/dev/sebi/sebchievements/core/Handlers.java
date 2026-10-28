@@ -40,14 +40,12 @@ import dev.sebi.sebchievements.handlers.silly.OneMansTrashHandler;
 import dev.sebi.sebchievements.handlers.silly.ProfessionalNapperHandler;
 import dev.sebi.sebchievements.handlers.silly.SelfOwnHandler;
 import dev.sebi.sebchievements.handlers.silly.StaringContestHandler;
-import dev.sebi.sebchievements.handlers.silly.TestHandler;
 
 import java.util.List;
 
 /** The one explicit list of handlers. Adding a handler = one class + one line here. */
 public final class Handlers {
     public static final List<AdvancementHandler> ALL = List.of(
-            new TestHandler(),
             // silly
             new ProfessionalNapperHandler(),
             new ItsFineHandler(),

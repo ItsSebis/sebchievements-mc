@@ -78,10 +78,10 @@ them after a few weeks of real data (for example with the rarity numbers SebStat
 | Free Diver | 5 | Many dives, drowning damage each time (cumulative version) |
 | Nice to Mace You | 6 | The heavy core needs an ominous trial vault |
 | Totem Chain | 6 | Three totems and three lethal hits inside a minute |
-| Iron Will | 6 | Five hours alive, a time commitment more than a skill test |
 | Actual Sniper | 7 | A kill from 100+ blocks takes a good bow and aim |
 | Whittled Down | 7 | Only the final blow needs the wooden sword, but it is the dragon |
 | Naked and Afraid | 8 | The Wither with zero armor; a bow from a safe spot makes it possible |
+| Iron Will | 8 | A full day of playtime alive: one careless death anywhere in it starts over |
 | Wither Storm | 8 | Nine skulls and three fights in ten minutes |
 | One-Man Army | 9 | Bad Omen V raid, solo, nobody within 64 blocks |
 | Warden Bully | 9 | One melee hit kills an unarmored player; needs a trap or a trick |
@@ -99,7 +99,7 @@ them after a few weeks of real data (for example with the rarity numbers SebStat
 
 ## Reading the grades together
 
-Average difficulty per tab: Silly 3.7, Social 2.7, Exploration 4.0, Challenges 6.4.
+Average difficulty per tab: Silly 3.7, Social 2.7, Exploration 4.0, Challenges 6.5.
 That shape is intended: Social is easy because it mostly needs friends, and Challenges is where the effort goes.
 The reward tiers (task, goal, challenge) track frame, not these grades, so a grade-9 goal such as Jockey Jamboree
 and a grade-2 challenge-frame entry, if one ever exists, would be a mismatch worth revisiting.

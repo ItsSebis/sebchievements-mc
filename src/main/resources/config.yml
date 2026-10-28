@@ -34,7 +34,7 @@ advancements:
     withers: 3
     seconds: 600
   iron_will:
-    seconds: 18000           # 5 hours
+    seconds: 86400           # 24 hours
   frozen_human:
     seconds: 30
   free_diver:
