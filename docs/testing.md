@@ -47,3 +47,45 @@ result, and what must NOT count (the `anti_cheese` note).
 
 Note on /tp: the location triggers read the player's position, so `/tp` to the target does grant them. That is fine
 for a private SMP, but remember it when testing; for commuter, teleporting does not build up travel distance.
+
+## Phase 3: silly (plugin handlers)
+
+Tip: `/adv debug <id>` shows stored state; `/adv progress` lists tracked ones; `/adv reset <player> <id>` clears state.
+Timed ones pause while AFK (default `afk_seconds: 120` in config.yml; lower it to test quickly).
+
+### professional_napper (counter, 100 nights)
+- [ ] Sleep through the night with 2 players in bed, one stays awake: only the sleepers' `counter/professional_napper` rises (`/adv debug`).
+- [ ] Skip a night in the Nether/End via a time-set command: no count. Creative player in bed: no count.
+- [ ] Set `nights: 2` in config, restart: second skipped night grants it.
+
+### its_fine (timed, 60s at <= 0.5 hearts)
+- [ ] `/damage` yourself down to half a heart (e.g. `/effect give @s instant_damage`, regen off) and wait: `/adv progress` counts up.
+- [ ] Heal above half a heart: timer resets to 0. Stand still past `afk_seconds`: timer pauses (not reset). Ride a boat: pauses. Creative: pauses.
+- [ ] Die: resets. Log out and back in: keeps its value.
+- [ ] Reaches 60s: granted once.
+
+### hoarder
+- [ ] Double chest with 53 stacks of 64 dirt and one stack of 63: close it, nothing. Fix it, close: granted.
+- [ ] Single chest full of dirt: nothing. Double chest of 64 cobblestone: nothing.
+
+### fashion_disaster
+- [ ] Wear leather, iron, gold, diamond pieces: granted on the 4th equip. Four iron pieces: nothing. Elytra in the chest slot: nothing.
+
+### creeper_whisperer
+- [ ] Stand 2 blocks from a creeper while it explodes, behind a raised shield: granted (final damage 0).
+- [ ] Take damage from the blast: nothing. 10 blocks away: nothing. Creative: nothing.
+
+### self_own
+- [ ] Shoot an arrow straight up and die when it lands (low health): granted. Killed by a skeleton's arrow: nothing.
+
+### gravity_check
+- [ ] Die from a fall with a water bucket in the hotbar: granted. Bucket only in main inventory or offhand: nothing. Die to a zombie with a bucket: nothing.
+
+### staring_contest (timed, 10s)
+- [ ] Carved pumpkin on head, look at an Enderman (`/summon enderman`): progress counts. Look away: resets. Pumpkin off: resets.
+- [ ] Wearing a regular pumpkin block or no helmet: nothing.
+
+### one_mans_trash (streak, 10 junk)
+- [ ] Set `count: 3`, fish: three junk catches in a row grant it; a fish in between resets (`/adv progress`).
+- [ ] Enchanted fishing rod catch resets the streak; a plain damaged rod counts as junk.
+- [ ] AFK fishing (past `afk_seconds`): catches are ignored.

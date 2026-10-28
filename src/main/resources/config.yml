@@ -8,4 +8,33 @@ afk_seconds: 120
 # How long RecentDamageService remembers who hit whom.
 recent_damage_retention_seconds: 60
 
-advancements: {}
+advancements:
+  professional_napper:
+    nights: 100
+  its_fine:
+    seconds: 60
+    max_health: 1.0          # hit points; 1.0 = half a heart
+  hoarder:
+    material: DIRT
+  fashion_disaster:
+    distinct_materials: 4
+  creeper_whisperer:
+    radius: 3.0
+  staring_contest:
+    seconds: 10
+    range: 32
+  one_mans_trash:
+    count: 10
+    junk:                    # a plain fishing rod is junk; an enchanted one is treasure and resets the streak
+      - LILY_PAD
+      - BOWL
+      - FISHING_ROD
+      - LEATHER
+      - LEATHER_BOOTS
+      - ROTTEN_FLESH
+      - STICK
+      - STRING
+      - POTION
+      - BONE
+      - INK_SAC
+      - TRIPWIRE_HOOK
