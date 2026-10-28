@@ -9,6 +9,25 @@ afk_seconds: 120
 recent_damage_retention_seconds: 60
 
 advancements:
+  roads_were_a_mistake:
+    blocks: 1000
+    max_step_blocks: 150     # a jump larger than this between two checks (portal, teleport) restarts the ride
+  long_way_home:
+    blocks: 10000
+  top_to_bottom:
+    seconds: 300
+    margin: 0                # blocks of leniency on both the top and the bottom threshold
+  dimension_hopper:
+    seconds: 600
+  sky_camper:
+    y: 200
+    night_start: 13000       # time of day, in ticks
+    night_end: 23000
+    slack_ticks: 40          # a full night minus this many ticks, to absorb check timing
+    max_jump_ticks: 400      # larger time jumps (sleeping, /time) are ignored
+  caveman:
+    ticks: 24000             # one in-game day
+    max_jump_ticks: 400
   roommates:
     radius: 5
   group_project:

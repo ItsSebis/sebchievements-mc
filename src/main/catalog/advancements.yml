@@ -331,6 +331,60 @@ advancements:
     frame: goal
     mode: plugin
 
+  - id: roads_were_a_mistake
+    tab: exploration
+    title: "Roads Were a Mistake"
+    description: "Boat 1,000 blocks on ice in one ride"
+    icon: minecraft:blue_ice
+    frame: task
+    mode: plugin
+    kind: streak
+    anti_cheese: "Only distance travelled on ice while in a boat counts; leaving the boat resets the ride; portals and teleports restart it; creative and spectator do not count"
+
+  - id: long_way_home
+    tab: exploration
+    title: "Long Way Home"
+    description: "Die 10,000 blocks or more from your respawn point in the Overworld"
+    icon: minecraft:recovery_compass
+    frame: task
+    mode: plugin
+
+  - id: top_to_bottom
+    tab: exploration
+    title: "Top to Bottom"
+    description: "Touch the build limit and the bedrock floor within 5 minutes"
+    icon: minecraft:bedrock
+    frame: goal
+    mode: plugin
+
+  - id: dimension_hopper
+    tab: exploration
+    title: "Dimension Hopper"
+    description: "Visit the Overworld, the Nether and the End within 10 minutes"
+    icon: minecraft:ender_pearl
+    frame: task
+    mode: plugin
+
+  - id: sky_camper
+    tab: exploration
+    title: "Sky Camper"
+    description: "Spend a full night above Y 200"
+    icon: minecraft:white_wool
+    frame: task
+    mode: plugin
+    kind: timed
+    anti_cheese: "Overworld only; paused while AFK, in a vehicle, in creative or spectator; resets when you drop below Y 200, log out, die, or the night is skipped"
+
+  - id: caveman
+    tab: exploration
+    title: "Caveman"
+    description: "Spend a full in-game day without seeing the sky"
+    icon: minecraft:torch
+    frame: goal
+    mode: plugin
+    kind: timed
+    anti_cheese: "Overworld only (the Nether has no sky); paused while AFK, in a vehicle, in creative or spectator; resets when sky light reaches your head or on death; time jumps from sleeping do not count"
+
   # Framework smoke test, awarded by /adv test. Remove before the first real release.
   - id: test
     tab: silly

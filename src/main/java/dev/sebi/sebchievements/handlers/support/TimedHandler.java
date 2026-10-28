@@ -39,6 +39,16 @@ public abstract class TimedHandler implements AdvancementHandler, ProgressReport
         return true;
     }
 
+    /** How long the condition must hold. Default: {@code seconds} from the advancement's config section. */
+    protected long requiredMillis(HandlerContext ctx) {
+        return ctx.config().getLong("seconds") * 1000;
+    }
+
+    /** Time credited to a HELD tick. Default: one scheduler interval; override to follow game time. Called on every check. */
+    protected long deltaMillis(Player player) {
+        return TickScheduler.INTERVAL_MILLIS;
+    }
+
     protected HandlerContext ctx() {
         return ctx;
     }
@@ -53,7 +63,7 @@ public abstract class TimedHandler implements AdvancementHandler, ProgressReport
     public void register(HandlerContext ctx) {
         this.ctx = ctx;
         this.advancement = Bukkit.getAdvancement(AdvancementIds.key(ctx.id()));
-        this.requiredMillis = ctx.config().getLong("seconds") * 1000;
+        this.requiredMillis = requiredMillis(ctx);
         ctx.services().tick().register(ctx.id(), this::check);
         ctx.listen(this);
     }
@@ -63,7 +73,7 @@ public abstract class TimedHandler implements AdvancementHandler, ProgressReport
         boolean excluded = p.getGameMode() == GameMode.CREATIVE || p.getGameMode() == GameMode.SPECTATOR
                 || ctx.services().afk().isAfk(p) || (!ridingAllowed() && p.isInsideVehicle());
         State state = decide(excluded, !excluded && conditionHolds(p));
-        long elapsed = ctx.services().timers().tick(p.getUniqueId(), ctx.id(), state, TickScheduler.INTERVAL_MILLIS);
+        long elapsed = ctx.services().timers().tick(p.getUniqueId(), ctx.id(), state, deltaMillis(p));
         if (elapsed >= requiredMillis) {
             ctx.grant(p);
             ctx.services().timers().reset(p.getUniqueId(), ctx.id());

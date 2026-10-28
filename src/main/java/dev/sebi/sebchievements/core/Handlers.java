@@ -10,6 +10,12 @@ import dev.sebi.sebchievements.handlers.social.RevengeHandler;
 import dev.sebi.sebchievements.handlers.social.RoommatesHandler;
 import dev.sebi.sebchievements.handlers.social.TwinningHandler;
 import dev.sebi.sebchievements.handlers.social.WitnessHandler;
+import dev.sebi.sebchievements.handlers.exploration.CavemanHandler;
+import dev.sebi.sebchievements.handlers.exploration.DimensionHopperHandler;
+import dev.sebi.sebchievements.handlers.exploration.LongWayHomeHandler;
+import dev.sebi.sebchievements.handlers.exploration.RoadsWereAMistakeHandler;
+import dev.sebi.sebchievements.handlers.exploration.SkyCamperHandler;
+import dev.sebi.sebchievements.handlers.exploration.TopToBottomHandler;
 import dev.sebi.sebchievements.handlers.silly.CreeperWhispererHandler;
 import dev.sebi.sebchievements.handlers.silly.FashionDisasterHandler;
 import dev.sebi.sebchievements.handlers.silly.GravityCheckHandler;
@@ -47,7 +53,14 @@ public final class Handlers {
             new RevengeHandler(),
             new WitnessHandler(),
             new TwinningHandler(),
-            new DinnerPartyHandler()
+            new DinnerPartyHandler(),
+            // exploration
+            new RoadsWereAMistakeHandler(),
+            new LongWayHomeHandler(),
+            new TopToBottomHandler(),
+            new DimensionHopperHandler(),
+            new SkyCamperHandler(),
+            new CavemanHandler()
     );
 
     private Handlers() {}

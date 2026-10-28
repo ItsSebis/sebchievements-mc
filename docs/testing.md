@@ -128,3 +128,37 @@ Most of these need two players (or one player plus an alt account). `/adv debug 
 ### dinner_party
 - [ ] Hungry A, B, C each eat from the same cake within 60s: all three granted. Two players: nothing. Third bite after 60s: nothing.
 - [ ] Full-hunger player right-clicking the cake does not count. Creative players do not count.
+
+## Phase 5: exploration (plugin handlers)
+
+Fast-forward tips: `/time set 13000` starts the night; `/gamerule doDaylightCycle false` freezes it for testing
+Sky Camper's start condition; lower `ticks`/`blocks`/`seconds` in config.yml and restart to shorten the long ones.
+
+### roads_were_a_mistake (streak-like, 1,000 blocks)
+- [ ] Build a long ice road (`/fill` blue ice), ride a boat along it: `/adv progress` rises (sampled once a second).
+- [ ] Leave the ice but stay in the boat: progress holds, then continues when back on ice. Get out of the boat: resets to 0.
+- [ ] Ride on water or a plain road: nothing. Creative mode: nothing.
+- [ ] Take a nether portal in the boat (or `/tp`): the ride restarts rather than adding the jump.
+
+### long_way_home
+- [ ] `/tp` 10,000+ blocks from spawn in the Overworld and `/kill`: granted. 9,000 blocks: nothing.
+- [ ] With a bed set far away, die next to the bed: nothing; die 10,000+ from the bed: granted.
+- [ ] Die in the Nether/End far away: nothing.
+
+### top_to_bottom
+- [ ] Overworld: stand on a block at the world's max height, then at the bedrock floor (`/tp ~ -63 ~` in a void-free spot) within 5 minutes: granted. Over 5 minutes apart: nothing.
+- [ ] Nether ceiling / End: nothing. Creative: nothing.
+
+### dimension_hopper
+- [ ] Overworld -> Nether -> End (or via the portals) within 10 minutes: granted. Overworld <-> Nether back and forth only: nothing.
+
+### sky_camper (timed, a full night above Y 200)
+- [ ] Above Y 200 from before dusk until dawn: `/adv progress` rises only during the night; granted just before dawn.
+- [ ] Drop below Y 200 mid-night: resets. Log out mid-night: resets. Skip the night by sleeping: resets.
+- [ ] Climbing up halfway through the night cannot finish it (needs the whole night).
+- [ ] AFK or in a vehicle: paused (and so cannot complete that night).
+
+### caveman (timed, a full in-game day with sky light 0 at your head)
+- [ ] Underground in the Overworld: `/adv progress` rises. Surface or glass roof: resets. Nether: nothing.
+- [ ] Sleeping in a cave bed to skip the night does not add the skipped time (jumps are ignored).
+- [ ] Set `ticks: 2400` for a quick run (two minutes of game time).
