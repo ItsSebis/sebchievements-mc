@@ -39,6 +39,11 @@ public abstract class TimedHandler implements AdvancementHandler, ProgressReport
         return true;
     }
 
+    /** True = a failed condition pauses the timer (cumulative); false (default) = it resets (continuous). */
+    protected boolean pausesWhenConditionFails() {
+        return false;
+    }
+
     /** How long the condition must hold. Default: {@code seconds} from the advancement's config section. */
     protected long requiredMillis(HandlerContext ctx) {
         return ctx.config().getLong("seconds") * 1000;
@@ -72,7 +77,8 @@ public abstract class TimedHandler implements AdvancementHandler, ProgressReport
         if (advancement != null && p.getAdvancementProgress(advancement).isDone()) return;
         boolean excluded = p.getGameMode() == GameMode.CREATIVE || p.getGameMode() == GameMode.SPECTATOR
                 || ctx.services().afk().isAfk(p) || (!ridingAllowed() && p.isInsideVehicle());
-        State state = decide(excluded, !excluded && conditionHolds(p));
+        boolean holds = !excluded && conditionHolds(p);
+        State state = !excluded && !holds && pausesWhenConditionFails() ? State.PAUSED : decide(excluded, holds);
         long elapsed = ctx.services().timers().tick(p.getUniqueId(), ctx.id(), state, deltaMillis(p));
         if (elapsed >= requiredMillis) {
             ctx.grant(p);

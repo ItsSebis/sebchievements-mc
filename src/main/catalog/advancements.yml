@@ -385,6 +385,142 @@ advancements:
     kind: timed
     anti_cheese: "Overworld only (the Nether has no sky); paused while AFK, in a vehicle, in creative or spectator; resets when sky light reaches your head or on death; time jumps from sleeping do not count"
 
+  - id: naked_and_afraid
+    tab: challenges
+    title: "Naked and Afraid"
+    description: "Kill the Wither without wearing any armor"
+    icon: minecraft:nether_star
+    frame: challenge
+    mode: plugin
+
+  - id: whittled_down
+    tab: challenges
+    title: "Whittled Down"
+    description: "Land the final hit on the Ender Dragon with a wooden sword"
+    icon: minecraft:wooden_sword
+    frame: challenge
+    mode: plugin
+
+  - id: untouchable
+    tab: challenges
+    title: "Untouchable"
+    description: "Take no damage for 20 minutes"
+    icon: minecraft:shield
+    frame: challenge
+    mode: plugin
+    kind: timed
+    anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets on any damage that gets through (a fully blocked hit does not count) and on death"
+
+  - id: pacifist
+    tab: challenges
+    title: "Pacifist"
+    description: "Play through 3 consecutive nights without killing any mob"
+    icon: minecraft:poppy
+    frame: challenge
+    mode: plugin
+    kind: streak
+    anti_cheese: "A night counts only if you were online, not AFK and in the Overworld for all of it; any mob kill, a skipped night, a partial night or an offline night resets the streak"
+
+  - id: food_critic
+    tab: challenges
+    title: "Food Critic"
+    description: "Eat a pufferfish, a poisonous potato, rotten flesh and a spider eye within 60 seconds, then survive 30 seconds"
+    icon: minecraft:pufferfish
+    frame: goal
+    mode: plugin
+    kind: timed
+    anti_cheese: "Creative and spectator do not count; dying during the 30 seconds or logging out cancels it"
+
+  - id: totem_chain
+    tab: challenges
+    title: "Totem Chain"
+    description: "Pop 3 totems of undying within 60 seconds"
+    icon: minecraft:totem_of_undying
+    frame: challenge
+    mode: plugin
+
+  - id: actual_sniper
+    tab: challenges
+    title: "Actual Sniper"
+    description: "Kill a mob with an arrow from 100 or more blocks away"
+    icon: minecraft:bow
+    frame: challenge
+    mode: plugin
+
+  - id: one_man_army
+    tab: challenges
+    title: "One-Man Army"
+    description: "Win a raid at the highest Bad Omen level with no other player within 64 blocks"
+    icon: minecraft:ominous_bottle
+    frame: challenge
+    mode: plugin
+
+  - id: warden_bully
+    tab: challenges
+    title: "Warden Bully"
+    description: "Kill a Warden using only melee while wearing no armor"
+    icon: minecraft:sculk_shrieker
+    frame: challenge
+    mode: plugin
+
+  - id: fresh_start
+    tab: challenges
+    title: "Fresh Start%"
+    description: "Craft a diamond pickaxe within 10 minutes of respawning"
+    icon: minecraft:diamond_pickaxe
+    frame: goal
+    mode: plugin
+    kind: timed
+    anti_cheese: "The pickaxe must be crafted by you (not traded or handed over); creative and spectator do not count; the clock starts at your last respawn"
+
+  - id: wither_storm
+    tab: challenges
+    title: "Wither Storm"
+    description: "Kill 3 Withers within 10 minutes"
+    icon: minecraft:wither_skeleton_skull
+    frame: challenge
+    mode: plugin
+
+  - id: iron_will
+    tab: challenges
+    title: "Iron Will"
+    description: "Play for 5 hours without dying"
+    icon: minecraft:iron_chestplate
+    frame: challenge
+    mode: plugin
+    kind: timed
+    anti_cheese: "Paused while AFK, in creative or spectator and while offline; resets on death"
+
+  - id: frozen_human
+    tab: challenges
+    title: "Frozen Human"
+    description: "Stay fully frozen in powder snow for 30 seconds and survive"
+    icon: minecraft:powder_snow_bucket
+    frame: goal
+    mode: plugin
+    kind: timed
+    anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets when you thaw or die"
+
+  - id: free_diver
+    tab: challenges
+    title: "Free Diver"
+    description: "Spend 2 minutes underwater without Water Breathing, Conduit Power or Respiration"
+    icon: minecraft:nautilus_shell
+    frame: challenge
+    mode: plugin
+    kind: timed
+    anti_cheese: "Counts only time with your eyes underwater and no breathing aid (cumulative: surfacing pauses it); paused while AFK, in a vehicle, in creative or spectator; resets on death"
+
+  - id: jockey_jamboree
+    tab: challenges
+    title: "Jockey Jamboree"
+    description: "Kill the rider of a chicken jockey, a spider jockey and a skeleton horseman"
+    icon: minecraft:saddle
+    frame: challenge
+    hidden: true
+    mode: plugin
+    criteria: [chicken_jockey, spider_jockey, skeleton_horseman]
+
   # Framework smoke test, awarded by /adv test. Remove before the first real release.
   - id: test
     tab: silly

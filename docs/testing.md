@@ -162,3 +162,65 @@ Sky Camper's start condition; lower `ticks`/`blocks`/`seconds` in config.yml and
 - [ ] Underground in the Overworld: `/adv progress` rises. Surface or glass roof: resets. Nether: nothing.
 - [ ] Sleeping in a cave bed to skip the night does not add the skipped time (jumps are ignored).
 - [ ] Set `ticks: 2400` for a quick run (two minutes of game time).
+
+## Phase 6: challenges (plugin handlers)
+
+Shortening tips: lower `seconds`/`nights`/`withers`/`totems` in config.yml and restart. `/adv debug <id>` and `/adv progress` show state.
+Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/gamemode survival`.
+
+### naked_and_afraid
+- [ ] Kill a Wither with no armor on any slot: granted. Wear one piece (even a helmet) for a single hit: not granted for that Wither.
+- [ ] Two players, one armored: only the unarmored one is granted. An unarmored player's arrow counts as a hit like any other.
+- [ ] Wither killed by something other than a player (lava): nothing.
+
+### whittled_down
+- [ ] Final blow on the dragon with a wooden sword: granted. Final blow with any other sword/crystal/arrow: nothing. Other players' earlier hits do not matter.
+
+### untouchable (timed, 20 min)
+- [ ] `/adv progress` counts up. Take damage (fall, mob): resets. Block a hit fully with a shield: does not reset.
+- [ ] Ride a boat / go AFK: paused. Die: resets. Log out: keeps its value.
+
+### pacifist (streak, 3 nights)
+- [ ] Set `nights: 2`; stay online, awake and in the Overworld through two full nights (freeze time of day with `/time set 13000` and `/gamerule doDaylightCycle true`): granted at the second dawn.
+- [ ] Kill any mob (even a cow) at any time: streak resets. Sleep through a night: that night fails. Join mid-night or log out mid-night: that night fails.
+- [ ] Spend a night in the Nether or AFK: fails. Stay offline for a night: next counted night starts the streak at 1 (`/adv debug pacifist` shows the last counted night).
+
+### food_critic (timed)
+- [ ] Eat pufferfish, poisonous potato, rotten flesh and spider eye inside 60s: `/adv progress` switches to a 30s survive countdown, then granted.
+- [ ] Take more than 60s between them: no countdown. Die or log out during the countdown: cancelled. Creative: nothing.
+
+### totem_chain
+- [ ] Pop 3 totems inside 60s (`/damage`, with totems in the offhand): granted. Two pops: nothing. Third pop after 60s: nothing.
+
+### actual_sniper
+- [ ] Kill a mob with an arrow from 100+ blocks (use a flat area and a high-ground shot; a spectral arrow counts, a trident does not): granted. 80 blocks: nothing. Melee: nothing.
+- [ ] Walking toward the target after shooting does not matter: the distance is measured from where the arrow was fired.
+
+### one_man_army
+- [ ] Alone, with Bad Omen V (`/effect give @s bad_omen 1000 4`), win a raid: granted. Bad Omen III: nothing.
+- [ ] Another player (not spectator) within 64 blocks of the raid centre at any moment: nothing. A spectator nearby: fine.
+
+### warden_bully
+- [ ] Kill a Warden with an unarmored melee fight: granted. Wear any armor piece for one hit, or shoot it once: not granted for that Warden.
+
+### fresh_start
+- [ ] Die, respawn, craft a diamond pickaxe inside 10 min: granted (`/adv progress` shows the clock). After 10 min: nothing. Pickaxe from `/give` or a chest: nothing.
+
+### wither_storm
+- [ ] Kill 3 Withers inside 10 min (the same killer): granted. The third after 10 min: nothing.
+
+### iron_will (timed, 5 h)
+- [ ] With `seconds: 60`: counts up, pauses while AFK/creative, resets on death, keeps its value across a relog. Riding does not pause it.
+
+### frozen_human (timed, 30 s)
+- [ ] Stand in powder snow until fully frozen (blue hearts and the frost overlay): counts up; step out and thaw: resets. Die: resets.
+
+### free_diver (timed, 2 min, cumulative)
+- [ ] Dive with your eyes underwater, no Water Breathing/Conduit/Respiration: counts up; surfacing pauses it (does not reset).
+- [ ] A Respiration helmet, a Water Breathing potion, a turtle helmet or Conduit Power: no progress while active.
+- [ ] `reset_on_surface: true` gives the strict continuous version (effectively unreachable; see the report).
+
+### jockey_jamboree (hidden)
+- [ ] `/summon chicken ~ ~ ~ {Passengers:[{id:zombie,IsBaby:1}]}` and kill the zombie: criterion chicken_jockey.
+- [ ] `/summon spider ~ ~ ~ {Passengers:[{id:skeleton}]}`: spider_jockey. `/summon skeleton_horse ~ ~ ~ {Passengers:[{id:skeleton}]}`: skeleton_horseman.
+- [ ] Only after all three is the advancement shown as done; killing a rider that has already dismounted does not count.

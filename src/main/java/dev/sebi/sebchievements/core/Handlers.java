@@ -10,6 +10,21 @@ import dev.sebi.sebchievements.handlers.social.RevengeHandler;
 import dev.sebi.sebchievements.handlers.social.RoommatesHandler;
 import dev.sebi.sebchievements.handlers.social.TwinningHandler;
 import dev.sebi.sebchievements.handlers.social.WitnessHandler;
+import dev.sebi.sebchievements.handlers.challenges.ActualSniperHandler;
+import dev.sebi.sebchievements.handlers.challenges.FoodCriticHandler;
+import dev.sebi.sebchievements.handlers.challenges.FreeDiverHandler;
+import dev.sebi.sebchievements.handlers.challenges.FreshStartHandler;
+import dev.sebi.sebchievements.handlers.challenges.FrozenHumanHandler;
+import dev.sebi.sebchievements.handlers.challenges.IronWillHandler;
+import dev.sebi.sebchievements.handlers.challenges.JockeyJamboreeHandler;
+import dev.sebi.sebchievements.handlers.challenges.NakedAndAfraidHandler;
+import dev.sebi.sebchievements.handlers.challenges.OneManArmyHandler;
+import dev.sebi.sebchievements.handlers.challenges.PacifistHandler;
+import dev.sebi.sebchievements.handlers.challenges.TotemChainHandler;
+import dev.sebi.sebchievements.handlers.challenges.UntouchableHandler;
+import dev.sebi.sebchievements.handlers.challenges.WardenBullyHandler;
+import dev.sebi.sebchievements.handlers.challenges.WhittledDownHandler;
+import dev.sebi.sebchievements.handlers.challenges.WitherStormHandler;
 import dev.sebi.sebchievements.handlers.exploration.CavemanHandler;
 import dev.sebi.sebchievements.handlers.exploration.DimensionHopperHandler;
 import dev.sebi.sebchievements.handlers.exploration.LongWayHomeHandler;
@@ -60,7 +75,23 @@ public final class Handlers {
             new TopToBottomHandler(),
             new DimensionHopperHandler(),
             new SkyCamperHandler(),
-            new CavemanHandler()
+            new CavemanHandler(),
+            // challenges
+            new NakedAndAfraidHandler(),
+            new WhittledDownHandler(),
+            new UntouchableHandler(),
+            new PacifistHandler(),
+            new FoodCriticHandler(),
+            new TotemChainHandler(),
+            new ActualSniperHandler(),
+            new OneManArmyHandler(),
+            new WardenBullyHandler(),
+            new FreshStartHandler(),
+            new WitherStormHandler(),
+            new IronWillHandler(),
+            new FrozenHumanHandler(),
+            new FreeDiverHandler(),
+            new JockeyJamboreeHandler()
     );
 
     private Handlers() {}

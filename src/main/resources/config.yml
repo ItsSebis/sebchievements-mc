@@ -9,6 +9,37 @@ afk_seconds: 120
 recent_damage_retention_seconds: 60
 
 advancements:
+  untouchable:
+    seconds: 1200
+  pacifist:
+    nights: 3
+    night_start: 13000       # time of day, in ticks
+    night_end: 23000
+    slack_ticks: 40          # how late into the first tick of the night you may be first seen
+  food_critic:
+    window_seconds: 60
+    survive_seconds: 30
+    foods: [PUFFERFISH, POISONOUS_POTATO, ROTTEN_FLESH, SPIDER_EYE]
+  totem_chain:
+    totems: 3
+    seconds: 60
+  actual_sniper:
+    blocks: 100
+  one_man_army:
+    omen_level: 5            # the highest Bad Omen level
+    radius: 64
+  fresh_start:
+    seconds: 600
+  wither_storm:
+    withers: 3
+    seconds: 600
+  iron_will:
+    seconds: 18000           # 5 hours
+  frozen_human:
+    seconds: 30
+  free_diver:
+    seconds: 120
+    reset_on_surface: false  # true = must stay under continuously (practically impossible: you drown in ~15s)
   roads_were_a_mistake:
     blocks: 1000
     max_step_blocks: 150     # a jump larger than this between two checks (portal, teleport) restarts the ride
