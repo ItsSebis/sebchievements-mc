@@ -33,6 +33,16 @@ public final class WindowService {
         return q == null ? 0 : distinct(q, now, windowMillis);
     }
 
+    /** The distinct event keys inside the window ending at {@code now} (e.g. who ate from the same cake). */
+    public Set<String> keys(UUID player, String id, long now, long windowMillis) {
+        Deque<Event> q = windows.get(k(player, id));
+        if (q == null) return Set.of();
+        distinct(q, now, windowMillis);
+        Set<String> out = new HashSet<>();
+        for (Event e : q) out.add(e.key());
+        return out;
+    }
+
     public void clear(UUID player, String id) {
         windows.remove(k(player, id));
     }

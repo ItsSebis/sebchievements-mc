@@ -89,3 +89,42 @@ Timed ones pause while AFK (default `afk_seconds: 120` in config.yml; lower it t
 - [ ] Set `count: 3`, fish: three junk catches in a row grant it; a fish in between resets (`/adv progress`).
 - [ ] Enchanted fishing rod catch resets the streak; a plain damaged rod counts as junk.
 - [ ] AFK fishing (past `afk_seconds`): catches are ignored.
+
+## Phase 4: social (plugin handlers)
+
+Most of these need two players (or one player plus an alt account). `/adv debug <id> [player]` shows stored state.
+
+### neighborly
+- [ ] A drops an item (Q), B picks it up: B gets it. A picking up their own drop: nothing. Item from a chest or mob drop: nothing.
+- [ ] `/adv debug neighborly` shows the partner UUID for both players (used by Betrayal).
+
+### roommates
+- [ ] A and B sleep in beds 3 blocks apart: both granted (whoever lies down second). 7 blocks apart: nothing.
+- [ ] A sleeping and B in spectator nearby: nothing for B.
+
+### betrayal
+- [ ] A and B trade (neighborly), then A kills B: A granted. A kills C (never traded): nothing. B kills A: B granted (the link is both ways).
+
+### group_project
+- [ ] 5 players (or 4 + alts) within 16 blocks: all granted. With 3 others: nothing. A spectator among them does not count.
+
+### bodyguard
+- [ ] A zombie hits B, A kills it within 5s: A granted. After 6s: nothing. A kills a zombie that only hit A: nothing.
+
+### medic
+- [ ] B at 3 hearts, A throws a splash Healing (or Regeneration) at B: A granted. B at 5 hearts: nothing. Throwing at yourself: nothing.
+- [ ] A splash of Strength on a hurt B: nothing.
+
+### revenge
+- [ ] B kills A, then A kills B: A granted. A kills someone else: nothing. After the revenge kill the memory is cleared (`/adv debug revenge`).
+
+### witness
+- [ ] B stands 10 blocks from A, A earns any advancement with a toast: B granted. 30 blocks away: nothing.
+- [ ] A earning a recipe or a tab root, or an advancement of ours called Witness: nothing.
+
+### twinning
+- [ ] A and B both in full iron armor within 8 blocks: granted. A in iron, B in iron with a diamond helmet: nothing. One slot empty: nothing.
+
+### dinner_party
+- [ ] Hungry A, B, C each eat from the same cake within 60s: all three granted. Two players: nothing. Third bite after 60s: nothing.
+- [ ] Full-hunger player right-clicking the cake does not count. Creative players do not count.

@@ -142,14 +142,14 @@ Names in quotes are custom item names. "Lore" lines are optional and left to the
 - **Matching Hats:** both caps are red.
 - **Totems:** Totem Chain's 2 totems are two separate items (totems do not stack); that is fine under the guardrail.
 
-## Open: needs Sebi's answer (changes the architecture)
+## Decided by Sebi after the builder check
 
-1. If an admin revokes and re-grants an advancement, may the reward be given again? Vanilla rewards fire on every
-   grant, so "no" means per-player claimed-state in the plugin (the `RewardGiver` route).
-2. Should players who already earned an advancement receive its reward retroactively? Vanilla rewards only fire on
-   a new grant, so "yes" needs a one-off backfill.
+1. An admin revoke and re-grant **may** give the reward again. No per-player claimed-state is needed; vanilla
+   advancement rewards (generated loot table) are enough. This also settles the anti-goal "a reward given twice by
+   accident": it means accidental double-grants from the game itself, not deliberate admin re-grants.
+2. **No retroactive rewards.** The SMP has not been live, so nobody has progress to backfill.
 
-## Open: nothing else blocking
+## Open: nothing blocking
 
 All design questions from the conversation are settled. If the loot-table route turns out not to support
 something above (for example a named potion or a banner pattern), the fallback is a small `RewardGiver` in the

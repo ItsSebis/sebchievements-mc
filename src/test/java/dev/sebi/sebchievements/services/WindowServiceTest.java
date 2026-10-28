@@ -31,6 +31,14 @@ class WindowServiceTest {
     }
 
     @Test
+    void keysListsWhoIsInsideTheWindow() {
+        w.record(p, "cake", "alice", 0, 60_000);
+        w.record(p, "cake", "bob", 30_000, 60_000);
+        assertEquals(java.util.Set.of("alice", "bob"), w.keys(p, "cake", 40_000, 60_000));
+        assertEquals(java.util.Set.of("bob"), w.keys(p, "cake", 70_000, 60_000));
+    }
+
+    @Test
     void clearForgetsEverything() {
         w.record(p, "x", "a", 0, 1000);
         w.clear(p, "x");

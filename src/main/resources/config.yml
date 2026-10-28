@@ -9,6 +9,22 @@ afk_seconds: 120
 recent_damage_retention_seconds: 60
 
 advancements:
+  roommates:
+    radius: 5
+  group_project:
+    radius: 16
+    others: 4                # other players needed nearby; 4 = a whole group of 5
+  bodyguard:
+    seconds: 5
+  medic:
+    max_health: 8.0          # hit points; 8.0 = 4 hearts
+  witness:
+    radius: 16
+  twinning:
+    radius: 8
+  dinner_party:
+    players: 3
+    seconds: 60
   professional_napper:
     nights: 100
   its_fine:

@@ -1,5 +1,15 @@
 package dev.sebi.sebchievements.core;
 
+import dev.sebi.sebchievements.handlers.social.BetrayalHandler;
+import dev.sebi.sebchievements.handlers.social.BodyguardHandler;
+import dev.sebi.sebchievements.handlers.social.DinnerPartyHandler;
+import dev.sebi.sebchievements.handlers.social.GroupProjectHandler;
+import dev.sebi.sebchievements.handlers.social.MedicHandler;
+import dev.sebi.sebchievements.handlers.social.NeighborlyHandler;
+import dev.sebi.sebchievements.handlers.social.RevengeHandler;
+import dev.sebi.sebchievements.handlers.social.RoommatesHandler;
+import dev.sebi.sebchievements.handlers.social.TwinningHandler;
+import dev.sebi.sebchievements.handlers.social.WitnessHandler;
 import dev.sebi.sebchievements.handlers.silly.CreeperWhispererHandler;
 import dev.sebi.sebchievements.handlers.silly.FashionDisasterHandler;
 import dev.sebi.sebchievements.handlers.silly.GravityCheckHandler;
@@ -26,7 +36,18 @@ public final class Handlers {
             new SelfOwnHandler(),
             new GravityCheckHandler(),
             new StaringContestHandler(),
-            new OneMansTrashHandler()
+            new OneMansTrashHandler(),
+            // social
+            new NeighborlyHandler(),
+            new RoommatesHandler(),
+            new BetrayalHandler(),
+            new GroupProjectHandler(),
+            new BodyguardHandler(),
+            new MedicHandler(),
+            new RevengeHandler(),
+            new WitnessHandler(),
+            new TwinningHandler(),
+            new DinnerPartyHandler()
     );
 
     private Handlers() {}

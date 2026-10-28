@@ -251,6 +251,86 @@ advancements:
     kind: streak
     anti_cheese: "Any catch that is not junk resets the streak; catches while AFK are ignored; creative and spectator catches do not count"
 
+  - id: neighborly
+    tab: social
+    title: "Neighborly"
+    description: "Pick up an item another player threw to you"
+    icon: minecraft:sweet_berries
+    frame: task
+    mode: plugin
+
+  - id: roommates
+    tab: social
+    title: "Roommates"
+    description: "Sleep within 5 blocks of another sleeping player"
+    icon: minecraft:red_bed
+    frame: task
+    mode: plugin
+
+  - id: betrayal
+    tab: social
+    title: "Betrayal"
+    description: "Kill a player you have traded with"
+    icon: minecraft:iron_nugget
+    frame: goal
+    mode: plugin
+
+  - id: group_project
+    tab: social
+    title: "Group Project"
+    description: "Be within 16 blocks of 4 other players at once"
+    icon: minecraft:bell
+    frame: goal
+    mode: plugin
+
+  - id: bodyguard
+    tab: social
+    title: "Bodyguard"
+    description: "Kill a mob that hurt another player in the last 5 seconds"
+    icon: minecraft:shield
+    frame: task
+    mode: plugin
+
+  - id: medic
+    tab: social
+    title: "Medic"
+    description: "Heal a player below 4 hearts with a splash potion"
+    icon: minecraft:splash_potion
+    frame: task
+    mode: plugin
+
+  - id: revenge
+    tab: social
+    title: "Revenge"
+    description: "Kill the player who last killed you"
+    icon: minecraft:wither_rose
+    frame: goal
+    mode: plugin
+
+  - id: witness
+    tab: social
+    title: "Witness"
+    description: "Be within 16 blocks when another player earns an advancement"
+    icon: minecraft:spyglass
+    frame: task
+    mode: plugin
+
+  - id: twinning
+    tab: social
+    title: "Twinning"
+    description: "Wear the exact same armor as a player within 8 blocks"
+    icon: minecraft:leather_helmet
+    frame: task
+    mode: plugin
+
+  - id: dinner_party
+    tab: social
+    title: "Dinner Party"
+    description: "Three players eat from the same cake within 60 seconds"
+    icon: minecraft:cake
+    frame: goal
+    mode: plugin
+
   # Framework smoke test, awarded by /adv test. Remove before the first real release.
   - id: test
     tab: silly
