@@ -62,11 +62,11 @@ that appears in a description, change the catalog entry too.
 
 ## Building
 
-You need JDK 25 and Gradle 9.x (there is no Gradle wrapper in the repo yet).
+You need JDK 25 on your `PATH`; the Gradle wrapper downloads Gradle itself.
 
 ```sh
-gradle build            # generates the datapack, compiles, runs all unit tests -> build/libs/sebchievements.jar
-gradle :buildSrc:test   # catalog validator and loot-table generator tests
+./gradlew build        # generates the datapack, compiles, runs all unit tests -> build/libs/sebchievements.jar
+./gradlew :buildSrc:test # catalog validator and loot-table generator tests
 ```
 
 The generator validates the catalog and **fails the build** on duplicate ids, unknown parents or tabs, bad frames,
@@ -86,7 +86,7 @@ datapack entry stops the whole server from starting) are in section 8 of [CLAUDE
 
 ## Testing
 
-- Unit tests (no server): `gradle :buildSrc:test test`
+- Unit tests (no server): `./gradlew :buildSrc:test test`
 - Rewards on a running test server: `scripts/verify-rewards.py` spawns every reward table and checks the real item
   data against the catalog (it must report `failures: 0`)
 - By hand: [docs/playtest.md](docs/playtest.md) (one ordered session) and [docs/testing.md](docs/testing.md)
