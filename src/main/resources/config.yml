@@ -90,7 +90,7 @@ advancements:
     seconds: 10
     range: 32
   one_mans_trash:
-    count: 10
+    count: 3                 # 10 in a row is about a one in ten billion chance; 3 is roughly one in a thousand catches
     junk:                    # a plain fishing rod is junk; an enchanted one is treasure and resets the streak
       - LILY_PAD
       - BOWL

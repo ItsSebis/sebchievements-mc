@@ -20,7 +20,7 @@ them after a few weeks of real data (for example with the rarity numbers SebStat
 | 7 | Long grind or a hard, skill-heavy feat |
 | 8 | Hard fight or run that most players will fail on a first attempt |
 | 9 | Needs a specific setup plus skill, or depends on rare random events |
-| 10 | Effectively impossible as written (see the flags below) |
+| 10 | Effectively impossible as written (none currently) |
 
 ## Silly
 
@@ -35,7 +35,7 @@ them after a few weeks of real data (for example with the rarity numbers SebStat
 | Creeper Whisperer | 3 | Easy with a shield; fiddly without one |
 | It's Fine | 5 | Holding half a heart for a minute takes careful control |
 | Professional Napper | 7 | 100 skipped nights is a very long grind |
-| One Man's Trash | 10 | Flagged: ten junk catches in a row is about a one in ten billion chance |
+| One Man's Trash | 7 | Three junk in a row is about one in a thousand catches: hours of fishing |
 
 ## Social
 
@@ -89,18 +89,17 @@ them after a few weeks of real data (for example with the rarity numbers SebStat
 
 ## Flags (read these)
 
-- **One Man's Trash is graded 10 because it is effectively a soft lock as specified.** The catch table is roughly
-  85% fish, 10% junk, 5% treasure, and a fish or treasure resets the streak. Ten junk in a row is about 0.1^10.
-  CLAUDE.md rule 1 says every advancement must be achievable. Options: lower the streak (3 junk is about one in a
-  thousand catches), count 10 junk total, or let fish not reset it. The count is `advancements.one_mans_trash.count`
-  in config.yml; the description in the catalog must change with it.
+- **One Man's Trash was a 10 and is now a 7.** As first specified (10 junk in a row, a fish or treasure resets it) it
+  was effectively a soft lock: about 0.1^10, one in ten billion. The streak is now 3 (`advancements.one_mans_trash.count`
+  in config.yml, and the catalog description). With roughly 10% junk, expect around 1,100 catches before a run of 3,
+  which is several hours of fishing, so it stays a grind. Luck of the Sea makes junk rarer, so do not use it.
 - **Free Diver was changed from the spec** to a cumulative version; the strict one would be a 10 as well.
 - **Warden Bully and Naked and Afraid** are achievable only with tactics (a trap, distance, a bow). Fine, but they
   will be the rarest challenges on the website.
 
 ## Reading the grades together
 
-Average difficulty per tab: Silly 4.0, Social 2.7, Exploration 4.0, Challenges 6.4.
+Average difficulty per tab: Silly 3.7, Social 2.7, Exploration 4.0, Challenges 6.4.
 That shape is intended: Social is easy because it mostly needs friends, and Challenges is where the effort goes.
 The reward tiers (task, goal, challenge) track frame, not these grades, so a grade-9 goal such as Jockey Jamboree
 and a grade-2 challenge-frame entry, if one ever exists, would be a mismatch worth revisiting.

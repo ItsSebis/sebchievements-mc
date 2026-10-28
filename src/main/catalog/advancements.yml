@@ -270,13 +270,13 @@ advancements:
   - id: one_mans_trash
     tab: silly
     title: "One Man's Trash"
-    description: "Fish up junk 10 times in a row"
+    description: "Fish up junk 3 times in a row"
     icon: minecraft:lily_pad
     frame: goal
     mode: plugin
     kind: streak
     anti_cheese: "Any catch that is not junk resets the streak; catches while AFK are ignored; creative and spectator catches do not count"
-    difficulty: 10
+    difficulty: 7
     reward: [{item: "minecraft:cauldron", name: "Trash Can"}]
 
   - id: neighborly

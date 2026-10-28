@@ -225,7 +225,7 @@ Frame: T = task, G = goal, C = challenge. "Vanilla" = solvable with datapack JSO
 | self_own | Self-Own | Get killed by your own arrow | T | Plugin: death by arrow whose shooter is the victim |
 | gravity_check | Gravity Check | Die of fall damage with a water bucket in your hotbar | T | Plugin |
 | staring_contest | Staring Contest | Look at an Enderman for 10s while wearing a carved pumpkin | T | Plugin: ray-trace every check, TimerService |
-| one_mans_trash | One Man's Trash | Fish up junk 10 times in a row | G | Plugin: `PlayerFishEvent`, junk item list in config, StreakService (fish or treasure resets) |
+| one_mans_trash | One Man's Trash | Fish up junk 3 times in a row (was 10, which is about 1 in 10 billion and broke the no-soft-lock rule) | G | Plugin: `PlayerFishEvent`, junk item list in config, StreakService (fish or treasure resets) |
 
 ### Challenges
 | id | Title | Requirement | Frame | Mode / notes |

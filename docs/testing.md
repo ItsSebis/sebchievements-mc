@@ -86,7 +86,7 @@ Timed ones pause while AFK (default `afk_seconds: 120` in config.yml; lower it t
 - [ ] Wearing a regular pumpkin block or no helmet: nothing.
 
 ### one_mans_trash (streak, 10 junk)
-- [ ] Set `count: 3`, fish: three junk catches in a row grant it; a fish in between resets (`/adv progress`).
+- [ ] Default is 3: three junk catches in a row grant it; a fish in between resets (`/adv progress`). It is rare (about one in a thousand catches), so for a quick check set `count: 1` or 2 in config.yml and restart.
 - [ ] Enchanted fishing rod catch resets the streak; a plain damaged rod counts as junk.
 - [ ] AFK fishing (past `afk_seconds`): catches are ignored.
 
