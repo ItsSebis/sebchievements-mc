@@ -32,6 +32,145 @@ advancements:
             entity: this
             predicate: { minecraft:entity_type: minecraft:wandering_trader }
 
+  - id: nice_to_mace_you
+    tab: challenges
+    title: "Nice to Mace You"
+    description: "Craft a mace and hit something with a smash attack"
+    icon: minecraft:mace
+    frame: goal
+    mode: vanilla
+    # Both criteria are required (default AND). The mace_smash damage tag is the game's own
+    # definition of a mace hit while falling, so fall distance needs no custom predicate.
+    criteria:
+      crafted_mace:
+        trigger: minecraft:recipe_crafted
+        conditions:
+          recipes: minecraft:mace
+      smash_attack:
+        trigger: minecraft:player_hurt_entity
+        conditions:
+          damage:
+            type:
+              direct_entity:
+                minecraft:entity_type: minecraft:player
+                minecraft:equipment: { mainhand: { items: minecraft:mace } }
+              tags:
+                - { id: "#minecraft:mace_smash", expected: true }
+
+  - id: commuter
+    tab: exploration
+    title: "Commuter"
+    description: "Travel 10,000 Overworld-equivalent blocks in one Nether trip"
+    icon: minecraft:netherite_boots
+    frame: goal
+    mode: vanilla
+    criteria:
+      travelled:
+        trigger: minecraft:nether_travel
+        conditions:
+          distance: { horizontal: { min: 10000 } }
+
+  - id: off_the_map
+    tab: exploration
+    title: "Off the Map"
+    description: "Reach 20,000 blocks from the origin along either axis in the Overworld"
+    icon: minecraft:filled_map
+    frame: goal
+    mode: vanilla
+    requirements: [[east, west, south, north]]
+    criteria:
+      east:
+        trigger: minecraft:location
+        conditions:
+          player:
+            type: minecraft:entity_properties
+            entity: this
+            predicate:
+              minecraft:location:
+                dimension: minecraft:overworld
+                position: { x: { min: 20000 } }
+      west:
+        trigger: minecraft:location
+        conditions:
+          player:
+            type: minecraft:entity_properties
+            entity: this
+            predicate:
+              minecraft:location:
+                dimension: minecraft:overworld
+                position: { x: { max: -20000 } }
+      south:
+        trigger: minecraft:location
+        conditions:
+          player:
+            type: minecraft:entity_properties
+            entity: this
+            predicate:
+              minecraft:location:
+                dimension: minecraft:overworld
+                position: { z: { min: 20000 } }
+      north:
+        trigger: minecraft:location
+        conditions:
+          player:
+            type: minecraft:entity_properties
+            entity: this
+            predicate:
+              minecraft:location:
+                dimension: minecraft:overworld
+                position: { z: { max: -20000 } }
+
+  - id: far_end
+    tab: exploration
+    title: "Far End"
+    description: "Reach 10,000 blocks from the origin along either axis in the End"
+    icon: minecraft:end_stone
+    frame: goal
+    mode: vanilla
+    requirements: [[east, west, south, north]]
+    criteria:
+      east:
+        trigger: minecraft:location
+        conditions:
+          player:
+            type: minecraft:entity_properties
+            entity: this
+            predicate:
+              minecraft:location:
+                dimension: minecraft:the_end
+                position: { x: { min: 10000 } }
+      west:
+        trigger: minecraft:location
+        conditions:
+          player:
+            type: minecraft:entity_properties
+            entity: this
+            predicate:
+              minecraft:location:
+                dimension: minecraft:the_end
+                position: { x: { max: -10000 } }
+      south:
+        trigger: minecraft:location
+        conditions:
+          player:
+            type: minecraft:entity_properties
+            entity: this
+            predicate:
+              minecraft:location:
+                dimension: minecraft:the_end
+                position: { z: { min: 10000 } }
+      north:
+        trigger: minecraft:location
+        conditions:
+          player:
+            type: minecraft:entity_properties
+            entity: this
+            predicate:
+              minecraft:location:
+                dimension: minecraft:the_end
+                position: { z: { max: -10000 } }
+
+
   # Framework smoke test, awarded by /adv test. Remove before the first real release.
   - id: test
     tab: silly

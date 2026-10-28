@@ -27,3 +27,23 @@ result, and what must NOT count (the `anti_cheese` note).
 ### tax_evasion (vanilla)
 - [ ] Kill a Wandering Trader (`/summon wandering_trader`): advancement granted.
 - [ ] Kill a regular villager: nothing.
+
+### nice_to_mace_you (vanilla)
+- [ ] Craft a mace (heavy core + breeze rod) but don't hit anything: not granted.
+- [ ] Hit a mob with a mace without falling (no smash): not granted.
+- [ ] Hit a mob with a mace after falling 3+ blocks (smash attack): granted.
+- [ ] Smash attack with a mace you never crafted (`/give`): not granted (crafting is required).
+
+### commuter (vanilla)
+- [ ] Enter the Nether, walk 1,000 blocks (= 8,000 Overworld blocks), return: not granted.
+- [ ] Walk 1,250+ Nether blocks in one trip and return: granted. (`/tp` in the Nether does not count.)
+
+### off_the_map (vanilla)
+- [ ] `/tp` to x=19,990 in the Overworld: not granted. Walk to x=20,000: granted. Same for x<=-20,000, z>=20,000, z<=-20,000.
+- [ ] Nether at x=20,000: not granted (Overworld only).
+
+### far_end (vanilla)
+- [ ] End at x=9,990: not granted. End at x/z beyond +-10,000: granted. Overworld at 10,000: not granted.
+
+Note on /tp: the location triggers read the player's position, so `/tp` to the target does grant them. That is fine
+for a private SMP, but remember it when testing; for commuter, teleporting does not build up travel distance.
