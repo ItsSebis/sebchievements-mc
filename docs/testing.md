@@ -226,34 +226,34 @@ Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/g
 ## Effect perks, goat, obsidian, mining, marathon (needs a player)
 
 ### marathon (counter, 100,000 blocks on foot) and the Speed II perk
-- [ ] Walk and sprint: `/adv progress` shows `Marathon` going up by roughly the distance (counted from the first second the plugin saw you, not from your old statistics).
-- [ ] Boat, minecart, horse, elytra, swimming: no progress. Creative and spectator: no progress.
-- [ ] Set `advancements.marathon.blocks: 50` in config.yml, restart, walk 50 blocks: the advancement completes and Speed II appears (no particles, no beacon-style ring; it shows in the effect list with a short timer that keeps refreshing).
-- [ ] `/adv rewards`: a "Marathon Legs" sugar entry, glowing while on. Click: "disabled", the effect is gone within about 2 seconds and stays gone. Click again: it returns.
-- [ ] Drink milk: Speed II is back within a second. Die and respawn: it returns. Relog: it returns.
-- [ ] A Speed II potion in your hand effect list is not removed when you toggle the perk off, or revoke the advancement.
-- [ ] `/adv revoke <you> marathon`: the effect ends within 2 seconds and the entry disappears from the player menu (it stays in the admin "all" view, click says "You haven't earned that perk yet").
+- [x] Walk and sprint: `/adv progress` shows `Marathon` going up by roughly the distance (counted from the first second the plugin saw you, not from your old statistics).
+- [x] Boat, minecart, horse, elytra, swimming: no progress. Creative and spectator: no progress.
+- [x] Set `advancements.marathon.blocks: 50` in config.yml, restart, walk 50 blocks: the advancement completes and Speed II appears (no particles, no beacon-style ring; it shows in the effect list with a short timer that keeps refreshing).
+- [x] `/adv rewards`: a "Marathon Legs" sugar entry, glowing while on. Click: "disabled", the effect is gone within about 2 seconds and stays gone. Click again: it returns.
+- [x] Drink milk: Speed II is back within a second. Die and respawn: it returns. Relog: it returns.
+- [x] A Speed II potion in your hand effect list is not removed when you toggle the perk off, or revoke the advancement.
+- [x] `/adv revoke <you> marathon`: the effect ends within 2 seconds and the entry disappears from the player menu (it stays in the admin "all" view, click says "You haven't earned that perk yet").
 
 ### Perk menu (`/adv perks`)
-- [ ] `/adv perks` opens a "Perks" menu listing every perk: unlocked ones with their icon (glowing when on), locked ones as grey dye "Not earned yet".
-- [ ] Click an unlocked perk: it switches on/off (chat message, glow changes, effect appears/fades). Click a locked one: red "haven't earned" message, nothing changes.
-- [ ] The chest ("Back to rewards") opens `/adv rewards`; in the rewards menu the brewing stand between the book and the right arrow ("Perks", shows "x of y perks on") opens the perk menu. Perks still appear in the rewards menu too, and toggling in one is reflected in the other.
-- [ ] Nothing can be moved in or out of the perk menu.
+- [x] `/adv perks` opens a "Perks" menu listing every perk: unlocked ones with their icon (glowing when on), locked ones as grey dye "Not earned yet".
+- [x] Click an unlocked perk: it switches on/off (chat message, glow changes, effect appears/fades). Click a locked one: red "haven't earned" message, nothing changes.
+- [x] The chest ("Back to rewards") opens `/adv rewards`; in the rewards menu the brewing stand between the book and the right arrow ("Perks", shows "x of y perks on") opens the perk menu. Perks still appear in the rewards menu too, and toggling in one is reflected in the other.
+- [x] Nothing can be moved in or out of the perk menu.
 
 ### moving_mountains (counter, 100,000 blocks) and the Haste II perk
-- [ ] Mine stone, dirt, logs: `/adv progress` counts each; breaking grass, flowers or torches does not. Creative: nothing.
-- [ ] Place dirt and break it again right away: not counted. (`placed_block_ignore_minutes`, default 30.)
-- [ ] With `advancements.moving_mountains.blocks: 20`: completes after 20 blocks and Haste II starts; same toggle/milk/revoke checks as Marathon Legs ("Miner's Rush" golden pickaxe entry).
+- [x] Mine stone, dirt, logs: `/adv progress` counts each; breaking grass, flowers or torches does not. Creative: nothing.
+- [x] Place dirt and break it again right away: not counted. (`placed_block_ignore_minutes`, default 30.)
+- [x] With `advancements.moving_mountains.blocks: 20`: completes after 20 blocks and Haste II starts; same toggle/milk/revoke checks as Marathon Legs ("Miner's Rush" golden pickaxe entry).
 
 ### obsidian_obsession (counter, 1,000)
-- [ ] Mine obsidian with a diamond or netherite pickaxe: counts. With an iron pickaxe or your hand: not counted.
-- [ ] Place obsidian and mine it again right away: not counted.
-- [ ] With `blocks: 3`: completes and gives a diamond pickaxe "Obsidian Cutter" with Efficiency VII.
+- [x] Mine obsidian with a diamond or netherite pickaxe: counts. With an iron pickaxe or your hand: not counted.
+- [x] Place obsidian and mine it again right away: not counted.
+- [x] With `blocks: 3`: completes and gives a diamond pickaxe "Obsidian Cutter" with Efficiency VII.
 
 ### yeet_the_goat
-- [ ] In the End (`/summon goat` near the island edge), hit the goat off the edge: it falls into the void and you get the advancement and a stick "Goat Yeeter" with Knockback X.
-- [ ] A goat that falls on its own, or that you last hit more than 10 seconds before it fell: nobody gets it. Creative players don't get it.
-- [ ] A goat dying in the Overworld void or to anything but the void: nothing.
+- [x] In the End (`/summon goat` near the island edge), hit the goat off the edge: it falls into the void and you get the advancement and a stick "Goat Yeeter" with Knockback X.
+- [x] A goat that falls on its own, or that you last hit more than 10 seconds before it fell: nobody gets it. Creative players don't get it.
+- [x] A goat dying in the Overworld void or to anything but the void: nothing.
 
 ## Rewards (needs a player)
 
@@ -268,15 +268,15 @@ real item data (count, name, lore, enchantments, potion, dye) against the catalo
 - [ ] A tab root or the `test` advancement gives nothing.
 
 ### Reward menu (`/adv rewards`, needs a player; use a non-op account or remove `smpadv.rewards.multiple` and `smpadv.rewards.nocooldown` from the tester)
-- [ ] Complete (or `/adv grant`) `tax_evasion`, then `/adv rewards`: only completed advancements with a reward are listed; items show "Click to reclaim" / "You already have this".
-- [ ] While holding the Tax Refund emerald: the entry says "You already have this" and clicking it gives nothing.
-- [ ] Drop the emerald into lava, click the entry: you get a tagged emerald back. Clicking again: "You can reclaim that again in 59m ..." (cooldown, also shown in the lore).
-- [ ] `rewards.reclaim_cooldown_minutes: 1` in config.yml and a restart: the cooldown ends after a minute. With `smpadv.rewards.nocooldown` there is no wait.
-- [ ] Put the emerald in a chest, reclaim a second one, then try to take the first out of the chest (click, shift-click, number key): refused with a red message.
-- [ ] Drop the emerald, reclaim another, walk over the dropped one: not picked up. A second player who completed `tax_evasion` and holds none can pick it up; one who didn't cannot.
-- [ ] Get a second copy another way (the op gives it, or an op takes it from the admin view and drops it on you): within a second the sweep removes the extra and tells you.
-- [ ] A copy inside a shulker box you carry counts: reclaim + shulker with one emerald inside: the sweep removes one.
-- [ ] Reward with several items (`pacifist`: 8 golden carrots + azalea; `totem_chain`: 2 totems): reclaiming gives the whole set, a second set is refused; a full inventory refuses without handing out half.
-- [ ] Admin: the lever in the bottom row toggles "Rewards" / "Rewards (admin: all)"; the admin view lists every reward and a click gives it with no cooldown; leftovers drop at your feet when the inventory is full.
-- [ ] Nothing can be moved into or out of the menu (shift-click from your inventory, drag, number keys, drops).
-- [ ] `/adv debug tax_evasion` shows `reward_reclaim/tax_evasion` after a reclaim; `/adv reset <you> tax_evasion` clears it.
+- [x] Complete (or `/adv grant`) `tax_evasion`, then `/adv rewards`: only completed advancements with a reward are listed; items show "Click to reclaim" / "You already have this".
+- [x] While holding the Tax Refund emerald: the entry says "You already have this" and clicking it gives nothing.
+- [x] Drop the emerald into lava, click the entry: you get a tagged emerald back. Clicking again: "You can reclaim that again in 59m ..." (cooldown, also shown in the lore).
+- [x] `rewards.reclaim_cooldown_minutes: 1` in config.yml and a restart: the cooldown ends after a minute. With `smpadv.rewards.nocooldown` there is no wait.
+- [x] Put the emerald in a chest, reclaim a second one, then try to take the first out of the chest (click, shift-click, number key): refused with a red message.
+- [x] Drop the emerald, reclaim another, walk over the dropped one: not picked up. A second player who completed `tax_evasion` and holds none can pick it up; one who didn't cannot.
+- [x] Get a second copy another way (the op gives it, or an op takes it from the admin view and drops it on you): within a second the sweep removes the extra and tells you.
+- [x] A copy inside a shulker box you carry counts: reclaim + shulker with one emerald inside: the sweep removes one.
+- [x] Reward with several items (`pacifist`: 8 golden carrots + azalea; `totem_chain`: 2 totems): reclaiming gives the whole set, a second set is refused; a full inventory refuses without handing out half.
+- [x] Admin: the lever in the bottom row toggles "Rewards" / "Rewards (admin: all)"; the admin view lists every reward and a click gives it with no cooldown; leftovers drop at your feet when the inventory is full.
+- [x] Nothing can be moved into or out of the menu (shift-click from your inventory, drag, number keys, drops).
+- [x] `/adv debug tax_evasion` shows `reward_reclaim/tax_evasion` after a reclaim; `/adv reset <you> tax_evasion` clears it.
