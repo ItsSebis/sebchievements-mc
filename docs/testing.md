@@ -223,6 +223,38 @@ Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/g
 - [ ] `/summon spider ~ ~ ~ {Passengers:[{id:skeleton}]}`: spider_jockey. `/summon skeleton_horse ~ ~ ~ {Passengers:[{id:skeleton}]}`: skeleton_horseman.
 - [ ] Only after all three is the advancement shown as done; killing a rider that has already dismounted does not count.
 
+## Effect perks, goat, obsidian, mining, marathon (needs a player)
+
+### marathon (counter, 100,000 blocks on foot) and the Speed II perk
+- [ ] Walk and sprint: `/adv progress` shows `Marathon` going up by roughly the distance (counted from the first second the plugin saw you, not from your old statistics).
+- [ ] Boat, minecart, horse, elytra, swimming: no progress. Creative and spectator: no progress.
+- [ ] Set `advancements.marathon.blocks: 50` in config.yml, restart, walk 50 blocks: the advancement completes and Speed II appears (no particles, no beacon-style ring; it shows in the effect list with a short timer that keeps refreshing).
+- [ ] `/adv rewards`: a "Marathon Legs" sugar entry, glowing while on. Click: "disabled", the effect is gone within about 2 seconds and stays gone. Click again: it returns.
+- [ ] Drink milk: Speed II is back within a second. Die and respawn: it returns. Relog: it returns.
+- [ ] A Speed II potion in your hand effect list is not removed when you toggle the perk off, or revoke the advancement.
+- [ ] `/adv revoke <you> marathon`: the effect ends within 2 seconds and the entry disappears from the player menu (it stays in the admin "all" view, click says "You haven't earned that perk yet").
+
+### Perk menu (`/adv perks`)
+- [ ] `/adv perks` opens a "Perks" menu listing every perk: unlocked ones with their icon (glowing when on), locked ones as grey dye "Not earned yet".
+- [ ] Click an unlocked perk: it switches on/off (chat message, glow changes, effect appears/fades). Click a locked one: red "haven't earned" message, nothing changes.
+- [ ] The chest ("Back to rewards") opens `/adv rewards`; in the rewards menu the brewing stand between the book and the right arrow ("Perks", shows "x of y perks on") opens the perk menu. Perks still appear in the rewards menu too, and toggling in one is reflected in the other.
+- [ ] Nothing can be moved in or out of the perk menu.
+
+### moving_mountains (counter, 100,000 blocks) and the Haste II perk
+- [ ] Mine stone, dirt, logs: `/adv progress` counts each; breaking grass, flowers or torches does not. Creative: nothing.
+- [ ] Place dirt and break it again right away: not counted. (`placed_block_ignore_minutes`, default 30.)
+- [ ] With `advancements.moving_mountains.blocks: 20`: completes after 20 blocks and Haste II starts; same toggle/milk/revoke checks as Marathon Legs ("Miner's Rush" golden pickaxe entry).
+
+### obsidian_obsession (counter, 1,000)
+- [ ] Mine obsidian with a diamond or netherite pickaxe: counts. With an iron pickaxe or your hand: not counted.
+- [ ] Place obsidian and mine it again right away: not counted.
+- [ ] With `blocks: 3`: completes and gives a diamond pickaxe "Obsidian Cutter" with Efficiency VII.
+
+### yeet_the_goat
+- [ ] In the End (`/summon goat` near the island edge), hit the goat off the edge: it falls into the void and you get the advancement and a stick "Goat Yeeter" with Knockback X.
+- [ ] A goat that falls on its own, or that you last hit more than 10 seconds before it fell: nobody gets it. Creative players don't get it.
+- [ ] A goat dying in the Overworld void or to anything but the void: nothing.
+
 ## Rewards (needs a player)
 
 Automated first: `scripts/verify-rewards.py` (server running, nobody online) spawns every reward table and checks the

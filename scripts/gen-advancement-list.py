@@ -20,6 +20,9 @@ def reward_text(entry):
         count = f"{item['count']}x " if item.get("count", 1) > 1 else ""
         extra = " (enchanted)" if item.get("enchantments") else ""
         parts.append(f"{count}{label}{extra}")
+    perk = entry.get("perk")
+    if perk:
+        parts.append(f"Perk: {perk['name']} ({pretty(perk['effect'])} {perk.get('amplifier', 0) + 1})")
     return ", ".join(parts) or "-"
 
 

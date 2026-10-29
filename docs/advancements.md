@@ -33,7 +33,7 @@ Difficulty is 1-10 (see [difficulty.md](difficulty.md)). Hidden advancements are
 | One Man's Trash | Fish up junk 3 times in a row | Goal | 7 | Trash Can |
 | Professional Napper | Skip 100 nights by sleeping | Goal | 7 | Alarm Clock |
 
-## Challenges (16)
+## Challenges (19)
 
 | Advancement | What | Type | Difficulty | Reward |
 |---|---|---|---|---|
@@ -44,17 +44,20 @@ Difficulty is 1-10 (see [difficulty.md](difficulty.md)). Hidden advancements are
 | Pacifist | Play through 3 consecutive nights without killing any mob | Challenge | 5 | 8x golden carrot, Olive Branch |
 | Untouchable | Take no damage for 20 minutes | Challenge | 5 | shield (enchanted) |
 | Nice to Mace You | Craft a mace and hit something with a smash attack | Goal | 6 | 4x wind charge |
+| Obsidian Obsession | Mine 1,000 obsidian | Challenge | 6 | Obsidian Cutter (enchanted) |
 | Totem Chain | Pop 3 totems of undying within 60 seconds | Challenge | 6 | totem of undying, totem of undying |
+| Yeet the Goat | Knock a goat into the void of the End | Challenge | 6 | Goat Yeeter (enchanted) |
 | Actual Sniper | Kill a mob with an arrow from 100 or more blocks away | Challenge | 7 | Long Shot (enchanted) |
 | Whittled Down | Land the final hit on the Ender Dragon with a wooden sword | Challenge | 7 | wooden sword (enchanted) |
 | Iron Will | Play for 24 hours without dying | Challenge | 8 | iron chestplate (enchanted) |
+| Moving Mountains | Mine 100,000 blocks | Challenge | 8 | Perk: Miner's Rush (haste 2) |
 | Naked and Afraid | Kill the Wither without wearing any armor | Challenge | 8 | Birthday Suit (enchanted) |
 | Wither Storm | Kill 3 Withers within 10 minutes | Challenge | 8 | netherite axe (enchanted) |
 | Jockey Jamboree | (hidden) | Challenge | 9 | saddle, carrot on a stick |
 | One-Man Army | Win a raid at the highest Bad Omen level with no other player within 64 blocks | Challenge | 9 | crossbow (enchanted) |
 | Warden Bully | Kill a Warden using only melee while wearing no armor | Challenge | 9 | Warden's Bane (enchanted), 4x echo shard |
 
-## Exploration (9)
+## Exploration (10)
 
 | Advancement | What | Type | Difficulty | Reward |
 |---|---|---|---|---|
@@ -67,3 +70,4 @@ Difficulty is 1-10 (see [difficulty.md](difficulty.md)). Hidden advancements are
 | Off the Map | Reach 20,000 blocks from the origin along either axis in the Overworld | Goal | 5 | recovery compass |
 | Roads Were a Mistake | Boat 1,000 blocks on ice in one ride | Task | 5 | blue ice |
 | Far End | Reach 10,000 blocks from the origin along either axis in the End | Goal | 6 | 8x ender pearl |
+| Marathon | Walk or sprint 100 km (100,000 blocks) on foot | Goal | 7 | Perk: Marathon Legs (speed 2) |

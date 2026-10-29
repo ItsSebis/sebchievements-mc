@@ -1,6 +1,7 @@
 package dev.sebi.sebchievements.rewards;
 
 import dev.sebi.sebchievements.AdvancementIds;
+import dev.sebi.sebchievements.PerkSpecs;
 import dev.sebi.sebchievements.RewardSpecs;
 import dev.sebi.sebchievements.core.Progress;
 import net.kyori.adventure.text.Component;
@@ -26,23 +27,28 @@ import java.util.Map;
 public final class RewardMenu implements InventoryHolder {
     static final int ROWS = 6;
     static final int PAGE_SIZE = 45;
-    static final int PREV = 45, TOGGLE = 47, INFO = 49, NEXT = 53;
+    static final int PREV = 45, TOGGLE = 47, INFO = 49, PERKS = 51, NEXT = 53;
+
+    /** One menu cell: the reward items of an advancement, or its effect perk. */
+    private record Entry(String id, boolean perk) {}
 
     private final RewardService service;
+    private final PerkService perks;
     private final Player viewer;
     private boolean showAll;
     private int page;
-    private List<String> shown = List.of();
+    private List<Entry> shown = List.of();
     private Inventory inventory;
 
-    private RewardMenu(RewardService service, Player viewer) {
+    private RewardMenu(RewardService service, PerkService perks, Player viewer) {
         this.service = service;
+        this.perks = perks;
         this.viewer = viewer;
     }
 
     /** Opens the menu in the player view (admins can switch inside). */
-    public static void open(RewardService service, Player viewer) {
-        RewardMenu menu = new RewardMenu(service, viewer);
+    public static void open(RewardService service, PerkService perks, Player viewer) {
+        RewardMenu menu = new RewardMenu(service, perks, viewer);
         menu.render();
         viewer.openInventory(menu.inventory);
     }
@@ -65,6 +71,8 @@ public final class RewardMenu implements InventoryHolder {
         } else if (slot == NEXT && (page + 1) * PAGE_SIZE < shown.size()) {
             page++;
             render();
+        } else if (slot == PERKS) {
+            PerkMenu.open(service, perks, viewer);
         } else if (slot == TOGGLE && isAdmin()) {
             showAll = !showAll;
             page = 0;
@@ -76,8 +84,11 @@ public final class RewardMenu implements InventoryHolder {
         }
     }
 
-    private void take(String id) {
-        if (showAll && isAdmin()) {
+    private void take(Entry entry) {
+        String id = entry.id();
+        if (entry.perk()) {
+            togglePerk(id);
+        } else if (showAll && isAdmin()) {
             service.give(viewer, id);
             viewer.sendMessage(Component.text("Took the reward of " + service.title(id) + ".", NamedTextColor.GREEN));
             viewer.playSound(viewer.getLocation(), Sound.ENTITY_ITEM_PICKUP, 0.6f, 1f);
@@ -97,6 +108,10 @@ public final class RewardMenu implements InventoryHolder {
         render();
     }
 
+    private void togglePerk(String id) {
+        PerkMenu.toggle(perks, viewer, id);
+    }
+
     private void fail(String text) {
         viewer.sendMessage(Component.text(text, NamedTextColor.RED));
         viewer.playSound(viewer.getLocation(), Sound.ENTITY_VILLAGER_NO, 0.6f, 1f);
@@ -114,7 +129,8 @@ public final class RewardMenu implements InventoryHolder {
         inventory.clear();
         Map<String, Integer> held = showAll ? Map.of() : RewardScan.held(viewer);
         for (int i = 0; i < PAGE_SIZE && page * PAGE_SIZE + i < shown.size(); i++) {
-            inventory.setItem(i, cell(shown.get(page * PAGE_SIZE + i), held));
+            Entry entry = shown.get(page * PAGE_SIZE + i);
+            inventory.setItem(i, entry.perk() ? PerkMenu.cell(service, perks, viewer, entry.id()) : cell(entry.id(), held));
         }
         ItemStack filler = named(Material.GRAY_STAINED_GLASS_PANE, " ", List.of());
         for (int s = PAGE_SIZE; s < ROWS * 9; s++) inventory.setItem(s, filler);
@@ -123,24 +139,30 @@ public final class RewardMenu implements InventoryHolder {
         String what = showAll ? "All rewards (admin)" : "Your rewards";
         List<String> infoLore = showAll ? List.of("Clicking gives the item, no limits.")
                 : List.of("Click a reward you lost to get it back.", "You can't hold more than one set,",
-                        "and each reclaim has a cooldown.");
+                        "and each reclaim has a cooldown.", "Perks are switched on and off with a click.");
         inventory.setItem(INFO, named(Material.BOOK, what + " - page " + (page + 1) + "/" + pages, infoLore));
+        inventory.setItem(PERKS, named(Material.BREWING_STAND, "Perks", List.of(perks.summary(viewer),
+                "Click to open the perk menu.")));
         if (isAdmin()) {
             inventory.setItem(TOGGLE, named(Material.LEVER, showAll ? "Switch to: your rewards" : "Switch to: all rewards (admin)",
                     List.of("Admins can toggle between the player view", "and every reward in the catalog.")));
         }
     }
 
-    /** Advancement ids with a reward, ordered by tab, then difficulty, then id. */
-    private List<String> ids() {
-        List<String> ids = new ArrayList<>();
+    /** Rewards and perks, ordered by tab, then difficulty, then id (items before the perk of the same advancement). */
+    private List<Entry> ids() {
+        List<Entry> entries = new ArrayList<>();
         for (String id : RewardSpecs.ITEMS.keySet()) {
-            if (showAll || service.earned(viewer, id)) ids.add(id);
+            if (showAll || service.earned(viewer, id)) entries.add(new Entry(id, false));
         }
-        ids.sort(Comparator.<String>comparingInt(id -> AdvancementIds.TABS.indexOf(AdvancementIds.PATHS.get(id).split("/")[0]))
-                .thenComparingInt(id -> AdvancementIds.DIFFICULTY.getOrDefault(id, 0))
-                .thenComparing(id -> id));
-        return ids;
+        for (String id : PerkSpecs.PERKS.keySet()) {
+            if (showAll || service.earned(viewer, id)) entries.add(new Entry(id, true));
+        }
+        entries.sort(Comparator.<Entry>comparingInt(e -> AdvancementIds.TABS.indexOf(AdvancementIds.PATHS.get(e.id()).split("/")[0]))
+                .thenComparingInt(e -> AdvancementIds.DIFFICULTY.getOrDefault(e.id(), 0))
+                .thenComparing(Entry::id)
+                .thenComparing(Entry::perk));
+        return entries;
     }
 
     private ItemStack cell(String id, Map<String, Integer> held) {
@@ -171,7 +193,7 @@ public final class RewardMenu implements InventoryHolder {
         return icon;
     }
 
-    private static ItemStack named(Material material, String name, List<String> lore) {
+    static ItemStack named(Material material, String name, List<String> lore) {
         ItemStack stack = new ItemStack(material);
         ItemMeta meta = stack.getItemMeta();
         meta.customName(RewardItems.plain(name, NamedTextColor.WHITE));

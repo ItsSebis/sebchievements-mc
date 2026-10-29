@@ -189,3 +189,19 @@ in-game (needs a player; see "Rewards" in `docs/testing.md`).
 - **Known limits:** consumable rewards (golden apples, pearls, arrows) can be reclaimed again once used and the cooldown
   has passed; players who haven't earned a reward can't hold or be gifted a copy; an admin `revoke` of an advancement
   makes the sweep remove that player's copies; a bypass-permission holder is never checked.
+
+## Effect perks (added 2026-10-29)
+
+A reward can be a permanent potion effect instead of an item: `perk: {effect, amplifier, name, icon}` on a plugin-mode
+catalog entry (generated into `PerkSpecs`; `amplifier` 0 is level I). It is shown in `/adv rewards` as a toggle (on by
+default, state in the player's PDC key `perk_off/<id>`).
+
+- **How it works:** `PerkService` re-applies the effect every second for 2 seconds (ambient, no particles) to every
+  online player who has the advancement and has not switched the perk off. Milk, death, relog and a plain potion that
+  overwrites it are fixed by the next sweep. Revoking the advancement or switching the perk off just stops the
+  reapplication; the effect it leaves behind (ambient, no particles, 2 seconds or less, same level) is also removed at
+  once. A real potion of the same level is never removed, and a stronger or longer effect is not replaced.
+- **Guardrail:** perks follow the same rule as items. Offence and utility (Speed, Haste) are fine; nothing that adds
+  defence beyond the vanilla maximum or invulnerability (no Resistance V, no permanent Regeneration or Absorption).
+- **Current perks:** Marathon -> Speed II, Moving Mountains -> Haste II.
+

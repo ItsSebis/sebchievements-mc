@@ -12,6 +12,8 @@ import dev.sebi.sebchievements.core.Granter;
 import dev.sebi.sebchievements.core.PlayerDataStore;
 import dev.sebi.sebchievements.core.Progress;
 import dev.sebi.sebchievements.core.ProgressReporting;
+import dev.sebi.sebchievements.rewards.PerkMenu;
+import dev.sebi.sebchievements.rewards.PerkService;
 import dev.sebi.sebchievements.rewards.RewardMenu;
 import dev.sebi.sebchievements.rewards.RewardService;
 import dev.sebi.sebchievements.services.Services;
@@ -32,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/** {@code /adv progress} and {@code /adv rewards} for everyone; the rest needs {@code smpadv.admin}. */
+/** {@code /adv progress}, {@code /adv rewards} and {@code /adv perks} for everyone; the rest needs {@code smpadv.admin}. */
 public final class AdvCommand {
     private static final String ADMIN = "smpadv.admin";
 
@@ -43,21 +45,24 @@ public final class AdvCommand {
     private final List<AdvancementHandler> handlers;
 
     private final RewardService rewards;
+    private final PerkService perks;
 
     public AdvCommand(Plugin plugin, Granter granter, PlayerDataStore store, Services services,
-                      List<AdvancementHandler> handlers, RewardService rewards) {
+                      List<AdvancementHandler> handlers, RewardService rewards, PerkService perks) {
         this.plugin = plugin;
         this.granter = granter;
         this.store = store;
         this.services = services;
         this.handlers = handlers;
         this.rewards = rewards;
+        this.perks = perks;
     }
 
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("adv")
                 .then(Commands.literal("progress").executes(ctx -> progress(ctx.getSource().getSender())))
-                .then(Commands.literal("rewards").executes(ctx -> rewards(ctx.getSource().getSender())))
+                .then(Commands.literal("rewards").executes(ctx -> rewards(ctx.getSource().getSender(), false)))
+                .then(Commands.literal("perks").executes(ctx -> rewards(ctx.getSource().getSender(), true)))
                 .then(admin("grant").then(playerAndId(ctx -> change(ctx, Op.GRANT))))
                 .then(admin("revoke").then(playerAndId(ctx -> change(ctx, Op.REVOKE))))
                 .then(admin("reset").then(playerAndId(ctx -> change(ctx, Op.RESET))))
@@ -112,12 +117,13 @@ public final class AdvCommand {
         return Command.SINGLE_SUCCESS;
     }
 
-    private int rewards(CommandSender sender) {
+    private int rewards(CommandSender sender, boolean perkMenu) {
         if (!(sender instanceof Player p)) {
             sender.sendMessage("Players only.");
             return 0;
         }
-        RewardMenu.open(rewards, p);
+        if (perkMenu) PerkMenu.open(rewards, perks, p);
+        else RewardMenu.open(rewards, perks, p);
         return Command.SINGLE_SUCCESS;
     }
 

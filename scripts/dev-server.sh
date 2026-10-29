@@ -2,7 +2,7 @@
 # Restart the local test server in ~/mc-server (refuses if players are online).
 # Usage: scripts/dev-server.sh [restart|stop|start|log]
 cd ~/mc-server || exit 1
-running() { pgrep -x java >/dev/null }
+running() { pgrep -f 'java.*paper.jar' >/dev/null }  # not -x java: the Gradle daemon is a java process too
 stop_server() {
   running || return 0
   echo list > console.in; sleep 2

@@ -8,12 +8,23 @@ afk_seconds: 120
 # How long RecentDamageService remembers who hit whom.
 recent_damage_retention_seconds: 60
 
+# Blocks a player placed less than this long ago don't count as mined (place-and-break loops).
+placed_block_ignore_minutes: 30
+
 # /adv rewards: after reclaiming a lost reward the same one can't be reclaimed again for this long
 # (bypass with smpadv.rewards.nocooldown).
 rewards:
   reclaim_cooldown_minutes: 60
 
 advancements:
+  yeet_the_goat:
+    window_seconds: 10       # the goat must have been hit by the player this recently before it fell
+  obsidian_obsession:
+    blocks: 1000
+  marathon:
+    blocks: 100000           # on foot (walking or sprinting), counted from when the plugin first saw the player
+  moving_mountains:
+    blocks: 100000
   untouchable:
     seconds: 1200
   pacifist:

@@ -65,6 +65,7 @@ them after a few weeks of real data (for example with the rarity numbers SebStat
 | Off the Map | 5 | 20,000 blocks takes a long trip or an elytra |
 | Roads Were a Mistake | 5 | A 1,000-block ice road or a very long frozen ocean |
 | Far End | 6 | 10,000 blocks in the End realistically needs an elytra |
+| Marathon | 7 | 100 km on foot is roughly five and a half hours of walking or sprinting, no vehicles |
 
 ## Challenges
 
@@ -78,9 +79,12 @@ them after a few weeks of real data (for example with the rarity numbers SebStat
 | Free Diver | 5 | Many dives, drowning damage each time (cumulative version) |
 | Nice to Mace You | 6 | The heavy core needs an ominous trial vault |
 | Totem Chain | 6 | Three totems and three lethal hits inside a minute |
+| Yeet the Goat | 6 | A goat has to get to the End and then be knocked off the island |
+| Obsidian Obsession | 6 | 1,000 obsidian needs a diamond pickaxe and a lava/water farm or a long session |
 | Actual Sniper | 7 | A kill from 100+ blocks takes a good bow and aim |
 | Whittled Down | 7 | Only the final blow needs the wooden sword, but it is the dragon |
 | Naked and Afraid | 8 | The Wither with zero armor; a bow from a safe spot makes it possible |
+| Moving Mountains | 8 | 100,000 blocks of real mining, hours of strip mining even with Haste |
 | Iron Will | 8 | A full day of playtime alive: one careless death anywhere in it starts over |
 | Wither Storm | 8 | Nine skulls and three fights in ten minutes |
 | One-Man Army | 9 | Bad Omen V raid, solo, nobody within 64 blocks |

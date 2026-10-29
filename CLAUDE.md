@@ -79,6 +79,7 @@ Further catalog fields (implemented in Phase 1):
 - `criteria: [a, b, c]` on a `mode: plugin` entry: custom criterion names instead of the single `done` (e.g. Jockey Jamboree). Use `HandlerContext.grantCriterion`.
 - `requirements: [[a, b], [c]]` on a `mode: vanilla` entry: explicit OR-groups of criterion names (e.g. Off the Map).
 - `parent` may name another advancement id instead of `root`.
+- `perk:` and `reward:`: see section 8.
 
 **Verify every vanilla trigger/condition JSON against a vanilla advancement from the server jar** (`unzip -p ~/mc-server/versions/26.3/paper-26.3.jar data/minecraft/advancement/<path>.json`). The 26.x formats differ from older versions, and one malformed advancement makes the whole server refuse to start (datapack registry error), not just skip that advancement.
 
@@ -274,6 +275,10 @@ any reward, build, deploy, restart the test server and run `scripts/verify-rewar
 Reward items are also tagged `smp:reward_id` and mirrored into the generated `RewardSpecs` for the `/adv rewards` menu
 (copy cap, reclaim cooldown; design in the same spec). Nothing extra to do per reward, but a new item type or component
 in a reward must be handled in both `CatalogGenerator.rewardTable` and `rewards/RewardItems.build`.
+A reward can also be an effect perk: `perk: {effect: "minecraft:speed", amplifier: 1, name: "Marathon Legs", icon: "minecraft:sugar"}`
+(`amplifier` 0 = level I). It needs `mode: plugin`, is generated into `PerkSpecs`, and `PerkService` keeps it applied while
+the advancement is earned and the player hasn't switched it off in `/adv rewards`. No handler code is needed for the perk
+itself; check it against the defence guardrail in the rewards spec.
 
 **Vanilla-trigger advancement:**
 1. Add an entry to `advancements.yml` with `mode: vanilla` and criteria.

@@ -17,7 +17,9 @@ import dev.sebi.sebchievements.handlers.challenges.FreshStartHandler;
 import dev.sebi.sebchievements.handlers.challenges.FrozenHumanHandler;
 import dev.sebi.sebchievements.handlers.challenges.IronWillHandler;
 import dev.sebi.sebchievements.handlers.challenges.JockeyJamboreeHandler;
+import dev.sebi.sebchievements.handlers.challenges.MovingMountainsHandler;
 import dev.sebi.sebchievements.handlers.challenges.NakedAndAfraidHandler;
+import dev.sebi.sebchievements.handlers.challenges.ObsidianObsessionHandler;
 import dev.sebi.sebchievements.handlers.challenges.OneManArmyHandler;
 import dev.sebi.sebchievements.handlers.challenges.PacifistHandler;
 import dev.sebi.sebchievements.handlers.challenges.TotemChainHandler;
@@ -25,9 +27,11 @@ import dev.sebi.sebchievements.handlers.challenges.UntouchableHandler;
 import dev.sebi.sebchievements.handlers.challenges.WardenBullyHandler;
 import dev.sebi.sebchievements.handlers.challenges.WhittledDownHandler;
 import dev.sebi.sebchievements.handlers.challenges.WitherStormHandler;
+import dev.sebi.sebchievements.handlers.challenges.YeetTheGoatHandler;
 import dev.sebi.sebchievements.handlers.exploration.CavemanHandler;
 import dev.sebi.sebchievements.handlers.exploration.DimensionHopperHandler;
 import dev.sebi.sebchievements.handlers.exploration.LongWayHomeHandler;
+import dev.sebi.sebchievements.handlers.exploration.MarathonHandler;
 import dev.sebi.sebchievements.handlers.exploration.RoadsWereAMistakeHandler;
 import dev.sebi.sebchievements.handlers.exploration.SkyCamperHandler;
 import dev.sebi.sebchievements.handlers.exploration.TopToBottomHandler;
@@ -74,6 +78,7 @@ public final class Handlers {
             new DimensionHopperHandler(),
             new SkyCamperHandler(),
             new CavemanHandler(),
+            new MarathonHandler(),
             // challenges
             new NakedAndAfraidHandler(),
             new WhittledDownHandler(),
@@ -89,7 +94,10 @@ public final class Handlers {
             new IronWillHandler(),
             new FrozenHumanHandler(),
             new FreeDiverHandler(),
-            new JockeyJamboreeHandler()
+            new JockeyJamboreeHandler(),
+            new YeetTheGoatHandler(),
+            new ObsidianObsessionHandler(),
+            new MovingMountainsHandler()
     );
 
     private Handlers() {}

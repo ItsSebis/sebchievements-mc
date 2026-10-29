@@ -610,3 +610,49 @@ advancements:
     criteria: [chicken_jockey, spider_jockey, skeleton_horseman]
     difficulty: 9
     reward: [{item: "minecraft:saddle"}, {item: "minecraft:carrot_on_a_stick"}]
+
+  - id: marathon
+    tab: exploration
+    title: "Marathon"
+    description: "Walk or sprint 100 km (100,000 blocks) on foot"
+    icon: minecraft:golden_boots
+    frame: goal
+    mode: plugin
+    kind: counter
+    anti_cheese: "Only distance covered on foot (the game's walking and sprinting statistics) counts, sampled once per second; boats, minecarts, mounts, elytra, swimming and flying do not; creative and spectator add nothing; counting starts when the plugin first sees the player"
+    difficulty: 7
+    perk: {effect: "minecraft:speed", amplifier: 1, name: "Marathon Legs", icon: "minecraft:sugar"}
+
+  - id: yeet_the_goat
+    tab: challenges
+    title: "Yeet the Goat"
+    description: "Knock a goat into the void of the End"
+    icon: minecraft:goat_horn
+    frame: challenge
+    mode: plugin
+    difficulty: 6
+    reward: [{item: "minecraft:stick", name: "Goat Yeeter", enchantments: {"minecraft:knockback": 10}}]
+
+  - id: obsidian_obsession
+    tab: challenges
+    title: "Obsidian Obsession"
+    description: "Mine 1,000 obsidian"
+    icon: minecraft:obsidian
+    frame: challenge
+    mode: plugin
+    kind: counter
+    anti_cheese: "Only obsidian broken with a pickaxe that can harvest it counts; obsidian a player placed in the last 30 minutes does not; creative and spectator do not"
+    difficulty: 6
+    reward: [{item: "minecraft:diamond_pickaxe", name: "Obsidian Cutter", enchantments: {"minecraft:efficiency": 7}}]
+
+  - id: moving_mountains
+    tab: challenges
+    title: "Moving Mountains"
+    description: "Mine 100,000 blocks"
+    icon: minecraft:netherite_pickaxe
+    frame: challenge
+    mode: plugin
+    kind: counter
+    anti_cheese: "Only survival and adventure players count; blocks that break instantly (plants, torches) and blocks a player placed in the last 30 minutes do not"
+    difficulty: 8
+    perk: {effect: "minecraft:haste", amplifier: 1, name: "Miner's Rush", icon: "minecraft:golden_pickaxe"}

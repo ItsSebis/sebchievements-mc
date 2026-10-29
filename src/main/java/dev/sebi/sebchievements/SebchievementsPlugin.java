@@ -7,12 +7,15 @@ import dev.sebi.sebchievements.core.HandlerContext;
 import dev.sebi.sebchievements.core.HandlerValidator;
 import dev.sebi.sebchievements.core.Handlers;
 import dev.sebi.sebchievements.core.PlayerDataStore;
+import dev.sebi.sebchievements.rewards.PerkService;
 import dev.sebi.sebchievements.rewards.RewardGuard;
 import dev.sebi.sebchievements.rewards.RewardMenuListener;
 import dev.sebi.sebchievements.rewards.RewardService;
 import dev.sebi.sebchievements.services.AfkService;
 import dev.sebi.sebchievements.services.CounterService;
 import dev.sebi.sebchievements.services.PdcLongStore;
+import dev.sebi.sebchievements.services.PlacedBlocks;
+import dev.sebi.sebchievements.services.PlacedBlocksListener;
 import dev.sebi.sebchievements.services.ProximityService;
 import dev.sebi.sebchievements.services.RecentDamageListener;
 import dev.sebi.sebchievements.services.RecentDamageService;
@@ -49,12 +52,15 @@ public final class SebchievementsPlugin extends JavaPlugin implements Listener {
         RecentDamageService damage = new RecentDamageService(
                 getConfig().getLong("recent_damage_retention_seconds", 60) * 1000);
         TickScheduler tick = new TickScheduler(this);
+        PlacedBlocks placed = new PlacedBlocks(getConfig().getLong("placed_block_ignore_minutes", 30) * 60_000L);
         services = new Services(tick, new TimerService(longs), new StreakService(longs), new WindowService(),
-                damage, new ProximityService(), afk, new CounterService(longs));
+                damage, new ProximityService(), afk, new CounterService(longs), placed);
 
         // AFK sampling must run before any handler check
         tick.register("afk", afk::sample);
         tick.registerGlobal(() -> damage.purge(System.currentTimeMillis()));
+        tick.registerGlobal(() -> placed.purge(System.currentTimeMillis()));
+        getServer().getPluginManager().registerEvents(new PlacedBlocksListener(placed), this);
         getServer().getPluginManager().registerEvents(afk, this);
         getServer().getPluginManager().registerEvents(new RecentDamageListener(damage), this);
         getServer().getPluginManager().registerEvents(this, this);
@@ -68,12 +74,14 @@ public final class SebchievementsPlugin extends JavaPlugin implements Listener {
 
         RewardService rewards = new RewardService(this, store);
         RewardGuard rewardGuard = new RewardGuard(rewards);
+        PerkService perks = new PerkService(rewards, store);
         tick.register("reward_cap", rewardGuard::sweep);
+        tick.register("perks", perks::sweep);
         getServer().getPluginManager().registerEvents(rewardGuard, this);
         getServer().getPluginManager().registerEvents(new RewardMenuListener(), this);
 
         tick.start();
-        AdvCommand command = new AdvCommand(this, granter, store, services, handlers, rewards);
+        AdvCommand command = new AdvCommand(this, granter, store, services, handlers, rewards, perks);
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS,
                 event -> event.registrar().register(command.build()));
     }
