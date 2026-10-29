@@ -1,5 +1,5 @@
 name: Sebchievements
-version: 0.1.0
+version: 0.3.0
 main: dev.sebi.sebchievements.SebchievementsPlugin
 bootstrapper: dev.sebi.sebchievements.SebchievementsBootstrap
 api-version: "26.3"
