@@ -209,7 +209,8 @@ public final class CatalogGenerator {
                         + "List.of(" + String.join(", ", lore) + "), "
                         + "Map.ofEntries(" + String.join(", ", enchants) + "), "
                         + (item.get("potion") instanceof String p ? javaString(p) : "null") + ", "
-                        + (item.get("dye") != null ? Integer.toString(dye(item.get("dye"))) : "null") + ")");
+                        + (item.get("dye") != null ? Integer.toString(dye(item.get("dye"))) : "null") + ", "
+                        + javaString(item.get("reclaim") instanceof String r ? r : "free") + ")");
             }
             entries.add("\n        Map.entry(" + javaString(e.id()) + ", List.of(" + String.join(", ", items) + "))");
         }

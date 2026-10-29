@@ -34,7 +34,7 @@ The datapack zip on the releases page is the same pack on its own, for inspectio
 | Command | Who | What |
 |---|---|---|
 | `/adv progress` | everyone | Lists timed, streak and counter advancements with your current progress, e.g. `Untouchable: 12m 40s / 20m` |
-| `/adv rewards` | everyone | Menu to get back rewards you earned and lost (one set at a time, with a cooldown) and to switch effect perks on and off; admins can toggle to every reward |
+| `/adv rewards` | everyone | Menu to get back rewards you earned and lost (gear costs an ordinary item of the same kind, consumables can't be reclaimed; one set at a time, with a cooldown) and to switch effect perks on and off; admins can toggle to every reward |
 | `/adv perks` | everyone | Menu to switch your effect perks on and off (also reachable from the rewards menu) |
 | `/adv grant <player> <id>` | `smpadv.admin` | Awards every remaining criterion of an advancement |
 | `/adv revoke <player> <id>` | `smpadv.admin` | Takes an advancement back |

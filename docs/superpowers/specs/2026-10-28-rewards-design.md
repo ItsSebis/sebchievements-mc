@@ -183,12 +183,23 @@ in-game (needs a player; see "Rewards" in `docs/testing.md`).
   carry. It is enforced when picking items up, when taking them out of a container, when reclaiming, and by a sweep every
   second (`TickScheduler`) that **deletes** excess copies. Taking items out of a container into the inventory is blocked;
   putting them into a chest is allowed.
-- **Cooldown:** after a reclaim, the same reward can't be reclaimed again for `rewards.reclaim_cooldown_minutes` (default
-  60), stored per player in `reward_reclaim/<id>`. Bypass: `smpadv.rewards.nocooldown`. The first reclaim after earning
-  an advancement has no wait; the vanilla grant does not start the cooldown.
-- **Known limits:** consumable rewards (golden apples, pearls, arrows) can be reclaimed again once used and the cooldown
-  has passed; players who haven't earned a reward can't hold or be gifted a copy; an admin `revoke` of an advancement
-  makes the sweep remove that player's copies; a bypass-permission holder is never checked.
+- **Reclaim modes (per reward item, `reclaim:` in the catalog):** `free` (default; trophies and placeable items),
+  `cost` (gear: enchanted or durable items; reclaiming uses up an ordinary item of the same material from the main
+  inventory, least enchanted and most worn first, so only the enchantments and name are "gifted") and `never`
+  (consumables: totems, pearls, wind charges, potions, food, arrows, echo shards, emerald, nuggets, the enchanted book).
+  A `never` item is only given by the vanilla grant when the advancement is earned. A reward made only of `never` items
+  isn't listed in the player view; mixed rewards (Warden Bully, Pacifist, Jockey Jamboree) give back only the reclaimable
+  part. Payment and delivery are all-or-nothing: if the new items don't fit after the payment, nothing is taken.
+  The admin view still gives everything.
+- **Cooldown:** the same reward can't be reclaimed again for `rewards.reclaim_cooldown_minutes` (default 60) after the
+  later of **earning the advancement** (its award date) and the last reclaim (stored per player in
+  `reward_reclaim/<id>`). So a freshly earned reward can't be reclaimed at once, and re-granting after a revoke restarts
+  it. Bypass: `smpadv.rewards.nocooldown`. The vanilla grant does not write a reclaim time.
+- **Known limits:** the cap limits what is carried, not what is owned (stashed copies in chests, item frames or placed
+  shulkers aren't counted), so the cooldown is the real brake; gear can be replaced by sacrificing any ordinary item of its
+  material, including a damaged one; players who haven't earned a reward can't hold or be gifted a copy; an admin `revoke`
+  makes the sweep remove that player's copies; a bypass-permission holder is never checked; rewards handed out before
+  v0.3.0 carry no tag and so are invisible to the cap.
 
 ## Effect perks (added 2026-10-29)
 

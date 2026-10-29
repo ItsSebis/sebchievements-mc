@@ -275,6 +275,9 @@ any reward, build, deploy, restart the test server and run `scripts/verify-rewar
 Reward items are also tagged `smp:reward_id` and mirrored into the generated `RewardSpecs` for the `/adv rewards` menu
 (copy cap, reclaim cooldown; design in the same spec). Nothing extra to do per reward, but a new item type or component
 in a reward must be handled in both `CatalogGenerator.rewardTable` and `rewards/RewardItems.build`.
+Each reward item also has `reclaim: free | cost | never` (default `free`) for the reclaim menu: `never` for anything used
+up (totems, pearls, potions, food, arrows...), `cost` for enchanted or durable gear (an ordinary item of the same
+material is used up), `free` for trophies. Decide it for every new reward item.
 A reward can also be an effect perk: `perk: {effect: "minecraft:speed", amplifier: 1, name: "Marathon Legs", icon: "minecraft:sugar"}`
 (`amplifier` 0 = level I). It needs `mode: plugin`, is generated into `PerkSpecs`, and `PerkService` keeps it applied while
 the advancement is earned and the player hasn't switched it off in `/adv rewards`. No handler code is needed for the perk

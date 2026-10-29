@@ -105,6 +105,43 @@ class RewardTableTest {
         assertTrue(src.contains("Map.entry(\"minecraft:power\", 7)"), src);
         assertTrue(src.contains(Integer.toString(0xB02E26)), src);
         assertFalse(src.contains("Map.entry(\"b\""), "advancements without a reward are absent");
+        assertTrue(src.contains(Integer.toString(0xB02E26) + ", \"free\")"), "reclaim defaults to free: " + src);
+    }
+
+    @Test
+    void reclaimModeIsGeneratedAndValidated() {
+        Catalog c = Catalog.parse(new Yaml().load("""
+                tabs:
+                  silly: { title: "Silly", icon: "minecraft:carved_pumpkin", background: "minecraft:block/hay_block_side" }
+                advancements:
+                  - id: a
+                    tab: silly
+                    title: A
+                    description: d
+                    icon: minecraft:emerald
+                    mode: plugin
+                    reward: [{item: "minecraft:totem_of_undying", reclaim: never}, {item: "minecraft:shield", reclaim: cost}]
+                """));
+        assertEquals(List.of(), CatalogValidator.validate(c));
+        String src = CatalogGenerator.rewardSpecsClass(c);
+        assertTrue(src.contains("null, null, \"never\")"), src);
+        assertTrue(src.contains("null, null, \"cost\")"), src);
+        assertTrue(CatalogGenerator.rewardTable(c.advancements().get(0)).toString().contains("minecraft:totem_of_undying"));
+        assertFalse(CatalogGenerator.rewardTable(c.advancements().get(0)).toString().contains("reclaim"), "not a loot table key");
+
+        Catalog bad = Catalog.parse(new Yaml().load("""
+                tabs:
+                  silly: { title: "Silly", icon: "minecraft:carved_pumpkin", background: "minecraft:block/hay_block_side" }
+                advancements:
+                  - id: a
+                    tab: silly
+                    title: A
+                    description: d
+                    icon: minecraft:emerald
+                    mode: plugin
+                    reward: [{item: "minecraft:shield", reclaim: sometimes}]
+                """));
+        assertTrue(String.join("\n", CatalogValidator.validate(bad)).contains("reclaim must be free, cost or never"));
     }
 
     @SuppressWarnings("unchecked")

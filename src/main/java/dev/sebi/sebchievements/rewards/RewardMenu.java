@@ -100,6 +100,8 @@ public final class RewardMenu implements InventoryHolder {
                     viewer.playSound(viewer.getLocation(), Sound.ENTITY_ITEM_PICKUP, 0.6f, 1f);
                 }
                 case NOT_EARNED -> fail("You haven't earned that advancement.");
+                case NOT_RECLAIMABLE -> fail("That reward is used up and can't be reclaimed.");
+                case MISSING_COST -> fail("You need " + r.detail() + " in your inventory to reclaim that (it is used up).");
                 case COOLDOWN -> fail("You can reclaim that again in " + Progress.duration(r.waitMillis()) + ".");
                 case HOLDING -> fail("You already have that reward.");
                 case NO_SPACE -> fail("Not enough room in your inventory.");
@@ -153,7 +155,7 @@ public final class RewardMenu implements InventoryHolder {
     private List<Entry> ids() {
         List<Entry> entries = new ArrayList<>();
         for (String id : RewardSpecs.ITEMS.keySet()) {
-            if (showAll || service.earned(viewer, id)) entries.add(new Entry(id, false));
+            if (showAll || service.earned(viewer, id) && !RewardService.reclaimable(id).isEmpty()) entries.add(new Entry(id, false));
         }
         for (String id : PerkSpecs.PERKS.keySet()) {
             if (showAll || service.earned(viewer, id)) entries.add(new Entry(id, true));
@@ -166,18 +168,24 @@ public final class RewardMenu implements InventoryHolder {
     }
 
     private ItemStack cell(String id, Map<String, Integer> held) {
-        List<ItemStack> stacks = RewardItems.buildAll(id, service.title(id));
-        ItemStack icon = stacks.get(0).clone();
+        List<RewardItem> all = RewardSpecs.ITEMS.get(id);
+        List<RewardItem> given = showAll ? all : RewardService.reclaimable(id);
+        ItemStack icon = RewardItems.build(id, service.title(id), given.get(0)).get(0);
         ItemMeta meta = icon.getItemMeta();
         // display copies must never pass for the real thing
         meta.getPersistentDataContainer().remove(RewardItems.TAG);
         List<Component> lore = new ArrayList<>(meta.lore() == null ? List.of() : meta.lore());
         lore.add(Component.empty());
-        if (stacks.size() > 1 || RewardSpecs.ITEMS.get(id).size() > 1) {
+        boolean notes = !showAll && all.stream().anyMatch(i -> !RewardReclaim.FREE.equals(i.reclaim()));
+        if (all.size() > 1 || notes) {
             lore.add(RewardItems.plain("Contains:", NamedTextColor.GOLD));
-            for (RewardItem item : RewardSpecs.ITEMS.get(id)) {
+            for (RewardItem item : all) {
                 String name = item.name() != null ? item.name() : Material.matchMaterial(item.item()).name();
-                lore.add(RewardItems.plain(" " + item.count() + "x " + name, NamedTextColor.WHITE));
+                String note = "";
+                if (!showAll && RewardReclaim.NEVER.equals(item.reclaim())) note = " - used up, can't be reclaimed";
+                else if (!showAll && RewardReclaim.COST.equals(item.reclaim())) note = " - costs " + item.count() + "x " + plainMaterial(item.item());
+                boolean never = !showAll && RewardReclaim.NEVER.equals(item.reclaim());
+                lore.add(RewardItems.plain(" " + item.count() + "x " + name + note, never ? NamedTextColor.DARK_GRAY : NamedTextColor.WHITE));
             }
         }
         if (showAll) {
@@ -191,6 +199,10 @@ public final class RewardMenu implements InventoryHolder {
         meta.lore(lore);
         icon.setItemMeta(meta);
         return icon;
+    }
+
+    private static String plainMaterial(String itemId) {
+        return itemId.substring(itemId.indexOf(':') + 1).replace('_', ' ') + " (used up)";
     }
 
     static ItemStack named(Material material, String name, List<String> lore) {

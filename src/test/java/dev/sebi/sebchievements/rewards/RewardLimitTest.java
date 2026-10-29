@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class RewardLimitTest {
     private static RewardItem item(String id, int count) {
-        return new RewardItem(id, count, null, List.of(), Map.of(), null, null);
+        return new RewardItem(id, count, null, List.of(), Map.of(), null, null, "free");
     }
 
     @Test

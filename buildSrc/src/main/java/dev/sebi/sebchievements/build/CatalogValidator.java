@@ -93,7 +93,8 @@ public final class CatalogValidator {
         }
     }
 
-    private static final Set<String> REWARD_KEYS = Set.of("item", "count", "name", "lore", "enchantments", "potion", "dye");
+    private static final Set<String> REWARD_KEYS = Set.of("item", "count", "name", "lore", "enchantments", "potion", "dye", "reclaim");
+    private static final Set<String> RECLAIM_MODES = Set.of("free", "cost", "never");
     private static final Pattern HEX = Pattern.compile("#[0-9a-fA-F]{6}");
 
     private static void validateReward(Catalog.Entry e, String at, List<String> errors) {
@@ -109,6 +110,9 @@ public final class CatalogValidator {
             }
             if (item.containsKey("count") && !(item.get("count") instanceof Integer c && c >= 1 && c <= 99)) {
                 errors.add(where + "count must be a whole number from 1 to 99");
+            }
+            if (item.containsKey("reclaim") && !(item.get("reclaim") instanceof String r && RECLAIM_MODES.contains(r))) {
+                errors.add(where + "reclaim must be free, cost or never");
             }
             if (item.containsKey("name") && (!(item.get("name") instanceof String s) || s.isBlank())) {
                 errors.add(where + "name must be a non-empty string");

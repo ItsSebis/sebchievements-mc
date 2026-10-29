@@ -11,6 +11,8 @@ import java.util.Map;
  * @param enchantments enchantment id to level
  * @param potion       potion type id or null
  * @param dye          RGB colour or null
+ * @param reclaim      what getting it back from the reward menu costs: {@code free}, {@code cost} (an item of the
+ *                     same material is used up) or {@code never} (consumable, only the first grant)
  */
 public record RewardItem(String item, int count, String name, List<String> lore, Map<String, Integer> enchantments,
-                         String potion, Integer dye) {}
+                         String potion, Integer dye, String reclaim) {}

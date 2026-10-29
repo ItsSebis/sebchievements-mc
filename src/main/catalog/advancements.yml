@@ -32,7 +32,7 @@ advancements:
             entity: this
             predicate: { minecraft:entity_type: minecraft:wandering_trader }
     difficulty: 2
-    reward: [{item: "minecraft:emerald", name: "Tax Refund"}]
+    reward: [{item: "minecraft:emerald", name: "Tax Refund", reclaim: never}]
 
   - id: nice_to_mace_you
     tab: challenges
@@ -59,7 +59,7 @@ advancements:
               tags:
                 - { id: "#minecraft:mace_smash", expected: true }
     difficulty: 6
-    reward: [{item: "minecraft:wind_charge", count: 4}]
+    reward: [{item: "minecraft:wind_charge", count: 4, reclaim: never}]
 
   - id: commuter
     tab: exploration
@@ -74,7 +74,7 @@ advancements:
         conditions:
           distance: { horizontal: { min: 10000 } }
     difficulty: 3
-    reward: [{item: "minecraft:warped_fungus_on_a_stick", name: "Commuter Pass"}]
+    reward: [{item: "minecraft:warped_fungus_on_a_stick", name: "Commuter Pass", reclaim: cost}]
 
   - id: off_the_map
     tab: exploration
@@ -178,7 +178,7 @@ advancements:
                 dimension: minecraft:the_end
                 position: { z: { max: -10000 } }
     difficulty: 6
-    reward: [{item: "minecraft:ender_pearl", count: 8}]
+    reward: [{item: "minecraft:ender_pearl", count: 8, reclaim: never}]
 
 
   - id: professional_napper
@@ -203,7 +203,7 @@ advancements:
     kind: timed
     anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets when health rises above half a heart or on death"
     difficulty: 5
-    reward: [{item: "minecraft:potion", potion: "minecraft:fire_resistance", name: "This Is Fine"}]
+    reward: [{item: "minecraft:potion", potion: "minecraft:fire_resistance", name: "This Is Fine", reclaim: never}]
 
   - id: hoarder
     tab: silly
@@ -243,7 +243,7 @@ advancements:
     frame: task
     mode: plugin
     difficulty: 3
-    reward: [{item: "minecraft:arrow", name: "Returned to Sender"}]
+    reward: [{item: "minecraft:arrow", name: "Returned to Sender", reclaim: never}]
 
   - id: gravity_check
     tab: silly
@@ -265,7 +265,7 @@ advancements:
     kind: timed
     anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets when you look away, remove the pumpkin or on death"
     difficulty: 3
-    reward: [{item: "minecraft:ender_eye", name: "Eye Contact"}]
+    reward: [{item: "minecraft:ender_eye", name: "Eye Contact", reclaim: never}]
 
   - id: one_mans_trash
     tab: silly
@@ -287,7 +287,7 @@ advancements:
     frame: task
     mode: plugin
     difficulty: 1
-    reward: [{item: "minecraft:cookie", name: "Much Obliged"}]
+    reward: [{item: "minecraft:cookie", name: "Much Obliged", reclaim: never}]
 
   - id: roommates
     tab: social
@@ -307,7 +307,7 @@ advancements:
     frame: goal
     mode: plugin
     difficulty: 3
-    reward: [{item: "minecraft:iron_nugget", count: 30, name: "Thirty Pieces of Silver"}]
+    reward: [{item: "minecraft:iron_nugget", count: 30, name: "Thirty Pieces of Silver", reclaim: never}]
 
   - id: group_project
     tab: social
@@ -327,7 +327,7 @@ advancements:
     frame: task
     mode: plugin
     difficulty: 4
-    reward: [{item: "minecraft:shield"}]
+    reward: [{item: "minecraft:shield", reclaim: cost}]
 
   - id: medic
     tab: social
@@ -337,7 +337,7 @@ advancements:
     frame: task
     mode: plugin
     difficulty: 4
-    reward: [{item: "minecraft:splash_potion", potion: "minecraft:healing", name: "House Call"}]
+    reward: [{item: "minecraft:splash_potion", potion: "minecraft:healing", name: "House Call", reclaim: never}]
 
   - id: revenge
     tab: social
@@ -367,7 +367,7 @@ advancements:
     frame: task
     mode: plugin
     difficulty: 2
-    reward: [{item: "minecraft:leather_helmet", count: 2, dye: "#B02E26", name: "Matching Hats"}]
+    reward: [{item: "minecraft:leather_helmet", count: 2, dye: "#B02E26", name: "Matching Hats", reclaim: cost}]
 
   - id: dinner_party
     tab: social
@@ -377,7 +377,7 @@ advancements:
     frame: goal
     mode: plugin
     difficulty: 2
-    reward: [{item: "minecraft:cake", name: "Leftovers"}]
+    reward: [{item: "minecraft:cake", name: "Leftovers", reclaim: never}]
 
   - id: roads_were_a_mistake
     tab: exploration
@@ -399,7 +399,7 @@ advancements:
     frame: task
     mode: plugin
     difficulty: 4
-    reward: [{item: "minecraft:ender_pearl", name: "Return Ticket"}]
+    reward: [{item: "minecraft:ender_pearl", name: "Return Ticket", reclaim: never}]
 
   - id: top_to_bottom
     tab: exploration
@@ -409,7 +409,7 @@ advancements:
     frame: goal
     mode: plugin
     difficulty: 4
-    reward: [{item: "minecraft:enchanted_book", enchantments: {"minecraft:feather_falling": 4}}]
+    reward: [{item: "minecraft:enchanted_book", enchantments: {"minecraft:feather_falling": 4}, reclaim: never}]
 
   - id: dimension_hopper
     tab: exploration
@@ -419,7 +419,7 @@ advancements:
     frame: task
     mode: plugin
     difficulty: 3
-    reward: [{item: "minecraft:flint_and_steel", name: "Frequent Flyer"}]
+    reward: [{item: "minecraft:flint_and_steel", name: "Frequent Flyer", reclaim: cost}]
 
   - id: sky_camper
     tab: exploration
@@ -443,7 +443,7 @@ advancements:
     kind: timed
     anti_cheese: "Overworld only (the Nether has no sky); paused while AFK, in a vehicle, in creative or spectator; resets when sky light reaches your head or on death; time jumps from sleeping do not count"
     difficulty: 2
-    reward: [{item: "minecraft:potion", count: 2, potion: "minecraft:night_vision"}]
+    reward: [{item: "minecraft:potion", count: 2, potion: "minecraft:night_vision", reclaim: never}]
 
   - id: naked_and_afraid
     tab: challenges
@@ -453,7 +453,7 @@ advancements:
     frame: challenge
     mode: plugin
     difficulty: 8
-    reward: [{item: "minecraft:leather_chestplate", name: "Birthday Suit", enchantments: {"minecraft:protection": 4, "minecraft:thorns": 3}}]
+    reward: [{item: "minecraft:leather_chestplate", name: "Birthday Suit", enchantments: {"minecraft:protection": 4, "minecraft:thorns": 3}, reclaim: cost}]
 
   - id: whittled_down
     tab: challenges
@@ -463,7 +463,7 @@ advancements:
     frame: challenge
     mode: plugin
     difficulty: 7
-    reward: [{item: "minecraft:wooden_sword", enchantments: {"minecraft:sharpness": 7, "minecraft:unbreaking": 5}}]
+    reward: [{item: "minecraft:wooden_sword", enchantments: {"minecraft:sharpness": 7, "minecraft:unbreaking": 5}, reclaim: cost}]
 
   - id: untouchable
     tab: challenges
@@ -475,7 +475,7 @@ advancements:
     kind: timed
     anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets on any damage that gets through (a fully blocked hit does not count) and on death"
     difficulty: 5
-    reward: [{item: "minecraft:shield", enchantments: {"minecraft:unbreaking": 5, "minecraft:mending": 1}}]
+    reward: [{item: "minecraft:shield", enchantments: {"minecraft:unbreaking": 5, "minecraft:mending": 1}, reclaim: cost}]
 
   - id: pacifist
     tab: challenges
@@ -487,7 +487,7 @@ advancements:
     kind: streak
     anti_cheese: "A night counts only if you were online, not AFK and in the Overworld for all of it; any mob kill, a skipped night, a partial night or an offline night resets the streak"
     difficulty: 5
-    reward: [{item: "minecraft:golden_carrot", count: 8}, {item: "minecraft:flowering_azalea", name: "Olive Branch"}]
+    reward: [{item: "minecraft:golden_carrot", count: 8, reclaim: never}, {item: "minecraft:flowering_azalea", name: "Olive Branch"}]
 
   - id: food_critic
     tab: challenges
@@ -499,7 +499,7 @@ advancements:
     kind: timed
     anti_cheese: "Creative and spectator do not count; dying during the 30 seconds or logging out cancels it"
     difficulty: 4
-    reward: [{item: "minecraft:golden_apple", count: 2, name: "Michelin Star"}]
+    reward: [{item: "minecraft:golden_apple", count: 2, name: "Michelin Star", reclaim: never}]
 
   - id: totem_chain
     tab: challenges
@@ -509,7 +509,7 @@ advancements:
     frame: challenge
     mode: plugin
     difficulty: 6
-    reward: [{item: "minecraft:totem_of_undying"}, {item: "minecraft:totem_of_undying"}]
+    reward: [{item: "minecraft:totem_of_undying", reclaim: never}, {item: "minecraft:totem_of_undying", reclaim: never}]
 
   - id: actual_sniper
     tab: challenges
@@ -519,7 +519,7 @@ advancements:
     frame: challenge
     mode: plugin
     difficulty: 7
-    reward: [{item: "minecraft:bow", name: "Long Shot", enchantments: {"minecraft:power": 7, "minecraft:infinity": 1, "minecraft:mending": 1}}]
+    reward: [{item: "minecraft:bow", name: "Long Shot", enchantments: {"minecraft:power": 7, "minecraft:infinity": 1, "minecraft:mending": 1}, reclaim: cost}]
 
   - id: one_man_army
     tab: challenges
@@ -529,7 +529,7 @@ advancements:
     frame: challenge
     mode: plugin
     difficulty: 9
-    reward: [{item: "minecraft:crossbow", enchantments: {"minecraft:multishot": 1, "minecraft:piercing": 4, "minecraft:quick_charge": 4}}]
+    reward: [{item: "minecraft:crossbow", enchantments: {"minecraft:multishot": 1, "minecraft:piercing": 4, "minecraft:quick_charge": 4}, reclaim: cost}]
 
   - id: warden_bully
     tab: challenges
@@ -539,7 +539,7 @@ advancements:
     frame: challenge
     mode: plugin
     difficulty: 9
-    reward: [{item: "minecraft:netherite_sword", name: "Warden's Bane", enchantments: {"minecraft:sharpness": 7, "minecraft:unbreaking": 5, "minecraft:mending": 1}}, {item: "minecraft:echo_shard", count: 4}]
+    reward: [{item: "minecraft:netherite_sword", name: "Warden's Bane", enchantments: {"minecraft:sharpness": 7, "minecraft:unbreaking": 5, "minecraft:mending": 1}, reclaim: cost}, {item: "minecraft:echo_shard", count: 4, reclaim: never}]
 
   - id: fresh_start
     tab: challenges
@@ -561,7 +561,7 @@ advancements:
     frame: challenge
     mode: plugin
     difficulty: 8
-    reward: [{item: "minecraft:netherite_axe", enchantments: {"minecraft:sharpness": 7, "minecraft:efficiency": 7, "minecraft:unbreaking": 5}}]
+    reward: [{item: "minecraft:netherite_axe", enchantments: {"minecraft:sharpness": 7, "minecraft:efficiency": 7, "minecraft:unbreaking": 5}, reclaim: cost}]
 
   - id: iron_will
     tab: challenges
@@ -573,7 +573,7 @@ advancements:
     kind: timed
     anti_cheese: "Paused while AFK, in creative or spectator and while offline; resets on death"
     difficulty: 8
-    reward: [{item: "minecraft:iron_chestplate", enchantments: {"minecraft:protection": 4, "minecraft:unbreaking": 5, "minecraft:mending": 1}}]
+    reward: [{item: "minecraft:iron_chestplate", enchantments: {"minecraft:protection": 4, "minecraft:unbreaking": 5, "minecraft:mending": 1}, reclaim: cost}]
 
   - id: frozen_human
     tab: challenges
@@ -585,7 +585,7 @@ advancements:
     kind: timed
     anti_cheese: "Paused while AFK, in a vehicle, in creative or spectator; resets when you thaw or die"
     difficulty: 4
-    reward: [{item: "minecraft:leather_boots", name: "Cold Feet"}]
+    reward: [{item: "minecraft:leather_boots", name: "Cold Feet", reclaim: cost}]
 
   - id: free_diver
     tab: challenges
@@ -597,7 +597,7 @@ advancements:
     kind: timed
     anti_cheese: "Counts only time with your eyes underwater and no breathing aid (cumulative: surfacing pauses it); paused while AFK, in a vehicle, in creative or spectator; resets on death"
     difficulty: 5
-    reward: [{item: "minecraft:turtle_helmet", enchantments: {"minecraft:respiration": 5, "minecraft:aqua_affinity": 1}}]
+    reward: [{item: "minecraft:turtle_helmet", enchantments: {"minecraft:respiration": 5, "minecraft:aqua_affinity": 1}, reclaim: cost}]
 
   - id: jockey_jamboree
     tab: challenges
@@ -609,7 +609,7 @@ advancements:
     mode: plugin
     criteria: [chicken_jockey, spider_jockey, skeleton_horseman]
     difficulty: 9
-    reward: [{item: "minecraft:saddle"}, {item: "minecraft:carrot_on_a_stick"}]
+    reward: [{item: "minecraft:saddle"}, {item: "minecraft:carrot_on_a_stick", reclaim: cost}]
 
   - id: marathon
     tab: exploration
@@ -631,7 +631,7 @@ advancements:
     frame: challenge
     mode: plugin
     difficulty: 6
-    reward: [{item: "minecraft:stick", name: "Goat Yeeter", enchantments: {"minecraft:knockback": 10}}]
+    reward: [{item: "minecraft:stick", name: "Goat Yeeter", enchantments: {"minecraft:knockback": 10}, reclaim: cost}]
 
   - id: obsidian_obsession
     tab: challenges
@@ -643,7 +643,7 @@ advancements:
     kind: counter
     anti_cheese: "Only obsidian broken with a pickaxe that can harvest it counts; obsidian a player placed in the last 30 minutes does not; creative and spectator do not"
     difficulty: 6
-    reward: [{item: "minecraft:diamond_pickaxe", name: "Obsidian Cutter", enchantments: {"minecraft:efficiency": 7}}]
+    reward: [{item: "minecraft:diamond_pickaxe", name: "Obsidian Cutter", enchantments: {"minecraft:efficiency": 7}, reclaim: cost}]
 
   - id: moving_mountains
     tab: challenges

@@ -279,4 +279,9 @@ real item data (count, name, lore, enchantments, potion, dye) against the catalo
 - [x] Reward with several items (`pacifist`: 8 golden carrots + azalea; `totem_chain`: 2 totems): reclaiming gives the whole set, a second set is refused; a full inventory refuses without handing out half.
 - [x] Admin: the lever in the bottom row toggles "Rewards" / "Rewards (admin: all)"; the admin view lists every reward and a click gives it with no cooldown; leftovers drop at your feet when the inventory is full.
 - [x] Nothing can be moved into or out of the menu (shift-click from your inventory, drag, number keys, drops).
+- [ ] Consumable rewards (`totem_chain`, `far_end`, `food_critic`, `tax_evasion`...) don't appear in the player view at all; the admin view still lists and gives them.
+- [ ] Gear: lose the `untouchable` shield (drop it in lava), reclaim with no shield in the inventory: red message "You need 1x Shield ... (it is used up)", nothing happens. With an ordinary shield in the inventory: it disappears and the enchanted one arrives. With a full inventory and no free slot afterwards: refused, your shield is still there.
+- [ ] Payment order: with an enchanted and a plain shield in the inventory, the plain one is used. A reward copy (tagged item) is never used as payment.
+- [ ] Mixed rewards: `warden_bully` gives only the netherite sword and needs a netherite sword (the echo shards are listed as "used up, can't be reclaimed"); `pacifist` gives only the azalea; `jockey_jamboree` gives the saddle for free and the carrot on a stick for a carrot on a stick.
+- [ ] Cooldown from earning: `/adv revoke <you> tax_evasion`, `/adv grant <you> tax_evasion`, drop the item: the entry shows "Available again in ~59m" straight away (not only after a first reclaim).
 - [x] `/adv debug tax_evasion` shows `reward_reclaim/tax_evasion` after a reclaim; `/adv reset <you> tax_evasion` clears it.
