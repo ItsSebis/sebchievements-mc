@@ -21,7 +21,7 @@ public record Progress(long current, long target, Unit unit) {
         };
     }
 
-    static String duration(long millis) {
+    public static String duration(long millis) {
         long total = Math.max(0, millis) / 1000;
         long h = total / 3600, m = total % 3600 / 60, s = total % 60;
         StringBuilder sb = new StringBuilder();

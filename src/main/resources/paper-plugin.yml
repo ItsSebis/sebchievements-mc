@@ -7,3 +7,9 @@ permissions:
   smpadv.admin:
     description: Use the /adv admin subcommands
     default: op
+  smpadv.rewards.multiple:
+    description: Hold more than one set of each reward (skips the copy cap of the reward menu)
+    default: op
+  smpadv.rewards.nocooldown:
+    description: Reclaim rewards from /adv rewards without the cooldown
+    default: op

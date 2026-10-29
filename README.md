@@ -34,6 +34,7 @@ The datapack zip on the releases page is the same pack on its own, for inspectio
 | Command | Who | What |
 |---|---|---|
 | `/adv progress` | everyone | Lists timed, streak and counter advancements with your current progress, e.g. `Untouchable: 12m 40s / 20m` |
+| `/adv rewards` | everyone | Menu to get back rewards you earned and lost (one set at a time, with a cooldown); admins can toggle to every reward |
 | `/adv grant <player> <id>` | `smpadv.admin` | Awards every remaining criterion of an advancement |
 | `/adv revoke <player> <id>` | `smpadv.admin` | Takes an advancement back |
 | `/adv reset <player> <id>` | `smpadv.admin` | Clears the player's tracked state (timers, streaks, counters) for that id |

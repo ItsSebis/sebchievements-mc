@@ -7,6 +7,9 @@ import dev.sebi.sebchievements.core.HandlerContext;
 import dev.sebi.sebchievements.core.HandlerValidator;
 import dev.sebi.sebchievements.core.Handlers;
 import dev.sebi.sebchievements.core.PlayerDataStore;
+import dev.sebi.sebchievements.rewards.RewardGuard;
+import dev.sebi.sebchievements.rewards.RewardMenuListener;
+import dev.sebi.sebchievements.rewards.RewardService;
 import dev.sebi.sebchievements.services.AfkService;
 import dev.sebi.sebchievements.services.CounterService;
 import dev.sebi.sebchievements.services.PdcLongStore;
@@ -63,8 +66,14 @@ public final class SebchievementsPlugin extends JavaPlugin implements Listener {
         }
         getLogger().info("Registered " + handlers.size() + " of " + AdvancementIds.PLUGIN.size() + " plugin handlers");
 
+        RewardService rewards = new RewardService(this, store);
+        RewardGuard rewardGuard = new RewardGuard(rewards);
+        tick.register("reward_cap", rewardGuard::sweep);
+        getServer().getPluginManager().registerEvents(rewardGuard, this);
+        getServer().getPluginManager().registerEvents(new RewardMenuListener(), this);
+
         tick.start();
-        AdvCommand command = new AdvCommand(this, granter, store, services, handlers);
+        AdvCommand command = new AdvCommand(this, granter, store, services, handlers, rewards);
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS,
                 event -> event.registrar().register(command.build()));
     }

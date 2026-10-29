@@ -8,6 +8,11 @@ afk_seconds: 120
 # How long RecentDamageService remembers who hit whom.
 recent_damage_retention_seconds: 60
 
+# /adv rewards: after reclaiming a lost reward the same one can't be reclaimed again for this long
+# (bypass with smpadv.rewards.nocooldown).
+rewards:
+  reclaim_cooldown_minutes: 60
+
 advancements:
   untouchable:
     seconds: 1200

@@ -234,3 +234,17 @@ real item data (count, name, lore, enchantments, potion, dye) against the catalo
 - [ ] Grant `twinning`: two red leather caps named "Matching Hats". Grant `pacifist`: 8 golden carrots and the "Olive Branch" azalea.
 - [ ] Grant `jockey_jamboree` as an admin: it grants all remaining criteria and you receive the saddle and the carrot on a stick once.
 - [ ] A tab root or the `test` advancement gives nothing.
+
+### Reward menu (`/adv rewards`, needs a player; use a non-op account or remove `smpadv.rewards.multiple` and `smpadv.rewards.nocooldown` from the tester)
+- [ ] Complete (or `/adv grant`) `tax_evasion`, then `/adv rewards`: only completed advancements with a reward are listed; items show "Click to reclaim" / "You already have this".
+- [ ] While holding the Tax Refund emerald: the entry says "You already have this" and clicking it gives nothing.
+- [ ] Drop the emerald into lava, click the entry: you get a tagged emerald back. Clicking again: "You can reclaim that again in 59m ..." (cooldown, also shown in the lore).
+- [ ] `rewards.reclaim_cooldown_minutes: 1` in config.yml and a restart: the cooldown ends after a minute. With `smpadv.rewards.nocooldown` there is no wait.
+- [ ] Put the emerald in a chest, reclaim a second one, then try to take the first out of the chest (click, shift-click, number key): refused with a red message.
+- [ ] Drop the emerald, reclaim another, walk over the dropped one: not picked up. A second player who completed `tax_evasion` and holds none can pick it up; one who didn't cannot.
+- [ ] Get a second copy another way (the op gives it, or an op takes it from the admin view and drops it on you): within a second the sweep removes the extra and tells you.
+- [ ] A copy inside a shulker box you carry counts: reclaim + shulker with one emerald inside: the sweep removes one.
+- [ ] Reward with several items (`pacifist`: 8 golden carrots + azalea; `totem_chain`: 2 totems): reclaiming gives the whole set, a second set is refused; a full inventory refuses without handing out half.
+- [ ] Admin: the lever in the bottom row toggles "Rewards" / "Rewards (admin: all)"; the admin view lists every reward and a click gives it with no cooldown; leftovers drop at your feet when the inventory is full.
+- [ ] Nothing can be moved into or out of the menu (shift-click from your inventory, drag, number keys, drops).
+- [ ] `/adv debug tax_evasion` shows `reward_reclaim/tax_evasion` after a reclaim; `/adv reset <you> tax_evasion` clears it.

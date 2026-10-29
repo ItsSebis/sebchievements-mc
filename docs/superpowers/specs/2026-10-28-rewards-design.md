@@ -16,6 +16,9 @@ about, and a thematic reward is a good punchline.
 - **In scope:** the custom `smp` advancements only (everything in `src/main/catalog/advancements.yml`).
 - **Out of scope:** vanilla advancements (no rewards for them for now), a weighted score or milestones
   (CLAUDE.md section 9), per-player reward history UI.
+- **Added 2026-10-29: the reward menu** (`/adv rewards`, see the section at the end): reclaiming a lost reward and an
+  admin "take any reward" view. This supersedes the "repeatable rewards" non-goal for reclaims only; the vanilla
+  grant on completion is still once.
 
 ## Goals, non-goals, anti-goals
 
@@ -164,3 +167,25 @@ test server with `scripts/verify-rewards.py`; the loot-table route handled every
 Infinity with Mending, Multishot with Piercing, named potions, banner pattern, dyed caps, enchanted book), so no plugin
 `RewardGiver` was needed. Red for Matching Hats is `#B02E26`. Not yet verified: the actual grant from an advancement
 in-game (needs a player; see "Rewards" in `docs/testing.md`).
+
+## Reward menu (added 2026-10-29)
+
+`/adv rewards` opens a 54-slot inventory screen.
+
+- **Player view:** the rewards of advancements the player has completed; clicking one gives it back.
+  Admins (`smpadv.admin`) get a lever in the bottom row that toggles to **All rewards (admin)**, where a click gives any
+  reward with no checks and no cooldown. The menu always opens in the player view.
+- **Tagging:** every reward item carries the PDC tag `smp:reward_id` (the generated loot table writes it into
+  `custom_data.PublicBukkitValues`, the menu writes it through the Bukkit API; `scripts/verify-rewards.py` checks it).
+  Item specs are generated into `RewardSpecs` from the same catalog field, so there is still one source of truth.
+- **Copy cap:** a player without `smpadv.rewards.multiple` may hold, per reward item, at most the catalog count, and only
+  for advancements they completed. Held = cursor + inventory + ender chest + contents of shulker boxes and bundles they
+  carry. It is enforced when picking items up, when taking them out of a container, when reclaiming, and by a sweep every
+  second (`TickScheduler`) that **deletes** excess copies. Taking items out of a container into the inventory is blocked;
+  putting them into a chest is allowed.
+- **Cooldown:** after a reclaim, the same reward can't be reclaimed again for `rewards.reclaim_cooldown_minutes` (default
+  60), stored per player in `reward_reclaim/<id>`. Bypass: `smpadv.rewards.nocooldown`. The first reclaim after earning
+  an advancement has no wait; the vanilla grant does not start the cooldown.
+- **Known limits:** consumable rewards (golden apples, pearls, arrows) can be reclaimed again once used and the cooldown
+  has passed; players who haven't earned a reward can't hold or be gifted a copy; an admin `revoke` of an advancement
+  makes the sweep remove that player's copies; a bypass-permission holder is never checked.

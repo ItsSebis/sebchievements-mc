@@ -271,6 +271,9 @@ The generator turns it into a loot table `smp:rewards/<id>` (one pool per item) 
 Two traps found while building it: loot entries use the key `modifier` (an unknown key like `functions` is **silently
 ignored**), and `set_count` must come last (components on an oversized stack of unstackable items fail). After changing
 any reward, build, deploy, restart the test server and run `scripts/verify-rewards.py` (must say `failures: 0`).
+Reward items are also tagged `smp:reward_id` and mirrored into the generated `RewardSpecs` for the `/adv rewards` menu
+(copy cap, reclaim cooldown; design in the same spec). Nothing extra to do per reward, but a new item type or component
+in a reward must be handled in both `CatalogGenerator.rewardTable` and `rewards/RewardItems.build`.
 
 **Vanilla-trigger advancement:**
 1. Add an entry to `advancements.yml` with `mode: vanilla` and criteria.

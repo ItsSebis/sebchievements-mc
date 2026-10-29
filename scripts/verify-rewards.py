@@ -49,7 +49,7 @@ def main():
             send(f'data get entity @e[type=item,nbt={{Item:{{id:"{item["item"]}"}}}},limit=1] Item', 0.7)
             text = new_log(mark)
             send("kill @e[type=item]", 0.3)
-            problems = check(item, text, entry["title"])
+            problems = check(item, text, entry["title"], id_)
             if problems:
                 failures += 1
                 print(f"FAIL {id_} item #{n} ({item['item']}): {problems}")
@@ -57,7 +57,7 @@ def main():
     sys.exit(1 if failures else 0)
 
 
-def check(item, text, title):
+def check(item, text, title, id_):
     if "ERROR" in text:
         return ["server logged an error: " + text[text.index("ERROR"):][:200]]
     if "has the following entity data:" not in text:
@@ -77,6 +77,9 @@ def check(item, text, title):
     for ench, level in item.get("enchantments", {}).items():
         if not re.search(rf'"{re.escape(ench)}": {level}\b', data):
             problems.append(f"{ench} {level} missing")
+    # the reward menu's copy limit finds items by this tag (Bukkit PDC lives in custom_data.PublicBukkitValues)
+    if not re.search(rf'"smp:reward_id": "{re.escape(id_)}"', data):
+        problems.append("smp:reward_id tag missing")
     if "potion" in item and item["potion"] not in data:
         problems.append("potion missing")
     if "dye" in item and "dyed_color" not in data:
