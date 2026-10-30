@@ -1,6 +1,6 @@
 # Sebchievements
 
-A Paper plugin for a private Minecraft SMP that adds 45 custom advancements across four new tabs, each with a themed
+A Paper plugin for a private Minecraft SMP that adds 50 custom advancements across four new tabs, each with a themed
 reward. One jar contains its own datapack plus the Java logic for the advancements vanilla triggers can't detect.
 
 > **Status:** built, unit-tested and given a broad first playtest on a real server. Fixes from that session are in
@@ -10,8 +10,8 @@ reward. One jar contains its own datapack plus the Java logic for the advancemen
 |---|---|---|
 | Social | 10 | Needs other players: trading, sleeping nearby, sharing a cake |
 | Silly | 10 | Small absurd feats, and rewards that are deliberately useless but on theme |
-| Exploration | 9 | Long trips, dimensions, heights |
-| Challenges | 16 | The hard ones, with bigger rewards (some beyond what vanilla allows) |
+| Exploration | 10 | Long trips, dimensions, heights |
+| Challenges | 20 | The hard ones, with bigger rewards (some beyond what vanilla allows) |
 
 Full list with descriptions, difficulty grades and rewards: [docs/advancements.md](docs/advancements.md).
 
@@ -48,6 +48,9 @@ The datapack zip on the releases page is the same pack on its own, for inspectio
 - **Rewards** are items handed over when the advancement is earned (dropped at your feet if your inventory is full).
   Each carries a grey "Sebchievement: <title>" lore line. Task rewards are trophies, goals give a small themed bundle,
   and the hardest challenges give over-vanilla gear. Defensive gear stays at the vanilla maximum.
+- **Perks** are permanent rewards you can switch on and off in `/adv perks`: Marathon gives Speed II, Moving Mountains
+  Haste II and Skull Collector (50 wither skeleton skulls from wither skeletons; skulls you already got count) gives
+  Looting +5 on top of your weapon's Looting for mob kills.
 - **No soft locks.** Every advancement can be earned by any player at any time. Timed and streak ones state what does
   *not* count (AFK, creative/spectator, riding, exploits) and report progress in `/adv progress`.
 - **Difficulty** is graded 1-10 per advancement; see [docs/difficulty.md](docs/difficulty.md).
@@ -58,7 +61,7 @@ cumulative time underwater, and One Man's Trash is a streak of 3. All of these a
 ## Configuration
 
 `config.yml` holds every threshold, keyed by advancement id (distances, durations, counts, junk list, ...) plus
-`afk_seconds`. The in-game descriptions come from the catalog and must match the defaults, so if you change a number
+`afk_seconds`. The strength of each perk is under `perks:` (`amplifier` or `looting_bonus`). The in-game descriptions come from the catalog and must match the defaults, so if you change a number
 that appears in a description, change the catalog entry too.
 
 ## Building
