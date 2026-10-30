@@ -216,6 +216,12 @@ default, state in the player's PDC key `perk_off/<id>`).
   defence beyond the vanilla maximum or invulnerability (no Resistance V, no permanent Regeneration or Absorption).
 - **Current perks:** Marathon -> Speed II, Moving Mountains -> Haste II, Skull Collector -> Looting +5.
 
+### Perk strength in config (added 2026-10-31)
+The strength of every perk is overridable in `config.yml` under `perks.<id>`: `amplifier` (effect perks, 0 to 9) or
+`looting_bonus` (looting perks, 1 to 10). A missing or out-of-range value keeps the catalog's, and a perk never changes
+kind. `PerkService.spec(id)` returns the effective spec and the menus, the effect sweep and the looting listener all use
+it, so a changed value applies after a server restart (the config is read when a perk is used, no rebuild needed).
+
 ### Looting perk (added 2026-10-30)
 `perk: {looting_bonus: 5, name, icon}` (instead of `effect`) adds Looting levels on top of the player's own. Vanilla loot
 tables read the killer's real enchantment levels and the API's `lootingModifier` is ignored in 26.3, so

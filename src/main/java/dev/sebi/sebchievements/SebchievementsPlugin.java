@@ -75,7 +75,7 @@ public final class SebchievementsPlugin extends JavaPlugin implements Listener {
 
         RewardService rewards = new RewardService(this, store);
         RewardGuard rewardGuard = new RewardGuard(rewards);
-        PerkService perks = new PerkService(rewards, store);
+        PerkService perks = new PerkService(this, rewards, store);
         tick.register("reward_cap", rewardGuard::sweep);
         tick.register("perks", perks::sweep);
         getServer().getPluginManager().registerEvents(rewardGuard, this);

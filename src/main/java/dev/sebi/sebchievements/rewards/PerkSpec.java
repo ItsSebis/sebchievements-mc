@@ -13,4 +13,16 @@ public record PerkSpec(String effect, int amplifier, int lootingBonus, String na
     public boolean isLooting() {
         return effect == null;
     }
+
+    /**
+     * This perk with its strength replaced by config values. Null or out-of-range values keep the catalog's, and the
+     * kind of perk never changes: an effect perk ignores {@code lootingBonus} and a looting perk ignores
+     * {@code amplifier}.
+     */
+    public PerkSpec tuned(Integer amplifier, Integer lootingBonus) {
+        int amp = !isLooting() && amplifier != null && amplifier >= 0 && amplifier <= 9 ? amplifier : this.amplifier;
+        int looting = isLooting() && lootingBonus != null && lootingBonus >= 1 && lootingBonus <= 10
+                ? lootingBonus : this.lootingBonus;
+        return new PerkSpec(effect, amp, looting, name, icon);
+    }
 }

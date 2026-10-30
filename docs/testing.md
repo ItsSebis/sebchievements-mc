@@ -254,6 +254,11 @@ Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/g
 - [ ] Perk on, bare hands: kill about 200 zombies; rotten flesh averages roughly 3.5 per kill (about 1 with the perk off). With a Looting III sword it matches Looting VIII (about 5).
 - [ ] The sword's durability and enchantments are the same after kills as without the perk; bow and empty-hand kills also get the bonus; creative and mob-on-mob kills do not.
 
+### Perk strength in config
+- [ ] Set `perks.marathon.amplifier: 3` (Speed IV), restart: the Marathon perk shows "Speed IV" in `/adv perks` and gives Speed IV. Same for `moving_mountains` (Haste).
+- [ ] Set `perks.skull_collector.looting_bonus: 1`: kills drop about as with Looting I on top of your own; `/adv perks` shows "Looting +1".
+- [ ] Invalid values (`amplifier: 12`, `looting_bonus: 0`, text) fall back to the catalog defaults without an error; removing the `perks:` section also works.
+
 ### obsidian_obsession (counter, 1,000)
 - [x] Mine obsidian with a diamond or netherite pickaxe: counts. With an iron pickaxe or your hand: not counted.
 - [x] Place obsidian and mine it again right away: not counted.

@@ -78,7 +78,7 @@ public final class PerkMenu implements InventoryHolder {
 
     /** One perk as a menu item; shared with the rewards menu. */
     static ItemStack cell(RewardService service, PerkService perks, Player viewer, String id) {
-        PerkSpec spec = PerkSpecs.PERKS.get(id);
+        PerkSpec spec = perks.spec(id);
         Material icon = Material.matchMaterial(spec.icon());
         boolean earned = perks.earned(viewer, id);
         boolean on = earned && perks.enabled(viewer, id);
@@ -98,7 +98,7 @@ public final class PerkMenu implements InventoryHolder {
 
     /** Switches a perk and tells the player; shared with the rewards menu. */
     static void toggle(PerkService perks, Player viewer, String id) {
-        PerkSpec spec = PerkSpecs.PERKS.get(id);
+        PerkSpec spec = perks.spec(id);
         if (!perks.earned(viewer, id)) {
             viewer.sendMessage(Component.text("You haven't earned " + spec.name() + " yet.", NamedTextColor.RED));
             viewer.playSound(viewer.getLocation(), Sound.ENTITY_VILLAGER_NO, 0.6f, 1f);

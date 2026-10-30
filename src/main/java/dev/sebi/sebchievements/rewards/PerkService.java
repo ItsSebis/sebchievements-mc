@@ -5,7 +5,9 @@ import dev.sebi.sebchievements.core.PlayerDataStore;
 import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
 import org.bukkit.NamespacedKey;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -15,12 +17,23 @@ import org.bukkit.potion.PotionEffectType;
  * relog just get it reapplied within a second, and revoking the advancement or switching the perk off lets it run out.
  */
 public final class PerkService {
+    private final Plugin plugin;
     private final RewardService rewards;
     private final PlayerDataStore store;
 
-    public PerkService(RewardService rewards, PlayerDataStore store) {
+    public PerkService(Plugin plugin, RewardService rewards, PlayerDataStore store) {
+        this.plugin = plugin;
         this.rewards = rewards;
         this.store = store;
+    }
+
+    /** The perk's catalog spec with the strength from {@code perks.<id>} in config.yml (amplifier or looting_bonus). */
+    public PerkSpec spec(String id) {
+        PerkSpec catalog = PerkSpecs.PERKS.get(id);
+        ConfigurationSection section = plugin.getConfig().getConfigurationSection("perks." + id);
+        if (catalog == null || section == null) return catalog;
+        return catalog.tuned(section.isInt("amplifier") ? section.getInt("amplifier") : null,
+                section.isInt("looting_bonus") ? section.getInt("looting_bonus") : null);
     }
 
     public boolean earned(Player p, String id) {
@@ -42,10 +55,9 @@ public final class PerkService {
     /** The largest Looting bonus among the looting perks the player has earned and left switched on, 0 for none. */
     public int lootingBonus(Player p) {
         int best = 0;
-        for (var e : PerkSpecs.PERKS.entrySet()) {
-            if (e.getValue().isLooting() && earned(p, e.getKey()) && enabled(p, e.getKey())) {
-                best = Math.max(best, e.getValue().lootingBonus());
-            }
+        for (String id : PerkSpecs.PERKS.keySet()) {
+            PerkSpec spec = spec(id);
+            if (spec.isLooting() && earned(p, id) && enabled(p, id)) best = Math.max(best, spec.lootingBonus());
         }
         return best;
     }
@@ -64,7 +76,8 @@ public final class PerkService {
     /** Runs from the shared TickScheduler for every online player. */
     public void sweep(Player p) {
         if (p.isDead()) return;
-        PerkSpecs.PERKS.forEach((id, spec) -> {
+        PerkSpecs.PERKS.keySet().forEach(id -> {
+            PerkSpec spec = spec(id);
             if (spec.isLooting()) return;
             PotionEffectType type = type(spec);
             if (type == null) return;

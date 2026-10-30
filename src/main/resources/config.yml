@@ -16,6 +16,16 @@ placed_block_ignore_minutes: 30
 rewards:
   reclaim_cooldown_minutes: 60
 
+# Strength of the perks the advancements unlock; leave a perk out to use the default from the catalog.
+# amplifier: effect perks, 0 = level I, 1 = level II ... up to 9.  looting_bonus: Looting levels added, 1 to 10.
+perks:
+  marathon:
+    amplifier: 1             # Speed II
+  moving_mountains:
+    amplifier: 1             # Haste II
+  skull_collector:
+    looting_bonus: 5         # on top of the Looting on your weapon
+
 advancements:
   yeet_the_goat:
     window_seconds: 10       # the goat must have been hit by the player this recently before it fell
