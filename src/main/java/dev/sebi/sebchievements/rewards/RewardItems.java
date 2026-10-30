@@ -27,7 +27,17 @@ public final class RewardItems {
     /** Marks a stack as the reward of an advancement; the generator writes the same key into the loot tables. */
     public static final NamespacedKey TAG = new NamespacedKey("smp", "reward_id");
 
+    /** The item id the stack was issued as; a smithing upgrade keeps it while the material changes. */
+    public static final NamespacedKey ITEM_TAG = new NamespacedKey("smp", "reward_item");
+
     private RewardItems() {}
+
+    /** The item id a reward stack counts as: what it was issued as, or its current material for older stacks. */
+    public static String itemOf(ItemStack stack) {
+        String issued = stack.hasItemMeta()
+                ? stack.getItemMeta().getPersistentDataContainer().get(ITEM_TAG, PersistentDataType.STRING) : null;
+        return issued != null ? issued : stack.getType().getKey().toString();
+    }
 
     /** The reward id a stack is tagged with, or null for any other item. */
     public static String idOf(ItemStack stack) {
@@ -81,6 +91,7 @@ public final class RewardItems {
             potion.setBasePotionType(type);
         }
         meta.getPersistentDataContainer().set(TAG, PersistentDataType.STRING, rewardId);
+        meta.getPersistentDataContainer().set(ITEM_TAG, PersistentDataType.STRING, spec.item());
         stack.setItemMeta(meta);
         return stack;
     }

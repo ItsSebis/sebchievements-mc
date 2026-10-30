@@ -80,6 +80,8 @@ def check(item, text, title, id_):
     # the reward menu's copy limit finds items by this tag (Bukkit PDC lives in custom_data.PublicBukkitValues)
     if not re.search(rf'"smp:reward_id": "{re.escape(id_)}"', data):
         problems.append("smp:reward_id tag missing")
+    if not re.search(rf'"smp:reward_item": "{re.escape(item["item"])}"', data):
+        problems.append("smp:reward_item tag missing")
     if "potion" in item and item["potion"] not in data:
         problems.append("potion missing")
     if "dye" in item and "dyed_color" not in data:

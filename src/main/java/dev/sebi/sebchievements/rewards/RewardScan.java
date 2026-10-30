@@ -48,7 +48,7 @@ public final class RewardScan {
         walk(p, s -> {
             String id = RewardItems.idOf(s);
             if (id == null) return s;
-            String key = RewardLimit.key(id, s.getType().getKey().toString());
+            String key = RewardLimit.key(id, RewardItems.itemOf(s));
             int open = left.getOrDefault(key, 0);
             if (open <= 0) return s;
             int take = Math.min(open, s.getAmount());
@@ -61,7 +61,7 @@ public final class RewardScan {
 
     private static void add(Map<String, Integer> out, ItemStack s) {
         String id = RewardItems.idOf(s);
-        if (id != null) out.merge(RewardLimit.key(id, s.getType().getKey().toString()), s.getAmount(), Integer::sum);
+        if (id != null) out.merge(RewardLimit.key(id, RewardItems.itemOf(s)), s.getAmount(), Integer::sum);
     }
 
     /**

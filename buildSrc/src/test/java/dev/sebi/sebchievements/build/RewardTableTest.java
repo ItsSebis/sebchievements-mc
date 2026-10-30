@@ -78,6 +78,7 @@ class RewardTableTest {
         Map<String, Object> custom = (Map<String, Object>) components.get("minecraft:custom_data");
         Map<String, Object> pdc = (Map<String, Object>) custom.get("PublicBukkitValues");
         assertEquals("a", pdc.get("smp:reward_id"), "Paper keeps item PDC under custom_data.PublicBukkitValues");
+        assertEquals("minecraft:emerald", pdc.get("smp:reward_item"), "an upgraded copy must still count as the issued item");
     }
 
     @Test

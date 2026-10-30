@@ -22,6 +22,8 @@ public final class CatalogGenerator {
     static final String ID_PACKAGE = "dev.sebi.sebchievements";
     /** PDC key (namespace:key) that marks an item as the reward of an advancement; must match RewardItems.TAG. */
     static final String REWARD_TAG_KEY = "smp:reward_id";
+    /** PDC key holding the item id a reward was issued as, so an upgraded copy still counts; must match RewardItems.ITEM_TAG. */
+    static final String REWARD_ITEM_TAG_KEY = "smp:reward_item";
 
     private CatalogGenerator() {}
 
@@ -107,7 +109,7 @@ public final class CatalogGenerator {
             components.put("minecraft:lore", lore);
             // Bukkit's PersistentDataContainer on an item lives here; the plugin finds reward copies by this tag
             components.put("minecraft:custom_data", orderedMap("PublicBukkitValues",
-                    orderedMap(REWARD_TAG_KEY, e.id())));
+                    orderedMap(REWARD_TAG_KEY, e.id(), REWARD_ITEM_TAG_KEY, item.get("item"))));
             if (item.get("dye") != null) components.put("minecraft:dyed_color", dye(item.get("dye")));
             functions.add(orderedMap("type", "minecraft:set_components", "components", components));
 
