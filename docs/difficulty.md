@@ -84,6 +84,7 @@ them after a few weeks of real data (for example with the rarity numbers SebStat
 | Actual Sniper | 7 | A kill from 100+ blocks takes a good bow and aim |
 | Whittled Down | 7 | Only the final blow needs the wooden sword, but it is the dragon |
 | Naked and Afraid | 8 | The Wither with zero armor; a bow from a safe spot makes it possible |
+| Skull Collector | 8 | 50 skulls at 2.5% to 5.5% a kill is about 900 to 2,000 wither skeleton kills (earlier pickups count) |
 | Moving Mountains | 8 | 100,000 blocks of real mining, hours of strip mining even with Haste |
 | Iron Will | 8 | A full day of playtime alive: one careless death anywhere in it starts over |
 | Wither Storm | 8 | Nine skulls and three fights in ten minutes |

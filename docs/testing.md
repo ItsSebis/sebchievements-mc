@@ -12,7 +12,8 @@ Unit tests (no server): `gradle :buildSrc:test test`.
 - [ ] `/adv grant <you> nope`: "Unknown advancement id".
 - [ ] Tab completion of `<id>` lists catalog ids.
 - [ ] As a non-op: `/adv progress` works; `/adv grant`, `/adv debug` are not offered and are rejected.
-- [ ] `/adv progress` with no timed/streak advancements: "No timed or streak advancements yet."
+- [ ] `/adv progress` with no timed/streak advancements: the header line, then "No timed or streak advancements yet."
+- [ ] `/adv progress` always starts with a gold `--- Progress at HH:MM:SS ---` line, so two runs stacked in chat are easy to tell apart.
 - [ ] `/adv debug tax_evasion`: prints `(no stored state)`.
 - [ ] Startup log shows `Registered N of N plugin handlers` and no SEVERE lines.
 - [ ] Website (`:8123`): `smp:silly/tax_evasion` listed under "SMP" (needs the SebStats label fix deployed).
@@ -244,6 +245,14 @@ Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/g
 - [x] Mine stone, dirt, logs: `/adv progress` counts each; breaking grass, flowers or torches does not. Creative: nothing.
 - [x] Place dirt and break it again right away: not counted. (`placed_block_ignore_minutes`, default 30.)
 - [x] With `advancements.moving_mountains.blocks: 20`: completes after 20 blocks and Haste II starts; same toggle/milk/revoke checks as Marathon Legs ("Miner's Rush" golden pickaxe entry).
+
+### skull_collector (counter, 50 skulls) and the Looting +5 perk
+- [ ] First tick after joining: `/adv progress` starts at your vanilla "picked up wither skeleton skull" statistic, capped at your wither skeletons killed statistic (`/adv debug skull_collector` shows both stats, `seeded` and the seed value). With 50 or more: granted straight away.
+- [ ] The stat is read once: pick up another skull from the ground afterwards and the counter does not move; killing a wither skeleton that drops a skull adds the dropped amount.
+- [ ] Creative kills, charged creeper heads and skulls from chests do not count. `advancements.skull_collector.skulls: 3` completes after 3 skulls.
+- [ ] `/adv rewards` and `/adv perks` show "Plunderer" (Looting +5 on top of your own), glowing while on, toggle works.
+- [ ] Perk on, bare hands: kill about 200 zombies; rotten flesh averages roughly 3.5 per kill (about 1 with the perk off). With a Looting III sword it matches Looting VIII (about 5).
+- [ ] The sword's durability and enchantments are the same after kills as without the perk; bow and empty-hand kills also get the bonus; creative and mob-on-mob kills do not.
 
 ### obsidian_obsession (counter, 1,000)
 - [x] Mine obsidian with a diamond or netherite pickaxe: counts. With an iron pickaxe or your hand: not counted.

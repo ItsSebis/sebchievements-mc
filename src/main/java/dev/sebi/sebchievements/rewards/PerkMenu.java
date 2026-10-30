@@ -111,6 +111,7 @@ public final class PerkMenu implements InventoryHolder {
     }
 
     static String effectName(PerkSpec spec) {
+        if (spec.isLooting()) return "Looting +" + spec.lootingBonus() + " on top of your own";
         String raw = spec.effect().substring(spec.effect().indexOf(':') + 1).replace('_', ' ');
         String[] roman = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         return Character.toUpperCase(raw.charAt(0)) + raw.substring(1) + " " + roman[Math.min(spec.amplifier(), 9)];

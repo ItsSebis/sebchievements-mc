@@ -73,7 +73,7 @@ public final class CatalogValidator {
         return errors;
     }
 
-    private static final Set<String> PERK_KEYS = Set.of("effect", "amplifier", "name", "icon");
+    private static final Set<String> PERK_KEYS = Set.of("effect", "amplifier", "looting_bonus", "name", "icon");
 
     private static void validatePerk(Catalog.Entry e, String at, List<String> errors) {
         String where = at + "perk: ";
@@ -81,7 +81,13 @@ public final class CatalogValidator {
         for (String key : e.perk().keySet()) {
             if (!PERK_KEYS.contains(key)) errors.add(where + "unknown key '" + key + "'");
         }
-        if (!(e.perk().get("effect") instanceof String fx) || !ITEM.matcher(fx).matches()) {
+        boolean looting = e.perk().containsKey("looting_bonus");
+        if (looting && e.perk().containsKey("effect")) errors.add(where + "needs either effect or looting_bonus, not both");
+        if (looting) {
+            if (!(e.perk().get("looting_bonus") instanceof Integer b && b >= 1 && b <= 10)) {
+                errors.add(where + "looting_bonus must be a whole number from 1 to 10");
+            }
+        } else if (!(e.perk().get("effect") instanceof String fx) || !ITEM.matcher(fx).matches()) {
             errors.add(where + "effect must be a namespaced effect id");
         }
         if (e.perk().containsKey("amplifier") && !(e.perk().get("amplifier") instanceof Integer a && a >= 0 && a <= 9)) {

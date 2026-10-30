@@ -30,6 +30,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -100,6 +102,9 @@ public final class AdvCommand {
             sender.sendMessage("Players only.");
             return 0;
         }
+        // a header with the time, so several runs stacked in the chat can be told apart
+        p.sendMessage(Component.text("--- Progress at " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + " ---",
+                NamedTextColor.GOLD));
         int shown = 0;
         for (AdvancementHandler h : handlers) {
             if (!(h instanceof ProgressReporting r)) continue;

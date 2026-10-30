@@ -25,6 +25,8 @@ advancements:
     blocks: 100000           # on foot (walking or sprinting), counted from when the plugin first saw the player
   moving_mountains:
     blocks: 100000
+  skull_collector:
+    skulls: 50               # counted from the "picked up" statistic (at most the wither skeletons killed) once, then from drops of wither skeletons you kill
   untouchable:
     seconds: 1200
   pacifist:

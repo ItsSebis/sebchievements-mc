@@ -221,7 +221,7 @@ public final class CatalogGenerator {
         return s.toString();
     }
 
-    /** The effect perks (advancement id to effect, level, display name and icon), applied by the plugin at runtime. */
+    /** The effect perks (advancement id to effect or looting bonus, level, display name and icon), applied by the plugin at runtime. */
     static String perkSpecsClass(Catalog catalog) {
         StringBuilder s = new StringBuilder();
         s.append("// GENERATED from src/main/catalog/advancements.yml - do not edit.\n");
@@ -235,8 +235,10 @@ public final class CatalogGenerator {
         for (Catalog.Entry e : catalog.advancements()) {
             if (e.perk() == null) continue;
             int amp = e.perk().get("amplifier") instanceof Integer a ? a : 0;
-            entries.add("\n        Map.entry(" + javaString(e.id()) + ", new PerkSpec(" + javaString((String) e.perk().get("effect"))
-                    + ", " + amp + ", " + javaString((String) e.perk().get("name")) + ", "
+            int lootingBonus = e.perk().get("looting_bonus") instanceof Integer b ? b : 0;
+            String effect = e.perk().get("effect") instanceof String fx ? javaString(fx) : "null";
+            entries.add("\n        Map.entry(" + javaString(e.id()) + ", new PerkSpec(" + effect
+                    + ", " + amp + ", " + lootingBonus + ", " + javaString((String) e.perk().get("name")) + ", "
                     + javaString((String) e.perk().get("icon")) + "))");
         }
         s.append(join(entries)).append(");\n\n");

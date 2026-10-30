@@ -48,10 +48,27 @@ class PerkSpecTest {
     }
 
     @Test
+    void lootingPerkNeedsABonusAndExcludesAnEffect() {
+        assertEquals(List.of(), CatalogValidator.validate(
+                catalog("perk: {looting_bonus: 5, name: \"Plunderer\", icon: \"minecraft:sugar\"}")));
+        String all = String.join("\n", CatalogValidator.validate(catalog(
+                "perk: {looting_bonus: 11, effect: \"minecraft:speed\", name: \"X\", icon: \"minecraft:sugar\"}")));
+        assertTrue(all.contains("looting_bonus must be a whole number from 1 to 10"), all);
+        assertTrue(all.contains("either effect or looting_bonus, not both"), all);
+    }
+
+    @Test
+    void lootingPerkIsGeneratedWithoutAnEffect() {
+        String src = CatalogGenerator.perkSpecsClass(catalog(
+                "perk: {looting_bonus: 5, name: \"Plunderer\", icon: \"minecraft:sugar\"}"));
+        assertTrue(src.contains("new PerkSpec(null, 0, 5, \"Plunderer\", \"minecraft:sugar\")"), src);
+    }
+
+    @Test
     void generatedClassListsOnlyAdvancementsWithAPerk() {
         String src = CatalogGenerator.perkSpecsClass(catalog(
                 "perk: {effect: \"minecraft:haste\", amplifier: 1, name: \"Rush\", icon: \"minecraft:sugar\"}"));
-        assertTrue(src.contains("Map.entry(\"a\", new PerkSpec(\"minecraft:haste\", 1, \"Rush\", \"minecraft:sugar\"))"), src);
+        assertTrue(src.contains("Map.entry(\"a\", new PerkSpec(\"minecraft:haste\", 1, 0, \"Rush\", \"minecraft:sugar\"))"), src);
         assertFalse(src.contains("Map.entry(\"b\""), src);
     }
 }

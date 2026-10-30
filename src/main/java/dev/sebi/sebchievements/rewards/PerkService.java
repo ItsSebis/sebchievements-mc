@@ -39,6 +39,17 @@ public final class PerkService {
         return nowOn;
     }
 
+    /** The largest Looting bonus among the looting perks the player has earned and left switched on, 0 for none. */
+    public int lootingBonus(Player p) {
+        int best = 0;
+        for (var e : PerkSpecs.PERKS.entrySet()) {
+            if (e.getValue().isLooting() && earned(p, e.getKey()) && enabled(p, e.getKey())) {
+                best = Math.max(best, e.getValue().lootingBonus());
+            }
+        }
+        return best;
+    }
+
     /** E.g. {@code 1 of 2 perks on (2 unlocked)}, for the menu button. */
     public String summary(Player p) {
         int unlocked = 0, on = 0;
@@ -54,6 +65,7 @@ public final class PerkService {
     public void sweep(Player p) {
         if (p.isDead()) return;
         PerkSpecs.PERKS.forEach((id, spec) -> {
+            if (spec.isLooting()) return;
             PotionEffectType type = type(spec);
             if (type == null) return;
             if (earned(p, id) && enabled(p, id)) apply(p, spec, type);

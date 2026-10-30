@@ -20,6 +20,7 @@ import dev.sebi.sebchievements.handlers.challenges.JockeyJamboreeHandler;
 import dev.sebi.sebchievements.handlers.challenges.MovingMountainsHandler;
 import dev.sebi.sebchievements.handlers.challenges.NakedAndAfraidHandler;
 import dev.sebi.sebchievements.handlers.challenges.ObsidianObsessionHandler;
+import dev.sebi.sebchievements.handlers.challenges.SkullCollectorHandler;
 import dev.sebi.sebchievements.handlers.challenges.OneManArmyHandler;
 import dev.sebi.sebchievements.handlers.challenges.PacifistHandler;
 import dev.sebi.sebchievements.handlers.challenges.TotemChainHandler;
@@ -97,7 +98,8 @@ public final class Handlers {
             new JockeyJamboreeHandler(),
             new YeetTheGoatHandler(),
             new ObsidianObsessionHandler(),
-            new MovingMountainsHandler()
+            new MovingMountainsHandler(),
+            new SkullCollectorHandler()
     );
 
     private Handlers() {}

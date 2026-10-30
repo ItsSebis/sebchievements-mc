@@ -214,5 +214,13 @@ default, state in the player's PDC key `perk_off/<id>`).
   once. A real potion of the same level is never removed, and a stronger or longer effect is not replaced.
 - **Guardrail:** perks follow the same rule as items. Offence and utility (Speed, Haste) are fine; nothing that adds
   defence beyond the vanilla maximum or invulnerability (no Resistance V, no permanent Regeneration or Absorption).
-- **Current perks:** Marathon -> Speed II, Moving Mountains -> Haste II.
+- **Current perks:** Marathon -> Speed II, Moving Mountains -> Haste II, Skull Collector -> Looting +5.
+
+### Looting perk (added 2026-10-30)
+`perk: {looting_bonus: 5, name, icon}` (instead of `effect`) adds Looting levels on top of the player's own. Vanilla loot
+tables read the killer's real enchantment levels and the API's `lootingModifier` is ignored in 26.3, so
+`LootingPerkListener` rolls the mob's table again on a player kill while the killer's main hand briefly holds a copy of
+the item with Looting raised, restores the item at once, and replaces the table's drops with the new roll (equipment
+drops stay). Survival and adventure players only. Same guardrail as items: it is offence/utility, so it may exceed
+vanilla. `PerkService.lootingBonus(player)` takes the largest bonus among earned, enabled looting perks.
 
