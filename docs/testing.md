@@ -257,6 +257,7 @@ Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/g
 ### Perk strength in config
 - [ ] Set `perks.marathon.amplifier: 3` (Speed IV), restart: the Marathon perk shows "Speed IV" in `/adv perks` and gives Speed IV. Same for `moving_mountains` (Haste).
 - [ ] Set `perks.skull_collector.looting_bonus: 1`: kills drop about as with Looting I on top of your own; `/adv perks` shows "Looting +1".
+- [ ] With the perk on, kill a burning cow (or use a Fire Aspect weapon): all the meat, including the extra from the perk, is cooked, and no raw beef is left over.
 - [ ] Invalid values (`amplifier: 12`, `looting_bonus: 0`, text) fall back to the catalog defaults without an error; removing the `perks:` section also works.
 
 ### obsidian_obsession (counter, 1,000)
