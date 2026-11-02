@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.sebi"
-version = "0.4.2"
+version = "0.4.3"
 
 val paperApi = "io.papermc.paper:paper-api:26.3.build.223-stable"
 
