@@ -301,3 +301,11 @@ real item data (count, name, lore, enchantments, potion, dye) against the catalo
 - [ ] Cooldown from earning: `/adv revoke <you> tax_evasion`, `/adv grant <you> tax_evasion`, drop the item: the entry shows "Available again in ~59m" straight away (not only after a first reclaim).
 - [x] `/adv debug tax_evasion` shows `reward_reclaim/tax_evasion` after a reclaim; `/adv reset <you> tax_evasion` clears it.
 - [ ] Upgraded copy: take the Obsidian Cutter (`obsidian_obsession`) to a smithing table and upgrade it to netherite. You can take the result, drop it and pick it up again, and it is still there after the 20-tick sweep. A second Obsidian Cutter from the reward menu is still refused while you hold the netherite one.
+
+## /adv track
+
+- [ ] `/adv track skull_collector` shows a boss bar `Skull Collector  N / 50` filled like `/adv progress`; killing a wither skeleton raises it within a second.
+- [ ] Track a timed one (`untouchable`) and a multi-criteria one (`jockey_jamboree`): three stacked bars, a second player sees none of them.
+- [ ] A not started advancement shows `not started` with an empty bar. A one-step advancement (`tax_evasion`) and a completed one are refused with a message.
+- [ ] `/adv track` twice on the same id says it is already tracked. `/adv untrack <id>` removes one bar, `/adv untrack` all of them.
+- [ ] Relog: the bars come back. `/adv grant <you> <id>` on a tracked one removes its bar within a second with a chat line.

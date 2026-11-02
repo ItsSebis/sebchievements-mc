@@ -23,6 +23,7 @@ import dev.sebi.sebchievements.services.RecentDamageService;
 import dev.sebi.sebchievements.services.Services;
 import dev.sebi.sebchievements.services.StreakService;
 import dev.sebi.sebchievements.services.TickScheduler;
+import dev.sebi.sebchievements.tracking.TrackService;
 import dev.sebi.sebchievements.services.TimerService;
 import dev.sebi.sebchievements.services.WindowService;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
@@ -82,8 +83,12 @@ public final class SebchievementsPlugin extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new LootingPerkListener(perks), this);
         getServer().getPluginManager().registerEvents(new RewardMenuListener(), this);
 
+        TrackService track = new TrackService(handlers, store);
+        tick.register("track", track::update);
+        getServer().getPluginManager().registerEvents(track, this);
+
         tick.start();
-        AdvCommand command = new AdvCommand(this, granter, store, services, handlers, rewards, perks);
+        AdvCommand command = new AdvCommand(this, granter, store, services, handlers, rewards, perks, track);
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS,
                 event -> event.registrar().register(command.build()));
     }

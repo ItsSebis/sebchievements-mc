@@ -17,13 +17,13 @@ import dev.sebi.sebchievements.rewards.PerkService;
 import dev.sebi.sebchievements.rewards.RewardMenu;
 import dev.sebi.sebchievements.rewards.RewardService;
 import dev.sebi.sebchievements.services.Services;
+import dev.sebi.sebchievements.tracking.TrackService;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import io.papermc.paper.command.brigadier.argument.resolvers.selector.PlayerSelectorArgumentResolver;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.command.CommandSender;
@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/** {@code /adv progress}, {@code /adv rewards} and {@code /adv perks} for everyone; the rest needs {@code smpadv.admin}. */
+/** {@code /adv progress}, {@code track}, {@code untrack}, {@code rewards} and {@code perks} for everyone; the rest needs {@code smpadv.admin}. */
 public final class AdvCommand {
     private static final String ADMIN = "smpadv.admin";
 
@@ -48,9 +48,11 @@ public final class AdvCommand {
 
     private final RewardService rewards;
     private final PerkService perks;
+    private final TrackService track;
 
     public AdvCommand(Plugin plugin, Granter granter, PlayerDataStore store, Services services,
-                      List<AdvancementHandler> handlers, RewardService rewards, PerkService perks) {
+                      List<AdvancementHandler> handlers, RewardService rewards, PerkService perks,
+                      TrackService track) {
         this.plugin = plugin;
         this.granter = granter;
         this.store = store;
@@ -58,12 +60,18 @@ public final class AdvCommand {
         this.handlers = handlers;
         this.rewards = rewards;
         this.perks = perks;
+        this.track = track;
     }
 
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("adv")
                 .then(Commands.literal("progress").executes(ctx -> progress(ctx.getSource().getSender())))
                 .then(Commands.literal("rewards").executes(ctx -> rewards(ctx.getSource().getSender(), false)))
+                .then(Commands.literal("track").then(idArgument().executes(ctx -> track(ctx.getSource().getSender(),
+                        StringArgumentType.getString(ctx, "id")))))
+                .then(Commands.literal("untrack").executes(ctx -> untrack(ctx.getSource().getSender(), null))
+                        .then(idArgument().executes(ctx -> untrack(ctx.getSource().getSender(),
+                                StringArgumentType.getString(ctx, "id")))))
                 .then(Commands.literal("perks").executes(ctx -> rewards(ctx.getSource().getSender(), true)))
                 .then(admin("grant").then(playerAndId(ctx -> change(ctx, Op.GRANT))))
                 .then(admin("revoke").then(playerAndId(ctx -> change(ctx, Op.REVOKE))))
@@ -110,7 +118,7 @@ public final class AdvCommand {
             if (!(h instanceof ProgressReporting r)) continue;
             Advancement adv = Bukkit.getAdvancement(AdvancementIds.key(h.id()));
             if (adv == null || adv.getDisplay() == null) continue;
-            String title = PlainTextComponentSerializer.plainText().serialize(adv.getDisplay().title());
+            String title = TrackService.titleOf(adv);
             boolean done = p.getAdvancementProgress(adv).isDone();
             Optional<Progress> prog = r.progress(p);
             String text = done ? "Completed" : prog.map(Progress::format).orElse("not started");
@@ -120,6 +128,39 @@ public final class AdvCommand {
         }
         if (shown == 0) p.sendMessage(Component.text("No timed or streak advancements yet.", NamedTextColor.GRAY));
         return Command.SINGLE_SUCCESS;
+    }
+
+    private int track(CommandSender sender, String id) {
+        if (!(sender instanceof Player p)) {
+            sender.sendMessage("Players only.");
+            return 0;
+        }
+        TrackService.Result result = track.track(p, id);
+        String text = switch (result) {
+            case TRACKED -> "Tracking " + id + " (/adv untrack " + id + " to stop).";
+            case ALREADY -> "Already tracking " + id + ".";
+            case UNKNOWN -> "Unknown advancement id: " + id;
+            case DONE -> "You already completed " + id + ".";
+            case NO_PROGRESS -> id + " has no progress to show.";
+        };
+        boolean ok = result == TrackService.Result.TRACKED || result == TrackService.Result.ALREADY;
+        p.sendMessage(Component.text(text, ok ? NamedTextColor.GREEN : NamedTextColor.RED));
+        return ok ? Command.SINGLE_SUCCESS : 0;
+    }
+
+    private int untrack(CommandSender sender, String id) {
+        if (!(sender instanceof Player p)) {
+            sender.sendMessage("Players only.");
+            return 0;
+        }
+        if (id == null) {
+            p.sendMessage(Component.text("Stopped tracking " + track.untrackAll(p) + " advancement(s).", NamedTextColor.GREEN));
+            return Command.SINGLE_SUCCESS;
+        }
+        boolean removed = track.untrack(p, id);
+        p.sendMessage(Component.text(removed ? "Stopped tracking " + id + "." : "You are not tracking " + id + ".",
+                removed ? NamedTextColor.GREEN : NamedTextColor.RED));
+        return removed ? Command.SINGLE_SUCCESS : 0;
     }
 
     private int rewards(CommandSender sender, boolean perkMenu) {
