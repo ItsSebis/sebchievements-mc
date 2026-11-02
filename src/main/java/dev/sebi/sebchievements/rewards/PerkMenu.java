@@ -111,6 +111,7 @@ public final class PerkMenu implements InventoryHolder {
     }
 
     static String effectName(PerkSpec spec) {
+        if (spec.isAutoSmelt()) return "Mined ores drop smelted (Fortune still applies)";
         if (spec.isLooting()) return "Looting +" + spec.lootingBonus() + " on top of your own";
         String raw = spec.effect().substring(spec.effect().indexOf(':') + 1).replace('_', ' ');
         String[] roman = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};

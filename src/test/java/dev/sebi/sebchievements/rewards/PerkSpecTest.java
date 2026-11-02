@@ -37,4 +37,18 @@ class PerkSpecTest {
         assertEquals(0, looting.amplifier());
         assertEquals(9, looting.lootingBonus());
     }
+
+    @Test
+    void autoSmeltIsItsOwnKindAndNeverChanges() {
+        PerkSpec smelt = new PerkSpec(null, 0, 0, true, "Smelter", "minecraft:blast_furnace");
+        assertEquals(true, smelt.isAutoSmelt());
+        assertEquals(false, smelt.isLooting());
+        assertEquals(false, smelt.isEffect());
+        PerkSpec tuned = smelt.tuned(3, 7);
+        assertEquals(true, tuned.isAutoSmelt());
+        assertEquals(0, tuned.amplifier());
+        assertEquals(0, tuned.lootingBonus());
+        assertEquals(false, SPEED.isAutoSmelt());
+        assertEquals(true, LOOT.isLooting());
+    }
 }

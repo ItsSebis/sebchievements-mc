@@ -52,7 +52,8 @@ The datapack zip on the releases page is the same pack on its own, for inspectio
   and the hardest challenges give over-vanilla gear. Defensive gear stays at the vanilla maximum.
 - **Perks** are permanent rewards you can switch on and off in `/adv perks`: Marathon gives Speed II, Moving Mountains
   Haste II and Skull Collector (50 wither skeleton skulls from wither skeletons; skulls you already got count) gives
-  Looting +5 on top of your weapon's Looting for mob kills.
+  Looting +5 on top of your weapon's Looting for mob kills, and Prospector (mine each of the 11 ores 64 times; earlier
+  mining counts) gives auto-smelt: mined ores drop smelted, with your Fortune.
 - **No soft locks.** Every advancement can be earned by any player at any time. Timed and streak ones state what does
   *not* count (AFK, creative/spectator, riding, exploits) and report progress in `/adv progress`.
 - **Difficulty** is graded 1-10 per advancement; see [docs/difficulty.md](docs/difficulty.md).

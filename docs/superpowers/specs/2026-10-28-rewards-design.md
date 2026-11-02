@@ -214,7 +214,7 @@ default, state in the player's PDC key `perk_off/<id>`).
   once. A real potion of the same level is never removed, and a stronger or longer effect is not replaced.
 - **Guardrail:** perks follow the same rule as items. Offence and utility (Speed, Haste) are fine; nothing that adds
   defence beyond the vanilla maximum or invulnerability (no Resistance V, no permanent Regeneration or Absorption).
-- **Current perks:** Marathon -> Speed II, Moving Mountains -> Haste II, Skull Collector -> Looting +5.
+- **Current perks:** Marathon -> Speed II, Moving Mountains -> Haste II, Skull Collector -> Looting +5, Prospector -> auto-smelt.
 
 ### Perk strength in config (added 2026-10-31)
 The strength of every perk is overridable in `config.yml` under `perks.<id>`: `amplifier` (effect perks, 0 to 9) or
@@ -230,3 +230,15 @@ the item with Looting raised, restores the item at once, and replaces the table'
 drops stay). Survival and adventure players only. Same guardrail as items: it is offence/utility, so it may exceed
 vanilla. `PerkService.lootingBonus(player)` takes the largest bonus among earned, enabled looting perks.
 
+### Auto-smelt perk (added 2026-11-02)
+`perk: {auto_smelt: true, name, icon}` (third kind next to `effect` and `looting_bonus`; `PerkSpec.isAutoSmelt()`).
+`AutoSmeltPerkListener` handles `BlockDropItemEvent` for the 11 ore kinds in `OreType` (survival/adventure, no Silk Touch):
+each dropped stack is replaced by its furnace or blast furnace result (recipe lookup cached), so raw iron/gold/copper and
+ancient debris (netherite scrap) come out smelted, while coal, diamond, lapis, redstone, emerald, quartz and nether gold
+nuggets have no recipe and stay as they are. Vanilla has already applied the pickaxe's Fortune to the drop count, so the
+count carries over. Ancient debris gets no Fortune in vanilla, so it gets `perks.prospector.debris_fortune_factor`
+(default 0.5) of a Fortune roll on top (`OreFortune.extraDrops`: vanilla's `max(1, nextInt(level+2)) - 1` extra, scaled
+and rounded at random). The recipe's furnace XP is spawned as an orb. Utility only, so within the guardrail.
+Unlocked by **Prospector** (mine each of the 11 ores 64 times; see `ProspectorHandler`). Counts are seeded once from the
+`MINE_BLOCK` statistics, Silk Touch breaks don't count, and placed ancient debris is remembered in the chunk's
+PersistentDataContainer until broken, exploded or moved (`PlacedDebris`; pistons re-key the entry).

@@ -55,6 +55,10 @@ def item_details(item):
 
 
 def perk_details(perk):
+    if perk.get("auto_smelt"):
+        return ("Ores you mine drop smelted (raw iron becomes an ingot) with the XP a furnace gives; your Fortune applies, "
+                "ancient debris gets half a Fortune roll on top; not with Silk Touch "
+                "(config: `perks.<id>.debris_fortune_factor`)")
     if "looting_bonus" in perk:
         return (f"Looting +{perk['looting_bonus']} on top of the Looting on your weapon, for mobs you kill "
                 f"(config: `perks.<id>.looting_bonus`)")

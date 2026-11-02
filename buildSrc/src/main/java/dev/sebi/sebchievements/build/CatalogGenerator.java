@@ -237,8 +237,9 @@ public final class CatalogGenerator {
             int amp = e.perk().get("amplifier") instanceof Integer a ? a : 0;
             int lootingBonus = e.perk().get("looting_bonus") instanceof Integer b ? b : 0;
             String effect = e.perk().get("effect") instanceof String fx ? javaString(fx) : "null";
+            String smelt = e.perk().containsKey("auto_smelt") ? "true, " : "";
             entries.add("\n        Map.entry(" + javaString(e.id()) + ", new PerkSpec(" + effect
-                    + ", " + amp + ", " + lootingBonus + ", " + javaString((String) e.perk().get("name")) + ", "
+                    + ", " + amp + ", " + lootingBonus + ", " + smelt + javaString((String) e.perk().get("name")) + ", "
                     + javaString((String) e.perk().get("icon")) + "))");
         }
         s.append(join(entries)).append(");\n\n");

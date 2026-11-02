@@ -7,6 +7,7 @@ import dev.sebi.sebchievements.core.HandlerContext;
 import dev.sebi.sebchievements.core.HandlerValidator;
 import dev.sebi.sebchievements.core.Handlers;
 import dev.sebi.sebchievements.core.PlayerDataStore;
+import dev.sebi.sebchievements.rewards.AutoSmeltPerkListener;
 import dev.sebi.sebchievements.rewards.LootingPerkListener;
 import dev.sebi.sebchievements.rewards.PerkService;
 import dev.sebi.sebchievements.rewards.RewardGuard;
@@ -81,6 +82,7 @@ public final class SebchievementsPlugin extends JavaPlugin implements Listener {
         tick.register("perks", perks::sweep);
         getServer().getPluginManager().registerEvents(rewardGuard, this);
         getServer().getPluginManager().registerEvents(new LootingPerkListener(perks), this);
+        getServer().getPluginManager().registerEvents(new AutoSmeltPerkListener(perks, this), this);
         getServer().getPluginManager().registerEvents(new RewardMenuListener(), this);
 
         TrackService track = new TrackService(handlers, store);

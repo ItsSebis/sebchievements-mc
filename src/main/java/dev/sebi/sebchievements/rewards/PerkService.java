@@ -62,6 +62,14 @@ public final class PerkService {
         return best;
     }
 
+    /** Has the player earned the auto-smelt perk and left it switched on? */
+    public boolean autoSmelt(Player p) {
+        for (String id : PerkSpecs.PERKS.keySet()) {
+            if (spec(id).isAutoSmelt() && earned(p, id) && enabled(p, id)) return true;
+        }
+        return false;
+    }
+
     /** E.g. {@code 1 of 2 perks on (2 unlocked)}, for the menu button. */
     public String summary(Player p) {
         int unlocked = 0, on = 0;
@@ -78,7 +86,7 @@ public final class PerkService {
         if (p.isDead()) return;
         PerkSpecs.PERKS.keySet().forEach(id -> {
             PerkSpec spec = spec(id);
-            if (spec.isLooting()) return;
+            if (!spec.isEffect()) return;
             PotionEffectType type = type(spec);
             if (type == null) return;
             if (earned(p, id) && enabled(p, id)) apply(p, spec, type);

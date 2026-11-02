@@ -279,7 +279,8 @@ Each reward item also has `reclaim: free | cost | never` (default `free`) for th
 up (totems, pearls, potions, food, arrows...), `cost` for enchanted or durable gear (an ordinary item of the same
 material is used up), `free` for trophies. Decide it for every new reward item.
 A reward can also be an effect perk: `perk: {effect: "minecraft:speed", amplifier: 1, name: "Marathon Legs", icon: "minecraft:sugar"}`
-(`amplifier` 0 = level I). It needs `mode: plugin`, is generated into `PerkSpecs`, and `PerkService` keeps it applied while
+(`amplifier` 0 = level I); other perk kinds are `looting_bonus: N` and `auto_smelt: true` (exactly one of the three per perk).
+It needs `mode: plugin`, is generated into `PerkSpecs`, and `PerkService` keeps it applied while
 the advancement is earned and the player hasn't switched it off in `/adv rewards`. No handler code is needed for the perk
 itself; check it against the defence guardrail in the rewards spec.
 

@@ -73,7 +73,7 @@ public final class CatalogValidator {
         return errors;
     }
 
-    private static final Set<String> PERK_KEYS = Set.of("effect", "amplifier", "looting_bonus", "name", "icon");
+    private static final Set<String> PERK_KEYS = Set.of("effect", "amplifier", "looting_bonus", "auto_smelt", "name", "icon");
 
     private static void validatePerk(Catalog.Entry e, String at, List<String> errors) {
         String where = at + "perk: ";
@@ -82,8 +82,12 @@ public final class CatalogValidator {
             if (!PERK_KEYS.contains(key)) errors.add(where + "unknown key '" + key + "'");
         }
         boolean looting = e.perk().containsKey("looting_bonus");
-        if (looting && e.perk().containsKey("effect")) errors.add(where + "needs either effect or looting_bonus, not both");
-        if (looting) {
+        boolean smelt = e.perk().containsKey("auto_smelt");
+        int kinds = (looting ? 1 : 0) + (smelt ? 1 : 0) + (e.perk().containsKey("effect") ? 1 : 0);
+        if (kinds > 1) errors.add(where + "needs exactly one of effect, looting_bonus or auto_smelt");
+        if (smelt) {
+            if (!Boolean.TRUE.equals(e.perk().get("auto_smelt"))) errors.add(where + "auto_smelt must be true");
+        } else if (looting) {
             if (!(e.perk().get("looting_bonus") instanceof Integer b && b >= 1 && b <= 10)) {
                 errors.add(where + "looting_bonus must be a whole number from 1 to 10");
             }
