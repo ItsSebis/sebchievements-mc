@@ -46,7 +46,7 @@ The rewards are explained in detail [below](#rewards-in-detail).
 | Untouchable | Take no damage for 20 minutes | Challenge | 5 | Shield: Unbreaking V, Mending |
 | Nice to Mace You | Craft a mace and hit something with a smash attack | Goal | 6 | 4x Wind Charge |
 | Obsidian Obsession | Mine 1,000 obsidian | Challenge | 6 | Obsidian Cutter (Diamond Pickaxe; Efficiency VII) |
-| Prospector | Mine each kind of ore 64 times | Challenge | 6 | Perk Smelter's Touch: Ores you mine drop smelted (raw iron becomes an ingot) with the XP a furnace gives; your Fortune applies, ancient debris gets half a Fortune roll on top; not with Silk Touch (config: `perks.prospector.debris_fortune_factor`) |
+| Prospector | Mine every ore: 64 of each, but only 48 gold, 32 diamond, 24 ancient debris and 16 emerald | Challenge | 6 | Perk Smelter's Touch: Ores you mine drop smelted (raw iron becomes an ingot) with the XP a furnace gives; your Fortune applies, ancient debris gets half a Fortune roll on top; not with Silk Touch (config: `perks.prospector.debris_fortune_factor`) |
 | Totem Chain | Pop 3 totems of undying within 60 seconds | Challenge | 6 | Totem Of Undying<br>Totem Of Undying |
 | Yeet the Goat | Knock a goat into the void of the End | Challenge | 6 | Goat Yeeter (Stick; Knockback X) |
 | Actual Sniper | Kill a mob with an arrow from 100 or more blocks away | Challenge | 7 | Long Shot (Bow; Power VII, Infinity, Mending) |

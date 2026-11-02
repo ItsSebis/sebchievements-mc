@@ -254,10 +254,11 @@ Use `/summon wither`, `/summon warden`, `/summon ender_dragon` (in the End), `/g
 - [ ] Perk on, bare hands: kill about 200 zombies; rotten flesh averages roughly 3.5 per kill (about 1 with the perk off). With a Looting III sword it matches Looting VIII (about 5).
 - [ ] The sword's durability and enchantments are the same after kills as without the perk; bow and empty-hand kills also get the bonus; creative and mob-on-mob kills do not.
 
-### prospector (11 ores x 64) and the auto-smelt perk
+### prospector (11 ores, 16 to 64 each) and the auto-smelt perk
 - [ ] First tick after joining: `/adv debug prospector` shows per-ore counts equal to your "mined" statistics (deepslate variants added), `seeded = true`. Joining again changes nothing. With every ore at 64 or more: granted straight away.
-- [ ] With `advancements.prospector.per_ore: 3`: mine 3 of each ore; `/adv progress` shows `N / 11`; mining with a Silk Touch pick, with the wrong tool (iron ore by hand) or in creative does not count; deepslate ores count with their normal kind.
+- [ ] With every entry under `advancements.prospector.targets` set to 3: mine 3 of each ore; `/adv progress` shows `N / 11`; mining with a Silk Touch pick, with the wrong tool (iron ore by hand) or in creative does not count; deepslate ores count with their normal kind.
 - [ ] Ancient debris: place one and break it again: not counted (`/adv debug prospector` unchanged). Place one, push it with a piston (extend and retract, both directions), break it: still not counted. Place one and blow it up with TNT, place another: the new one is still not counted. Natural debris counts. Restart the server between placing and breaking: still not counted.
+- [ ] Per-ore targets: `/adv debug prospector` shows 64 coal, 48 gold, 32 diamond, 24 ancient debris, 16 emerald (others 64). Lowering one in config and restarting changes only that ore; a missing, zero or text value falls back to the default.
 - [ ] `/adv reset <player> prospector` clears the counts and the seeded flag.
 - [ ] Perk "Smelter's Touch" in `/adv rewards` and `/adv perks` (glows while on): with it on, mining iron/gold/copper ore drops ingots and gives XP; coal, diamond, lapis, redstone, emerald, quartz still drop normally; nether gold drops nuggets.
 - [ ] Fortune III on iron ore drops ingots in the usual Fortune amounts (1 to 4). Silk Touch drops the ore block unsmelted. Perk off: raw ores as usual. Creative: nothing changes.

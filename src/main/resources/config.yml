@@ -37,8 +37,19 @@ advancements:
     blocks: 100000           # on foot (walking or sprinting), counted from when the plugin first saw the player
   moving_mountains:
     blocks: 100000
-  prospector:
-    per_ore: 64              # per kind of ore (11 kinds); counted from the "mined" statistics once, then from breaks without Silk Touch
+  prospector:              # how many of each ore to mine; counted from the "mined" statistics once, then from breaks without Silk Touch
+    targets:               # the in-game description lists the defaults, so keep them if you want it to stay accurate
+      coal: 64
+      copper: 64
+      iron: 64
+      gold: 48
+      redstone: 64
+      lapis: 64
+      diamond: 32
+      emerald: 16            # only generates singly in mountain biomes
+      quartz: 64
+      nether_gold: 64
+      ancient_debris: 24     # 1 to 3 per vein
   skull_collector:
     skulls: 50               # counted from the "picked up" statistic (at most the wither skeletons killed) once, then from drops of wither skeletons you kill
   untouchable:

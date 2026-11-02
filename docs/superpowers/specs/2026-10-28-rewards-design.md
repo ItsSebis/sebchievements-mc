@@ -239,6 +239,6 @@ nuggets have no recipe and stay as they are. Vanilla has already applied the pic
 count carries over. Ancient debris gets no Fortune in vanilla, so it gets `perks.prospector.debris_fortune_factor`
 (default 0.5) of a Fortune roll on top (`OreFortune.extraDrops`: vanilla's `max(1, nextInt(level+2)) - 1` extra, scaled
 and rounded at random). The recipe's furnace XP is spawned as an orb. Utility only, so within the guardrail.
-Unlocked by **Prospector** (mine each of the 11 ores 64 times; see `ProspectorHandler`). Counts are seeded once from the
+Unlocked by **Prospector** (mine each of the 11 ores a per-ore number of times, 16 to 64, `OreType.defaultTarget()` and `advancements.prospector.targets.<ore>` in config; see `ProspectorHandler`). Counts are seeded once from the
 `MINE_BLOCK` statistics, Silk Touch breaks don't count, and placed ancient debris is remembered in the chunk's
 PersistentDataContainer until broken, exploded or moved (`PlacedDebris`; pistons re-key the entry).

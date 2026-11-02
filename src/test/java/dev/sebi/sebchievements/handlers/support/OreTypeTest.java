@@ -26,4 +26,14 @@ class OreTypeTest {
         for (OreType t : OreType.values()) assertTrue(t.key().matches("[a-z0-9_]+"), t.key());
         assertEquals(11, OreType.values().length);
     }
+
+    @Test
+    void defaultTargetsMatchTheCatalogDescription() {
+        assertEquals(64, OreType.COAL.defaultTarget());
+        assertEquals(48, OreType.GOLD.defaultTarget());
+        assertEquals(32, OreType.DIAMOND.defaultTarget());
+        assertEquals(24, OreType.ANCIENT_DEBRIS.defaultTarget());
+        assertEquals(16, OreType.EMERALD.defaultTarget());
+        for (OreType t : OreType.values()) assertTrue(t.defaultTarget() >= 1, t.name());
+    }
 }

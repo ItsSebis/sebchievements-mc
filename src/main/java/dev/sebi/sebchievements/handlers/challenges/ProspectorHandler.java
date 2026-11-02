@@ -21,11 +21,13 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
- * Mine every kind of ore {@code per_ore} times. The counts start from the game's own "mined" statistics, read once
+ * Mine every kind of ore a set number of times ({@link OreType#defaultTarget()}, overridable per ore in config). The counts start from the game's own "mined" statistics, read once
  * when the plugin first sees the player. Silk Touch breaks don't count, which covers every ore that can be placed
  * again; ancient debris drops itself regardless, so placed debris is remembered until broken ({@link PlacedDebris})
  * and doesn't count.
@@ -34,7 +36,7 @@ public final class ProspectorHandler implements AdvancementHandler, ProgressRepo
     private static final String SEEDED_KEY = "statseed/" + AdvancementIds.PROSPECTOR;
 
     private HandlerContext ctx;
-    private long target;
+    private final Map<OreType, Long> targets = new EnumMap<>(OreType.class);
     private PlacedDebris placed;
 
     @Override
@@ -45,7 +47,10 @@ public final class ProspectorHandler implements AdvancementHandler, ProgressRepo
     @Override
     public void register(HandlerContext ctx) {
         this.ctx = ctx;
-        this.target = ctx.config().getLong("per_ore", 64);
+        for (OreType t : OreType.values()) {
+            long configured = ctx.config().getLong("targets." + t.key(), t.defaultTarget());
+            targets.put(t, configured >= 1 ? configured : t.defaultTarget());
+        }
         this.placed = new PlacedDebris(ctx.plugin());
         ctx.services().tick().register(ctx.id(), this::seed);
         ctx.listen(new PlacedDebrisListener(placed));
@@ -102,7 +107,7 @@ public final class ProspectorHandler implements AdvancementHandler, ProgressRepo
 
     private int finished(Player p) {
         int done = 0;
-        for (OreType t : OreType.values()) if (count(p, t) >= target) done++;
+        for (OreType t : OreType.values()) if (count(p, t) >= targets.get(t)) done++;
         return done;
     }
 
@@ -114,9 +119,9 @@ public final class ProspectorHandler implements AdvancementHandler, ProgressRepo
     @Override
     public List<String> debug(Player player) {
         List<String> lines = new ArrayList<>();
-        lines.add("ores finished = " + finished(player) + " / " + OreType.values().length + " (" + target + " each)");
+        lines.add("ores finished = " + finished(player) + " / " + OreType.values().length);
         for (OreType t : OreType.values()) {
-            lines.add(t.label() + " = " + count(player, t) + " / " + target + " (mined stat " + earlier(player, t) + ")");
+            lines.add(t.label() + " = " + count(player, t) + " / " + targets.get(t) + " (mined stat " + earlier(player, t) + ")");
         }
         lines.add("seeded = " + (ctx.store().getLong(player, SEEDED_KEY, 0) != 0));
         return lines;

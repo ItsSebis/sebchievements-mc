@@ -672,11 +672,11 @@ advancements:
   - id: prospector
     tab: challenges
     title: "Prospector"
-    description: "Mine each kind of ore 64 times"
+    description: "Mine every ore: 64 of each, but only 48 gold, 32 diamond, 24 ancient debris and 16 emerald"
     icon: minecraft:raw_iron
     frame: challenge
     mode: plugin
     kind: counter
-    anti_cheese: "The 11 ores are coal, copper, iron, gold, redstone, lapis, diamond, emerald, nether quartz, nether gold and ancient debris (deepslate versions count with their normal ore). Only ore broken with a tool that can harvest it counts; Silk Touch breaks do not (so placed ore never counts); ancient debris a player placed does not, however long ago; creative and spectator do not. Ores mined before the plugin first saw the player count once, from the game's statistic"
+    anti_cheese: "The 11 ores (the counts are in the description) are coal, copper, iron, gold, redstone, lapis, diamond, emerald, nether quartz, nether gold and ancient debris (deepslate versions count with their normal ore). Only ore broken with a tool that can harvest it counts; Silk Touch breaks do not (so placed ore never counts); ancient debris a player placed does not, however long ago; creative and spectator do not. Ores mined before the plugin first saw the player count once, from the game's statistic"
     difficulty: 6
     perk: {auto_smelt: true, name: "Smelter's Touch", icon: "minecraft:blast_furnace"}
